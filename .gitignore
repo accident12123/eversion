@@ -1,0 +1,29 @@
+############################################################################
+# SYABAS API AGREEMENT FILES
+# SIGNUP at developer.popbox.com and look in general forum for missing files
+############################################################################
+com/syabas/*
+player.swf
+Popapi.as
+Mediaplayer.as
+
+#  Compiled source   #
+######################
+eversion.swf
+eversion.phf
+
+#  testing stuff     #
+######################
+Jukebox/*
+
+# OS generated files #
+######################
+.Spotlight-V100
+.Trashes
+.DS_Store
+desktop.ini
+ehthumbs.db
+Thumbs.db
+.directory
+*~
+*.pid

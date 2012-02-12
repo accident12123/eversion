@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<eskin>	
+<!--******************************************************************
+	This .eskin file contains code that is common to many screens so
+	it's been separated out on it's own and is "included" by the other
+	.eskin files.
+	
+	Used with:
+	movie1
+	movie2
+	movie3
+	tv1
+	******************************************************************-->
+<!-- Variables - See: http://www.dentedboxes.com/doku.php/eversion:eskins:ref:variables -->	
+<!-- Conditions - See: http://www.dentedboxes.com/doku.php/eversion:eskins:block:if -->	
+
+	<!-- Media info -->
+	<image>
+		<name>videocodec.bg</name>
+		<file>[:@media:]common/1.eskin.used/blank.100.png</file>
+		<posx>290</posx>
+		<posy>684</posy>
+		<width>100</width>
+		<height>32</height>
+	</image>	
+	<text>
+		<name>videocodec</name>
+		<display>[:smartvideocodec,blank:]</display>  <!-- Eversion variables holding the video codec, in uppercase, if none found display nothing -->
+		<posx>290</posx>
+		<posy>687</posy>
+		<width>100</width>
+		<height>32</height>
+		<size>20</size>  
+		<align>center</align>  <!-- By default align is left -->
+		<color>mediainfo.color</color>
+	</text>	
+	<image>
+		<name>audiocodec.bg</name>
+		<file>[:@media:]common/1.eskin.used/blank.100.png</file>
+		<posx>390</posx>
+		<posy>684</posy>
+		<width>100</width>
+		<height>32</height>
+	</image>
+	<text>
+		<name>audiocodec</name>
+		<display>[:smartaudiocodec,blank,upper:]</display>  <!-- Eversion variables holding the audio codec, in uppercase, if none found display nothing -->
+		<posx>390</posx>
+		<posy>687</posy>
+		<width>100</width>
+		<height>32</height>
+		<size>20</size>  
+		<align>center</align>  <!-- By default align is left -->
+		<color>mediainfo.color</color>
+	</text>	
+	<image>
+		<name>resolution.bg</name>
+		<file>[:@media:]common/1.eskin.used/blank.100.png</file>
+		<posx>490</posx>
+		<posy>684</posy>
+		<width>100</width>
+		<height>32</height>
+	</image>	
+	<text>
+		<name>resolution</name>
+		<display>[:smartres,blank:]</display>  <!-- Eversion variables holding the video resolution, if none found display nothing -->
+		<posx>490</posx>
+		<posy>687</posy>
+		<width>100</width>
+		<height>32</height>
+		<size>20</size>  
+		<align>center</align>  <!-- By default align is left -->
+		<color>mediainfo.color</color>
+	</text>	
+	<image>
+		<name>aspectratio.bg</name>
+		<file>[:@media:]common/1.eskin.used/blank.100.png</file>
+		<posx>590</posx>
+		<posy>684</posy>
+		<width>100</width>
+		<height>32</height>
+	</image>
+	<text>
+		<name>aspectratio</name>
+		<display>[:smartaspect,blank:]</display>  <!-- Eversion variables holding the aspect ratio, if none found display nothing -->
+		<posx>590</posx>
+		<posy>687</posy>
+		<width>100</width>
+		<height>32</height>
+		<size>20</size>  
+		<align>center</align>  <!-- By default align is left -->
+		<color>mediainfo.color</color>
+	</text>	
+	<image>
+		<name>container.bg</name>
+		<file>[:@media:]common/1.eskin.used/blank.100.png</file>
+		<posx>690</posx>
+		<posy>684</posy>
+		<width>100</width>
+		<height>32</height>
+	</image>	
+	<text>
+		<name>container</name>
+		<display>[:smartcontainer,upper,blank:]</display>  <!-- Eversion variables holding the type of file, in uppercase, if none found display nothing -->
+		<posx>690</posx>
+		<posy>687</posy>
+		<width>100</width>
+		<height>32</height>
+		<size>20</size>  
+		<align>center</align>  <!-- By default align is left -->
+		<color>mediainfo.color</color>
+	</text>		
+	<if>
+		<condition>[:subtitles:] != NO</condition>  <!-- This block is done if the condition is true-->
+		<image>
+			<name>subtitle.bg</name>
+			<file>[:@media:]common/1.eskin.used/blank.100.png</file>
+			<posx>790</posx>
+			<posy>684</posy>
+			<width>100</width>
+			<height>32</height>
+		</image>	
+		<text>
+			<name>subtitle</name>
+			<display>[:%subtitle,upper:]</display>  <!-- Use the language files to display localized "subtitle", in upper case -->
+			<posx>790</posx>
+			<posy>687</posy>
+			<width>100</width>
+			<height>32</height>
+			<size>20</size>  
+			<align>center</align>  <!-- By default align is left -->
+			<color>mediainfo.color</color>
+		</text>
+	</if>	
+	<if>
+		<condition>[:isextras:] == YES</condition>  <!-- This block is done if the condition is true-->		
+		<image>
+			<name>trailer.bg</name>
+			<file>[:@media:]common/1.eskin.used/blank.100.png</file>
+			<posx>890</posx>
+			<posy>684</posy>
+			<width>100</width>
+			<height>32</height>
+		</image>	
+		<text>
+			<name>trailer</name>
+			<display>[:%extras,upper:]</display>  <!-- Use the language files to display localized "extras", in upper case -->
+			<posx>890</posx>
+			<posy>687</posy>
+			<width>100</width>
+			<height>32</height>
+			<size>20</size>  
+			<align>center</align>  <!-- By default align is left -->
+			<color>mediainfo.color</color>
+		</text>	
+	</if>
+</eskin>

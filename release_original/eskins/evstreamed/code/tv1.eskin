@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<eskin>
+<!-- Segements - See: http://www.dentedboxes.com/doku.php/eversion:eskins:block:segment -->	
+<!-- Segements-tiles - See: http://www.dentedboxes.com/doku.php/eversion:eskins:block:tile -->	
+<!-- Artwork Variables - See: http://www.dentedboxes.com/doku.php/eversion:eskins:ref:artvariables -->	
+<!-- Variables - See: http://www.dentedboxes.com/doku.php/eversion:eskins:ref:variables -->	
+
+    <control>
+		<fullscreen>true</fullscreen>  <!-- Clear the previous screen  -->
+		<clearhighresbg>false</clearhighresbg>  <!--  Don't clear the hires background (if avail)  -->
+    </control>
+
+	<!-- Background -->
+	<background>
+		<file>[:@jukebox:][:smartfanart1.large:]</file>  <!-- Eversion artwork variable holding the name of the fanart YAMJ created-->
+	</background>		
+
+	<!-- Background image for the episode details -->
+	<image>
+		<name>details.bg</name>
+		<file>[:@media:]tv/1.eskin.used/tv.bg.png</file>
+		<posx>0</posx>
+		<posy>420</posy>
+		<width>1280</width>
+		<height>300</height>
+	</image>
+	
+	<!-- Included eskin files -->
+	<!-- These have been carefully ordered to ensure that they are drawn in the order we want  -->
+	<include>common.upper.underlay</include>	
+	<include>common.upper.index</include>	
+	<include>global.clock</include>
+	<include>common.upper.studiologo</include>	
+	<include>common.upper.navbar</include>
+	<include>common.mediainfo</include>	
+	<include>common.lower.navbar</include>
+	
+	<!-- Details -->
+	<text>
+		<name>eptitle</name>
+		<segname>eplist</segname>  <!-- segname and hyper are necessary for the TV episode list -->
+		<hyper>4</hyper>
+		<display>[:episode:]. [:title:]</display>  <!-- Eversion variable holding the episode number and episode title separated by ". " -->
+		<posx>19</posx>
+		<posy>424</posy>		
+		<width>650</width>
+		<height>60</height>
+		<size>27</size>
+		<color>tv.episode.color</color>
+	</text>	
+	<image>
+		<name>videoimage</name>
+		<segname>eplist</segname>  <!-- segname and hyper are necessary for the TV episode list -->
+		<hyper>3</hyper>
+		<swap>true</swap>
+		<file>[:@jukebox:][:videoimage:]</file>  <!-- Eversion variable holding the name of the episode image YAMJ created-->
+		<posx>19</posx>
+		<posy>470</posy>
+		<width>270</width>
+		<height>155</height>
+	</image>			
+	<text>
+		<name>aired.label</name>		
+		<display>[:%aired,upper:]:</display><!-- Use the language files to display localized "aired date" in uppercase -->
+		<posx>19</posx>
+		<posy>647</posy>		
+		<width>200</width>
+		<height>25</height>
+		<size>20</size>
+		<color>tv.label.color</color>
+	</text>	
+	<text>
+		<name>aired</name>
+		<segname>eplist</segname>  <!-- segname and hyper are necessary for the TV episode list -->
+		<hyper>4</hyper>
+		<display>[:aired,upper:]</display>  <!-- Eversion variable holding the first aired date, in uppercase -->
+		<posx>150</posx>
+		<posy>647</posy>		
+		<width>125</width>
+		<height>25</height>
+		<size>20</size>
+		<color>tv.data.color</color>
+	</text>	
+	<text>
+		<name>outline</name>
+		<segname>eplist</segname>  <!-- segname and hyper are necessary for the TV episode list -->
+		<hyper>4</hyper>
+		<display>[:smartoutline:]</display>  <!-- Eversion variable holding the outline -->
+		<posx>304</posx>
+		<posy>465</posy>		
+		<width>466</width>
+		<height>200</height>
+		<size>21</size>
+		<wordwrap>true</wordwrap>  <!-- By default is false -->
+		<color>tv.outline.color</color>
+	</text>
+	
+	<!-- Create the list of episodes -->
+	<segment>
+		<name>eplist</name>
+		<hyperscroll>false</hyperscroll>
+		<datasource>episodes</datasource>
+		<startx>762</startx>
+		<starty>422</starty>
+		<tilesize>true</tilesize>
+		<scroll>2</scroll>
+		<cursor>
+			<file>[:@media:]common/1.eskin.used/cursor.png</file>
+			<above>false</above>
+			<posx>0</posx>
+			<posy>0</posy>
+			<width>520</width>
+			<height>36</height>  
+		</cursor>		
+		<tile>
+			<cols>1</cols>
+			<rows>7</rows>
+			<width>520</width>
+			<height>36</height>			
+			<text>
+				<name>mc</name>
+				<display>[:title:]</display>  <!-- Eversion variable holding the title -->
+				<posx>0</posx>
+				<posy>5</posy>
+				<width>520</width>
+				<height>36</height>
+				<size>21</size>  
+				<align>center</align>  <!-- By default align is left -->
+				<color>list.list.color</color>
+				<hlcolor>list.list.highlight.color</hlcolor>
+			</text>	
+		</tile>
+
+		<!-- Remote commands -->
+		<remote>
+			<button>PLAY</button>
+			<action>PLAYFROMHERE</action>	
+		</remote>		
+		<remote>
+			<button>PAUSE</button>
+			<action>PLAYRANDOM</action>	
+		</remote>		
+		<remote>
+			<button>SELECT</button>
+			<action>PLAYSINGLE</action>	
+		</remote>	
+		<remote>
+			<button>FASTFORWARD</button>
+			<action>PLAYLAST</action>	
+		</remote>		
+	</segment>	
+</eskin>

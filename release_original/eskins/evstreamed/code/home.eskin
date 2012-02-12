@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<eskin>
+<!-- Segements - See: http://www.dentedboxes.com/doku.php/eversion:eskins:block:segment -->	
+<!-- Segements-tiles - See: http://www.dentedboxes.com/doku.php/eversion:eskins:block:tile -->	
+<!-- Variables - See: http://www.dentedboxes.com/doku.php/eversion:eskins:ref:variables -->	
+
+    <control>
+		<fullscreen>true</fullscreen>  <!-- Clear the previous screen  -->
+    </control>
+
+	<!-- Background -->
+	<background>
+		<file>[:@media:]home/1.eskin.used/background.png</file>
+	</background>
+
+	<!-- Included eskin files -->
+	<include>global.clock</include>
+
+	<!-- Background image for the menu bar -->
+	<image>
+		<name>menubar.bg</name>
+		<file>[:@media:]home/1.eskin.used/menubar.png</file>
+		<posx>0</posx>
+		<posy>520</posy>
+		<width>1280</width>
+		<height>114</height>
+	</image>
+
+	<!-- Draw the menu bar items -->
+	<segment>  
+		<name>menubar</name>
+		<control>[:@eskin:]home</control>  <!-- The home menu is special and needs this file, located at the root of the eskin folder, to determine items in the menu.  -->
+		<hyperscroll>false</hyperscroll>
+		<startx>0</startx>
+		<starty>550</starty>
+		<tilesize>true</tilesize>
+		<scroll>1</scroll>  
+		<tile>
+			<cols>4</cols>
+			<rows>1</rows>
+			<width>320</width>
+			<height>55</height>
+			<text>
+				<name>mc</name>
+				<display>[:title:]</display>  <!-- An Eversion variable holdingthe title for the thing we are working with -->
+				<posx>0</posx>
+				<posy>0</posy>
+				<width>320</width>
+				<height>55</height>
+				<size>42</size>  
+				<align>center</align>  <!-- By default align is left -->
+				<color>home.color</color>
+				<hlcolor>home.highlight.color</hlcolor>
+			</text>	
+		</tile>
+
+		<!-- Fanart which changes as the menu item selected changes-->
+		<fanart>
+			<file>[:@sharedmedia:]home/[:originaltitle:].jpg</file>  <!-- Originaltitle will find the image using it;s original name and not the translated name -->
+			<hyper>1</hyper>
+		</fanart>
+	</segment>
+</eskin>

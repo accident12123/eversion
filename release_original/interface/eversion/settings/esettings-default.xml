@@ -1,0 +1,259 @@
+<settings>
+    <!-- ********* OVERSCAN SETTINGS -->
+
+	<!-- Overscan is when your tv enlarges the image and it appears the edges are cut off.  The best fix for the highest
+	     quality is to change the overscan mode.  Sometimes called overscan, dot by dot, 1:1 pixel mapping, and sometimes
+		 a special per input zoom mode.
+
+		 When you can't fix your tv, the below settings will have eversion adjust the image.  -->
+
+	<!-- overscan: set to true to enable overscan scaling -->
+	<overscan>false</overscan>
+
+	<!-- % of the image to shrink in the x (horizontal) and y (vertical) direction.
+         Most TVs are between 5 and 7, 5.5, 6.31, etc are valid settings	-->
+	<overscanx>5</overscanx>
+	<overscany>5</overscany>
+
+	<!-- When using standard backgrounds, should overscan also resize the background -->
+	<overscanbg>true</overscanbg>
+
+	<!-- ********* OVERALL SETTINGS -->
+	<!-- eskin to use -->
+	<eskin>evstreamed</eskin>
+
+	<!-- What translation file should the skin use for prompts -->
+	<translation>en.xml</translation>
+	<!-- where do we go when you exit the skin?? -->
+	<exitpage>eject</exitpage>
+	<!-- PCH path to jukebox folder if not using a default install (99% of users should not touch this) -->
+	<yamjdatapath>./</yamjdatapath>
+	<!-- PCH path to eskin folders (99% of users should not touch this) -->
+	<eskinrootpath>./</eskinrootpath>
+
+	<!-- clock format.  Options 12=12hour, 24=24hour) -->
+	<clock>12</clock>
+	<!-- date format:  Options 1=MM-DD-YYYY, 2=YYYY-MM-DD, 3=MM/DD/YYYY, 4=YYYY/MM/DD, 5=DD-MM-YYYY, 6=DD/MM/YYYY  -->
+	<date>1</date>
+
+	<!-- what the colored remote buttons do: See www.dentedboxes.com for valid settings -->
+	<red>home</red>
+	<green>home</green>
+	<yellow>home</yellow>
+	<blue>apps</blue>
+	<search>menu</search>
+
+	<!-- ********** REMOTE CONTROL SETTINGS -->
+	<!-- remotepgupdown enables volume up/down in index screens.    true=buttons enabled
+			WARNING: some firmwares this controls volume AND index moving	-->
+	<remotepgupdown>true</remotepgupdown>
+
+	<!-- popbox small remote users should set this to false -->
+	<volupdown>true</volupdown>
+
+	<!-- ******** PRELOADER  -->
+	<!-- The preloader is the box that appears in the upper left corner to tell you why your waiting.
+	     to make sure the preloader doesn't slow things down, it waits to appear and animate
+
+		 All times are in milliseconds but you'll find the low end nature of the cpu that time can drift-->
+
+	<!-- time in milliseconds to appear if needed (500 minimum and default) -->
+	<preloadstart>500</preloadstart>
+	<!-- time in milliseconds to start animating AFTER it appears (1000 minimum, default 2000) -->
+	<preloadanimate>2000</preloadanimate>
+	<!-- preload x and y are the x and y coodinates on of the left upper corner for the preloader to appear -->
+	<preloadx>32</preloadx>
+	<preloady>50</preloady>
+	<!-- when set to true, waitingled will cause the system led to flash if eversion is busy.
+         requires a hardware playing support this option (C200 does not, the rest do)	-->
+	<waitingled>true</waitingled>
+
+	<!-- ************ EPISODES -->
+
+	<!-- set to true to enable specials to merge with seasons in their proper airing order
+	     note: does not work everywhere yet, work in progress
+		       requires thetvdb specials airing information in yamj R2524+  -->
+	<epmerge>true</epmerge>
+
+
+	<!-- ********* HyperScroll settings  -->
+	<!-- Activate hyperscroll.   true means on -->
+	<hyperscroll>true</hyperscroll>
+	<!-- hyperscroll timer.   -->
+	<hyperscrolltimer>480</hyperscrolltimer>
+	<!-- how fast should the screen start removing parts of hte screen.  choices: slow, medium, fast.  Default: slow -->
+	<hyperscrollstart>slow</hyperscrollstart>
+	<!-- how fast should the screen start reappearing.  choices: slow, medium, fast.  Default: medium -->
+	<hyperscrollspeed>medium</hyperscrollspeed>
+	<!-- should hyperscroll skip every other title (list/single row indexes only)-->
+	<hyperscrolljump>true</hyperscrolljump>
+	<!-- at what level should we stop drawing the menu screen.  Min 1, Max 6, 6=always/disables this feature -->
+	<hyperscrolldraw>2</hyperscrolldraw>
+    <!-- at what level should we start to redraw the menu screen.  Min 1, Max 6, 6=always/disables this feature -->
+	<hyperscrollredraw>4</hyperscrollredraw>
+    <hyperactivedraw>20</hyperactivedraw>
+	<!-- hyperscrolldrawmode specifies how to draw and index as your navigating around.
+
+			Options: MIN  - the images of videos are loaded as you see them appear on the screen
+			         NICE - the images of videos are loaded slightly ahead of where you are in the index
+	-->
+	<hyperscrolldrawmode>NICE</hyperscrolldrawmode>
+	<!-- how many cycles before hyper level changes -->
+	<hypercycles>2</hypercycles>
+	<!-- a per device adjustment to fine tune image loading.  higher usually means faster remote response but less images being handled per cycle -->
+	<pchhyperdraw>3</pchhyperdraw>
+	<abhyperdraw>3</abhyperdraw>
+	<pbhyperdraw>2</pbhyperdraw>
+	<v8hyperdraw>2</v8hyperdraw>
+	<a3hyperdraw>2</a3hyperdraw>
+	<c3hyperdraw>2</c3hyperdraw>
+	<noghyperdraw>2</noghyperdraw>
+
+	<!-- when set to true, eversion will use the indexcount that yamj makes instead of counting the number of items in an index itself.  It is faster
+	     when set to true to get into an index however the yamj count is not always accurate and can cause unexpected problems.  It is recommended
+		 you keep this setting false until the eversion default is updated or the all safe is posted -->
+	<indexcount>false</indexcount>
+
+
+	<!-- *********************** ADVANCED SETTINGS *********************
+	     changing settings below this line can impact performance
+		  and even cause things to not work correctly.  they are here
+		  to help indiviuals tune their setup for best overall performance
+		  you've been warned.
+		  *****************************************************************
+	-->
+
+	<!-- ***** PLAYER SETTINGS ****
+		flashskin has 2 different video players available.   You can pick the native
+		player built into your pch or you can select the YAMJ player.
+
+		Options:
+		  NATIVE:  The player built in the pch (dvd, bluray, iso require this one)
+		  SDK:	  The limited yamj player (currently the syabas sdk player, soon to be rewritten)
+	-->
+
+	<!-- which player for single video files?  (avi, mkv, etc) -->
+	<playersingle>NATIVE</playersingle>
+	<!-- which player for iso files? -->
+	<playeriso>NATIVE</playeriso>
+	<!-- which player for VIDEO_TS rips? -->
+	<playervideots>NATIVE</playervideots>
+	<!-- which player for BDMV rips? -->
+	<playerbdmv>NATIVE</playerbdmv>
+	<!-- which player for flv video files?  -->
+	<playerflv>SDK</playerflv>
+
+
+	<!-- When set to true, eversion will monitor the playback progress of a video.  There are no existing features which use
+	     this system however it can reduce the number of firmware lockups related to long term pausing of video and pressing power
+		 when the videoplayers are active.  -->
+	<playermonitor>true</playermonitor>
+
+	<!-- when playmonitor is true, this option is how often it will look if the video has started to play.  Too low and it will cause the
+	     player to crash.  Too high and it could leave the high res background on the screen longer than you would like. -->
+	<playermonitorstart>300</playermonitorstart>
+
+	<!-- when playermonitor is true, this is how often in ms it should check on the status.  -->
+	<playermonitorinterval>2000</playermonitorinterval>
+
+	<!-- when playermonitor is true, this option is how many times it finds a video not playing before it forces the playback to stop.
+	     for native player videos, playerforceexit*playermonitorinterval is how long it will take from ending a video until eversion starts
+		 to come back to life -->
+	<playerforceexit>3</playerforceexit>
+
+	<!-- When set to true, files are checked when you have native /opt network share paths before playing.
+	     It will also attempt to mount shares not mounted and provide family friendly error messages when it cannot play.
+		 This option can delay the start of videos playing so if you have a good setup with 1 share you may want to disable it -->
+	<playercheckmounts>false</playercheckmounts>
+
+	<!-- Are native bookmarks enabled with native player on popbox V8 -->
+	<v8nativebm>true</v8nativebm>
+
+	<!-- Are native bookmarks enabled with native player on pch a300 -->
+	<a3nativebm>true</a3nativebm>
+
+	<!-- Are native bookmarks enabled with native player on pch c300 -->
+	<c3nativebm>true</c3nativebm>
+
+	<!-- Are native bookmarks enabled with native player on popbox (and popbox 3d) -->
+	<pbnativebm>false</pbnativebm>
+
+	<!-- Are native bookmarks enabled with native player on pch-->
+	<pchnativebm>true</pchnativebm>
+
+	<!-- Are native bookmarks enabled with native player on unknown players without gaya -->
+	<nognativebm>true</nognativebm>
+
+	<!-- Are native bookmarks enabled with native player on asiabox-->
+	<abnativebm>true</abnativebm>
+
+	<!-- Are native bookmarks enabled with native player on unknown players without gaya -->
+	<nognativebm>true</nognativebm>
+
+
+	<!-- A firmware bug does not allow us to mount an nfs-tcp mount as nfs-tcp.   Setting this option to true will mount as nfs instead -->
+	<mountnfstcpasnfs>false</mountnfstcpasnfs>
+
+	<!-- Native player loop fromhere playlists.
+
+		true=YAMJ html skin playlist behavior.  Video you picked to start from plays first until the end of the playlist, then wraps around to the first videos you didn't play yet.
+		false=only play from the video I picked to the end, do not wrap around.
+
+		Currently this only works with native player.   SDK Player has full playlist support and you'll get the full playlist but you'll start watching the video
+		you picked from.  This allows you to select previous to go back to previous videos if you started in the wrong spot.
+	-->
+	<playlistreorder>false</playlistreorder>
+
+	<!-- When set to true playermultipick will pop up a menu when you play a multi-part movie to pick all or 1 of the parts.   Handy for users who do not have # keys
+	     on their remotes, or users who make use of multi-parts for different versions of the same movie -->
+	<playermultipick>true</playermultipick>
+
+	<!-- playersingleiso: when set to true, if an iso or folder rip is the first item in the playlist, the rest of the
+	                      playlist is discarded -->
+	<playersingleiso>true</playersingleiso>
+
+	<!-- Intro movie will play a movie just before you go to watch a movie.  It will not work with ISO or folder rips
+	     and eversion doesn't check if your about to watch one.   (however it will skip over to the iso if you did).
+		 The url MUST be a full playable without auto-mounting url to the video play including the videofile name -->
+	<intromovie></intromovie>
+	<introname>My Intro Movie</introname> <!-- usually doesn't appear on screen unless sdk player -->
+
+	<!-- ************ YOUTUBE/TRAILER/SDK PLAYER OPTIONS -->
+
+
+	<!-- findsdkupdate: When set to true, eversion will check the syabas youtube app for a newer sdk player than we
+         distribute.  Add the youtube app and keep it updated if you use trailers.  It will result in the best playback
+		 experience -->
+	<findsdkupdate>true</findsdkupdate>
+
+	<!-- Quality to use for youtube streaming (trailers from youtube)
+		auto, small, medium, large, hd720, hd1080
+
+		NOTE: auto disables the option and lets the sdk player do it's defaults.  It's not a full
+		      auto.
+	-->
+	<youtubequality>hd720</youtubequality>
+
+	<!-- ***** data loading settings **** -->
+	<!-- how far ahead should we prefetch (must be 2 lower than datatotal) -->
+	<dataprefetch>1</dataprefetch>
+	<!-- how many pages of data to keep in memory (caution, the pch/popbox has very little free memory -->
+	<datatotal>3</datatotal>
+
+	<!-- ***** VERSION CHECKING -->
+	<!-- how many seconds should we look to see if yamj and the skin has updated while you were using it.  disable: 0 -->
+	<jbcheck>300</jbcheck>
+	<!-- Look for yamj version problems-->
+	<yamjcheck>true</yamjcheck>
+	<!-- autoreload: when set to true, eversion will reset without warning when yamj jukebox updates happen -->
+	<autoreset>false</autoreset>
+
+	<!-- bypass api: when set to true, failures to talk to hardware players will disable instead of error -->
+	<bypassapi>false</bypassapi>
+
+	<!-- this setting has no impact on current pch models, it's added just in case it's available in the future -->
+	<renderquality>HIGH</renderquality>
+
+	<!-- used to verify settings match interface version -->
+    <eversion>R0149</eversion>
+</settings>

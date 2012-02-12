@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<eskin>	
+<!--******************************************************************
+	This .eskin file contains code that is common to many screens so
+	it's been separated out on it's own and is "included" by the other
+	.eskin files.
+	
+	Used with:
+	list.text.summary
+	list.banner.summary
+	******************************************************************-->
+<!-- Hyper - See: http://www.dentedboxes.com/doku.php/eversion:eskins:dev -->	
+<!-- Variables - See: http://www.dentedboxes.com/doku.php/eversion:eskins:ref:variables -->	
+<!-- Artwork Variables - See: http://www.dentedboxes.com/doku.php/eversion:eskins:ref:artvariables -->	
+<!-- Conditions - See: http://www.dentedboxes.com/doku.php/eversion:eskins:block:if -->	
+
+	<!-- Details -->
+	<text>
+		<name>title</name>
+		<segname>index</segname>  <!-- segname and hyper are necessary for the lists -->
+		<hyper>4</hyper>
+		<display>[:fulltitle:]</display>  <!-- Eversion variable holding the title -->
+		<posx>290</posx>
+		<posy>400</posy>
+		<width>474</width>
+		<height>45</height>
+		<size>27</size>  
+		<wordwrap>true</wordwrap>
+		<color>list.title.color</color>
+	</text>	
+	<!-- For genre we want to see up to six of them, but if a movie is part of the top250 that should be included as a genre -->
+	<text>
+		<name>genres-250</name>
+		<condition>[:top250:] != -1</condition>  <!-- This block is only done if the title is in the top 250  -->
+		<segname>index</segname>  <!-- segname and hyper are necessary for the lists -->
+		<hyper>4</hyper>
+		<display>[:%top250:]: #[:top250:], [:genres,5,blank:]</display>  <!-- Use the language files to display localized "Top250" + top250# + up to 5 genres found in the XML YAMJ created, if no genres display nothing  -->
+		<posx>290</posx>
+		<posy>430</posy>
+		<width>474</width>
+		<height>25</height>
+		<size>20</size>  
+		<italic>true</italic>  <!-- By default is false -->
+		<color>list.genre.color</color>
+	</text>	
+	<text>
+		<name>genres</name>  <!-- Be sure to use a different name from the one just above as Eversion does not like two items with the same name  -->
+		<condition>[:top250:] = -1</condition>  <!-- This block is only done if the title is NOT in the top 250  -->
+		<segname>index</segname>  <!-- segname and hyper are necessary for the lists -->
+		<hyper>4</hyper>
+		<display>[:genres,6,blank:]</display>  <!-- Use the language files to display localized "genres"  -->
+		<posx>290</posx>
+		<posy>430</posy>
+		<width>474</width>
+		<height>25</height>
+		<size>20</size>  
+		<italic>true</italic>  <!-- By default is false -->
+		<color>list.genre.color</color>
+	</text>	
+	<image>
+		<name>rating.image</name>
+		<segname>index</segname>  <!-- segname and hyper are necessary for the lists -->
+		<hyper>2</hyper>
+		<file>[:@media:]star.rating/1.eskin.used/star[:score,round:].png</file>  <!-- Use an image at \evstreamed\media\star.rating\1.eskin.used\ with a name that matches the Eversion variable score (rounded) + ".png"    -->
+		<posx>290</posx>
+		<posy>457</posy>
+		<width>115</width>
+		<height>20</height>
+	</image>		
+	<text>
+		<name>rating</name>
+		<segname>index</segname>  <!-- segname and hyper are necessary for the lists -->
+		<hyper>2</hyper>
+		<display>[:rating:]/100</display>  <!-- Display the rating found in the XML YAMJ created + "/100" -->
+		<posx>415</posx>
+		<posy>457</posy>
+		<width>200</width>
+		<height>32</height>
+		<size>20</size>  
+		<color>list.data.color</color>
+	</text>	
+	<text>
+		<name>outline</name>
+		<segname>index</segname>  <!-- segname and hyper are necessary for the lists -->
+		<hyper>4</hyper>
+		<display>[:smartoutline:]</display>  <!-- Eversion variable holding the title outline -->
+		<posx>290</posx>
+		<posy>485</posy>
+		<width>498</width>
+		<height>200</height>
+		<size>21</size>  
+		<wordwrap>true</wordwrap>  <!-- By default is false -->
+		<color>list.outline.color</color>
+	</text>			
+</eskin>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<overlay>
+    <layer after="true">
+        <name>watched</name>
+        <left>0</left>
+        <top>0</top>
+        <align>left</align>
+        <valign>top</valign>
+        <images>
+            <image value="true" filename="/watched/p_watched.png"/>
+            <image value="false" filename="/watched/p_unwatched.png"/>
+        </images>
+    </layer>
+	
+    <layer after="true">
+        <name>watched</name>
+        <left>0</left>
+        <top>0</top>
+        <align>left</align>
+        <valign>top</valign>
+        <images>
+            <image value="true" filename="/shine/poster_shine.png"/>
+            <image value="false" filename="/shine/poster_shine.png"/>
+        </images>
+    </layer>
+	
+</overlay>

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<eskin>
+<!--******************************************************************
+	This .eskin file contains code that is common to many screens so
+	it's been separated out on it's own and is "included" by the other
+	.eskin files.
+
+	This file is identical to common.upper.studiologo except for the
+	use of the index segname and hyper.
+	
+	Used with:
+	wall.poster.full
+	wall.poster.full2
+	wall.poster.summary
+	wall.poster.fanart
+	wall.banner.full
+	wall.banner.summary
+	wall.banner.summary2
+	wall.trailer.full
+	list.text.summary
+	list.text.properties
+	list.banner.summary
+	******************************************************************-->
+<!-- Variables - See: http://www.dentedboxes.com/doku.php/eversion:eskins:ref:variables -->	
+<!-- Hyper - See: http://www.dentedboxes.com/doku.php/eversion:eskins:dev -->	
+	
+	<!-- Studio logo -->
+	<image>
+		<name>studiologo.index</name>
+		<segname>index</segname>  <!-- segname and hyper are necessary for the walls and lists -->
+		<hyper>3</hyper>
+		<file>[:@sharedmedia:]company/[:company:].png</file>
+		<posx>990</posx>
+		<posy>0</posy>
+		<width>74</width>
+		<height>50</height>
+		<swap>true</swap>
+	</image>
+</eskin>

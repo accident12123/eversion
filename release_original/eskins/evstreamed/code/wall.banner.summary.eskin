@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<eskin>
+<!-- Segements - See: http://www.dentedboxes.com/doku.php/eversion:eskins:block:segment -->	
+<!-- Segements-tiles - See: http://www.dentedboxes.com/doku.php/eversion:eskins:block:tile -->	
+<!-- Variables - See: http://www.dentedboxes.com/doku.php/eversion:eskins:ref:variables -->	
+<!-- Artwork Variables - See: http://www.dentedboxes.com/doku.php/eversion:eskins:ref:artvariables -->	
+<!-- Conditions - See: http://www.dentedboxes.com/doku.php/eversion:eskins:block:if -->	
+
+    <control>
+		<fullscreen>true</fullscreen>  <!-- Clear the previous screen  -->
+		<clearhighresbg>true</clearhighresbg>  <!--  Clear the hires background (if avail)  -->
+    </control>
+
+	<!-- Background -->
+	<background>
+		<file>[:@media:]wall/1.eskin.used/background.png</file>
+	</background>
+
+	<!-- Background image for the summary data, also replaces wall.common.lower.underlay on this screen -->
+	<image>
+		<name>summary.bg</name>
+		<file>[:@media:]wall/1.eskin.used/summary.bg.png</file>
+		<posx>0</posx>
+		<posy>500</posy>
+		<width>1280</width>
+		<height>300</height>
+	</image>
+	
+	<!-- Included eskin files -->
+	<!-- These have been carefully ordered to ensure that they are drawn in the order we want  -->
+	<include>common.upper.underlay</include>	
+	<include>common.upper.index</include>	
+	<include>common.upper.studiologo(index)</include>	
+	<include>common.upper.navbar</include>
+	<include>global.clock</include>
+	<include>wall.common.mediainfo</include>	
+	<include>wall.common.title</include>	
+	<include>common.lower.navbar</include>	
+	<include>wall.summary.data</include>	
+
+	<!-- Draw the banners (5 rows of 3) -->
+	<segment>
+		<name>index</name>
+		<startx>11</startx>
+		<starty>60</starty>
+		<scroll>2</scroll>
+		<cursor>
+			<file>[:@media:]common/1.eskin.used/banner.cursor.png</file>
+			<above>true</above>
+			<posx>-3</posx>
+			<posy>-2</posy>
+			<width>426</width>
+			<height>91</height>  
+		</cursor>		
+		<tile>
+			<cols>3</cols>
+			<rows>5</rows>
+			<width>419</width>
+			<height>86</height>
+			<image>
+				<name>banner</name>
+				<file>[:@jukebox:][:banner1small:]</file>  <!-- Eversion artwork variable holding the name of the banner YAMJ created-->
+				<posx>3</posx>
+				<posy>3</posy>
+				<width>413</width>
+				<height>80</height>
+				<keepaspect>true</keepaspect>
+			</image>					
+		</tile>
+
+	<!-- Remote commands -->
+		<remote>
+		   <button>PLAY</button>
+		   <action>PLAYALL</action>
+		</remote>		
+	</segment>	
+</eskin>

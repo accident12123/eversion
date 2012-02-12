@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<eskin>
+<!--******************************************************************
+	This .eskin file contains code that is common to many screens so
+	it's been separated out on it's own and is "included" by the other
+	.eskin files.
+	
+	Used with:
+	wall.poster.summary
+	wall.banner.summary
+	wall.banner.summary2
+	******************************************************************-->
+<!-- Variables - See: http://www.dentedboxes.com/doku.php/eversion:eskins:ref:variables  -->	
+<!-- Hyper - See: http://www.dentedboxes.com/doku.php/eversion:eskins:dev -->	
+<!-- Conditions - See: http://www.dentedboxes.com/doku.php/eversion:eskins:block:if -->	
+	
+	<!-- Summary data -->
+	<text>
+		<name>genre.label</name>
+		<display>[:%genres:]:</display>  <!-- Use the language files to display localized "genres"  -->
+		<posx>28</posx>
+		<posy>506</posy>
+		<width>100</width>
+		<height>25</height>
+		<size>20</size>  
+		<color>wall.label.color</color>
+	</text>
+
+	<!-- For genre we want to see up to six of them, but if a movie is part of the top250 that should be included as a genre -->
+	<text>
+		<name>genres-250</name>
+		<condition>[:top250:] != -1</condition>  <!-- This block is only done if the title is in the top 250  -->
+		<segname>index</segname>
+		<hyper>3</hyper>
+		<display>[:%top250:]: #[:top250:], [:genres,5,blank:]</display>  <!-- Use the language files to display localized "Top250" + top250# + up to 5 genres found in the XML YAMJ created, if no genres display nothing  -->
+		<posx>128</posx>
+		<posy>506</posy>
+		<width>1140</width>
+		<height>25</height>
+		<size>20</size>  
+		<color>wall.data.color</color>
+	</text>	
+	<text>
+		<name>genres</name>  <!-- Be sure to use a different name from the one just above as Eversion does not like two items with the same name  -->
+		<condition>[:top250:] = -1</condition>  <!-- This block is only done if the title is NOT in the top 250  -->
+		<segname>index</segname>
+		<hyper>3</hyper>
+		<display>[:genres,6,blank:]</display>  <!-- Use the language files to display localized "genres"  -->
+		<posx>128</posx>
+		<posy>506</posy>
+		<width>1140</width>
+		<height>25</height>
+		<size>20</size>  
+		<color>wall.data.color</color>
+	</text>	
+	<text>
+		<name>director.label</name>
+		<display>[:%directors:]:</display>  <!-- Use the language files to display localized "directors" -->
+		<posx>28</posx>
+		<posy>528</posy>
+		<width>100</width>
+		<height>25</height>
+		<size>20</size>  
+		<color>wall.label.color</color>
+	</text>
+	<text>
+		<name>director</name>
+		<segname>index</segname>
+		<hyper>3</hyper>
+		<display>[:directors,2,blank:]</display>  <!-- Display up to 2 directors found in the XML YAMJ created, if none found display nothing -->
+		<posx>128</posx>
+		<posy>528</posy>
+		<width>1140</width>
+		<height>25</height>
+		<size>20</size>  
+		<color>wall.data.color</color>
+	</text>
+	<text>
+		<name>actor.label</name>
+		<display>[:%actors:]:</display>  <!-- Use the language files to display localized "actors" -->
+		<posx>28</posx>
+		<posy>550</posy>
+		<width>100</width>
+		<height>25</height>
+		<size>20</size>  
+		<color>wall.label.color</color>
+	</text>
+	<text>
+		<name>actor</name>
+		<segname>index</segname>
+		<hyper>3</hyper>
+		<display>[:actors,20,blank:]</display>  <!-- Display up to 20 actors found in the XML YAMJ created, if none found display nothing -->
+		<posx>128</posx>
+		<posy>550</posy>
+		<width>875</width>
+		<height>25</height>
+		<size>20</size>  
+		<wordwrap>true</wordwrap>  <!-- By default wordwrap is false -->
+		<color>wall.data.color</color>
+	</text>	
+	<text>
+		<name>outline</name>
+		<segname>index</segname>
+		<hyper>4</hyper>
+		<display>[:smartoutline:]</display>  <!-- An Eversion variable holding the plot or outline -->
+		<posx>28</posx>
+		<posy>581</posy>
+		<width>970</width>
+		<height>108</height>
+		<size>21</size>  
+		<wordwrap>true</wordwrap>  <!-- By default wordwrap is false -->
+		<color>wall.outline.color</color>
+	</text>	
+	<text>
+		<name>certification.label</name>
+		<display>[:%rating:]:</display>  <!-- Use the language files to display localized "rating"  -->
+		<posx>1012</posx>
+		<posy>506</posy>
+		<width>100</width>
+		<height>25</height>
+		<size>20</size>  
+		<color>wall.label.color</color>
+	</text>
+
+	<!-- We need to handle an unknown cretification (rating) -->
+	<text>
+		<name>cert</name>
+		<condition>[:certification:] != UNKNOWN</condition>  <!-- This block is only done if the certification is NOT unknown  -->
+		<segname>index</segname>
+		<hyper>3</hyper>
+		<display>[:certification,upper:]</display>	<!-- Display the certification found in the XML YAMJ created, in uppercase  -->
+		<posx>1112</posx>
+		<posy>506</posy>
+		<width>1140</width>
+		<height>25</height>
+		<size>20</size>  
+		<color>wall.data.color</color>
+	</text>
+	<text>
+		<name>cert-unrated</name>  <!-- Be sure to use a different name from the one just above as Eversion does not like two items with the same name -->
+		<condition>[:certification:] = UNKNOWN</condition>  <!-- This block is only done if the certification is unknown  -->
+		<segname>index</segname>
+		<hyper>3</hyper>
+		<display>[:%unrated,upper:]</display>	<!-- Use the language files to display localized "unrated", in uppercase  -->
+		<posx>1112</posx>
+		<posy>506</posy>
+		<width>1140</width>
+		<height>25</height>
+		<size>20</size>  
+		<color>wall.data.color</color>
+	</text>
+	<text>
+		<name>runtime.label</name>
+		<display>[:%runtime:]:</display>  <!-- Use the language files to display localized "runtime"  -->
+		<posx>1012</posx>
+		<posy>528</posy>
+		<width>100</width>
+		<height>25</height>
+		<size>20</size>  
+		<color>wall.label.color</color>
+	</text>
+	<text>
+		<name>runtime</name>
+		<segname>index</segname>
+		<hyper>3</hyper>
+		<display>[:runtime,blank:]</display>  <!-- Display the runtime found in the XML YAMJ created, if none found display nothing -->
+		<posx>1112</posx>
+		<posy>528</posy>
+		<width>1140</width>
+		<height>25</height>
+		<size>20</size>  
+		<color>wall.data.color</color>
+	</text>	
+	<text>
+		<name>year.label</name>
+		<display>[:%year:]:</display>  <!-- Use the language files to display localized "year"  -->
+		<posx>1012</posx>
+		<posy>550</posy>
+		<width>100</width>
+		<height>25</height>
+		<size>20</size>  
+		<color>wall.label.color</color>
+	</text>
+	<text>
+		<name>year</name>
+		<segname>index</segname>
+		<hyper>3</hyper>
+		<display>[:year,blank:]</display>  <!-- Display the year found in the XML YAMJ created, if none found display nothing -->
+		<posx>1112</posx>
+		<posy>550</posy>
+		<width>875</width>
+		<height>25</height>
+		<size>20</size>  
+		<color>wall.data.color</color>
+	</text>
+</eskin>

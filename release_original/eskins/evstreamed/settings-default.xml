@@ -1,0 +1,83 @@
+<settings>	
+<!--********************** NOT UPDATE FRIENDLY  *********************
+	This file will be overwritten by any skin updates.  If you want
+	to make changes to any of these values you should create a file
+	called settings.xml in the same folder and place all your edits
+	there.  
+	******************************************************************-->
+	
+    <!-- Category types to display for home or menu -->
+	<homelist>Other,Library</homelist>
+	<menulist>Other,Genres,Title,Library,Year,Rating</menulist>	
+	
+	<!-- Movie details certification images to use: mpaa, bbfc, csa or germany -->
+	<certification>mpaa</certification>    
+
+	
+    <!-- Colors -->
+	<clock.color>FFFFFF</clock.color> 								<!-- Color for the global.clock -->
+	
+	<home.color>808080</home.color> 								<!-- Color for home text -->
+	<home.highlight.color>FFFFFF</home.highlight.color> 			<!-- Color for home selected text -->
+
+	<menu.header.color>0066FF</menu.header.color> 					<!-- Color for menu header -->
+	<menu.color>808080</menu.color> 								<!-- Color for menu text -->
+	<menu.highlight.color>FFFFFF</menu.highlight.color> 			<!-- Color for menu selected text -->
+
+	<about.header.color>0066FF</about.header.color> 				<!-- Color for headers on the about screen -->
+	<about.label.color>FFFFFF</about.label.color> 					<!-- Color for labels on the about screen -->
+	<about.data.color>666666</about.data.color> 					<!-- Color for data on the about screen -->
+
+	<nav.index.color>FFFFFF</nav.index.color>						<!-- Color for the current index in use --> 
+	<nav.label.color>0066FF</nav.label.color>						<!-- Color for navigation labels -->
+	<nav.data.color>FFFFFF</nav.data.color> 						<!-- Color for navigation data -->
+	
+	<list.data.color>FFFFFF</list.data.color> 						<!-- Color for general data on list screens --> 
+	<list.title.color>FFFFFF</list.title.color> 					<!-- Color for the title on list screens --> 
+	<list.genre.color>AAAAAA</list.genre.color> 					<!-- Color for the genre on list screens --> 
+	<list.outline.color>AAAAAA</list.outline.color> 				<!-- Color for the outline on list screens --> 
+	<list.list.color>808080</list.list.color>						<!-- Color for lists text -->
+	<list.list.highlight.color>FFFFFF</list.list.highlight.color>	<!-- Color for lists selected text -->
+
+	<wall.data.color>FFFFFF</wall.data.color>						<!-- Color for general data on the wall screens -->
+	<wall.title.color>FFFFFF</wall.title.color> 					<!-- Color for the title on the wall screens --> 
+	<wall.outline.color>FFFFFF</wall.outline.color>					<!-- Color for outline on the wall screens -->
+	<wall.label.color>0066FF</wall.label.color> 					<!-- Color for labels on the wall screens -->
+
+	<mediainfo.color>FFFFFF</mediainfo.color>						<!-- Color for title related data -->
+	
+	<movie.data.color>FFFFFF</movie.data.color> 					<!-- Color for general data on movie screens --> 
+	<movie.title.color>FFFFFF</movie.title.color> 					<!-- Color for the title on movie screens --> 
+	<movie.genre.color>AAAAAA</movie.genre.color> 					<!-- Color for the genre on movie screens --> 
+	<movie.plot.color>AAAAAA</movie.plot.color> 					<!-- Color for the outline on movie screens --> 
+	<movie.label.color>0066FF</movie.label.color>					<!-- Color for labels on the movie screens -->
+	
+	<tv.data.color>FFFFFF</tv.data.color> 							<!-- Color for general data on tv screens --> 
+	<tv.episode.color>FFFFFF</tv.episode.color>						<!-- Color for the episode title on the tv screens --> 
+	<tv.outline.color>AAAAAA</tv.outline.color> 					<!-- Color for the outline on tv screens --> 
+	<tv.label.color>0066FF</tv.label.color>							<!-- Color for labels on the tv screens -->
+
+
+    <!-- Default pages -->
+	<startpage>home</startpage>  						<!-- What page does Eversion load on startup. Valid options are home or the first of any index xml file (Other_All_1, Other_Unwatched_1, Title_D_1, Ratings_9.0-9.9_1, etc)  -->
+	<menuHOME>aeonhome</menuHOME>						<!-- File used if startpage = home.  Valid choices are home and aeonhome -->
+	<menuMENU>global.menu</menuMENU>					<!-- File used for the menu.  This eskin only has one so don't change it -->
+	<indexMOVIE>wall.poster.summary</indexMOVIE>			<!-- File used for "movie" indexes.  Valid choices are wall.poster.full, wall.poster.full2, wall.poster.summary, wall.poster.fanart, list.text.summary, list.text.properties, wall.banner.full*, wall.banner.summary*, wall.banner.summary2*, list.banner.summary* -->
+	<indexTV>wall.banner.summary2</indexTV>				<!-- File used for "TV" indexes.  Valid choices are wall.banner.full, wall.banner.summary, wall.banner.summary2, wall.poster.full, wall.poster.full2, wall.poster.summary, wall.poster.fanart, list.banner.summary, list.text.summary, list.text.properties -->
+	<indexINDEX>wall.poster.summary</indexINDEX>			<!-- File used for all other indexes (All, HD, watched, etc)  Valid choices are the same as the two above  -->
+	<indexMOVIESET>list.text.summary</indexMOVIESET>	<!-- File used for movie sets.  Valid choices are list.text.summary, list.text.properties, wall.poster.full, wall.poster.full2, wall.poster.summary, wall.poster.fanart, list.banner.summary*, wall.banner.full*, wall.banner.summary*, wall.banner.summary2* -->
+	<indexTVSET>list.banner.summary</indexTVSET>		<!-- File used for TV sets.  Valid choices are list.banner.summary, list.text.summary, list.text.properties, wall.banner.full, wall.banner.summary, wall.banner.summary2, wall.poster.full, wall.poster.full2, wall.poster.summary, wall.poster.fanart  -->
+	<detailsTV>tv1</detailsTV>							<!-- File used for TV series pages.  This eskin only has one so don't change it -->
+	<detailsMOVIE>movie2</detailsMOVIE>					<!-- File used for movie details pages.  Valid choices are movie1, movie2, movie3 -->
+    <!-- * = While a valid choice it's unlikely you will have the artwork necessary to make this look good  -->
+	
+	<!-- (additional types you might want to use)
+	<indexNEWMOVIE>wall.poster.summary</indexMOVIE>			
+	<indexNEWTV>wall.banner.summary2</indexTV>
+	-->
+
+    <!-- Settings specific to this eskin -->
+	<wall.fanart.overlay>true</wall.fanart.overlay>			<!-- Use an overlay for the fanart on the wall.poster.fanart screen: true or false -->
+	<wall.unwatched.overlay>false</wall.unwatched.overlay>	<!-- Use an unwatched overlay on the poster walls: true or false -->
+	<wall.watched.overlay>true</wall.watched.overlay>		<!-- Use a watched overlay on the poster walls: true or false -->
+</settings>
