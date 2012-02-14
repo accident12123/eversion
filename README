@@ -31,6 +31,10 @@ option under publish settings.
 Eversion is published using Adobe Flash CS5.5.  The PHF file is just the swf
 renamed
 
+An additional setup in flash is added where it's debugged/published in device central
+I'm not sure if that carries over in the FLA file or a flash itself setting you need
+to adjust.
+
 *****************
 UGLY CODE WARNING
 *****************
