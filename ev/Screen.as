@@ -306,6 +306,22 @@ class ev.Screen {
 		// prep
 		this.eskin=eskintemp;
 
+		// people node support
+		if(kind=="PEOPLE") {
+			trace("checking for people data")
+			var peopledata=get_data('peoplexml');
+			if (peopledata!=null && peopledata!=undefined && peopledata!='') {
+				trace("people index with person node, starting minidex");
+
+				var auxdata=new Object();
+				auxdata.xml=peopledata;
+				auxdata.minidexname="minidex";
+				var segnum=this.add_mini_segment(auxdata);
+				this.currentEskin.skin_start(this.eskin, this.segments[segnum].cbs.getevdata, this.segments[segnum].cbs.getdata);
+				return;
+			}
+		}
+
 		// start the eskin
 		this.currentEskin.skin_start(this.eskin, get_data);
 	}
@@ -916,7 +932,7 @@ class ev.Screen {
 					var newexit:String=command.substr(6);
 					newexit="file://"+newexit;
 					trace("new exit command: "+newexit);
-					Popapi.htmlexit(newexit, false);	   // where to go
+					Popapi.phfexit(newexit);	   // where to go
 				} else if(StringUtil.beginsWith(command, "file://") || StringUtil.beginsWith(command, "http://")) {
 					if(Common.evRun.hardware.loadpage) {
 						trace("gaya url");

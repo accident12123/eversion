@@ -255,5 +255,5 @@
 	<renderquality>HIGH</renderquality>
 
 	<!-- used to verify settings match interface version -->
-    <eversion>R0149</eversion>
+    <eversion>R0155</eversion>
 </settings>

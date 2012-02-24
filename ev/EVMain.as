@@ -240,7 +240,7 @@ class ev.EVMain {
 					var newexit:String=Common.evSettings.exitpage.substr(6);
 					newexit="file://"+newexit;
 					trace("new exit command: "+newexit);
-					Popapi.htmlexit(newexit, false);	   // where to go
+					Popapi.phfexit(newexit);	   // where to go
 				} else if(StringUtil.beginsWith(Common.evSettings.exitpage, "file://") || StringUtil.beginsWith(Common.evSettings.exitpage, "http://")) {
 					if(!Common.evRun.hardware.loadpage) Popapi.launcher();
 					trace("gaya url");
@@ -258,5 +258,4 @@ class ev.EVMain {
 				break;
 		}
 	}
-
 }

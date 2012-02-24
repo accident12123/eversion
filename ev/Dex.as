@@ -640,6 +640,10 @@ class ev.Dex {
 		// trace("dex get_ev_data for "+what);
 
 		switch(what) {
+			case 'peoplexml':
+				//trace("dex: "+this.remotedata.peopleXML);
+				return(this.remotedata.peopleXML);
+				break;
 			case 'indexname':
 				//trace("call for indexname "+this.remotedata.indexName);
 				return(this.remotedata.indexName);
@@ -1183,6 +1187,10 @@ class ev.Dex {
 		// buttons
 		var handler=segment_remote_check(Common.eskinmaster[this.segdetails.eskin][this.segdetails.file].segments[this.segdetails.member].remote[keyhit]);
 		if(handler != undefined) {
+			if (handler.action=="PASS") {
+				return(false);
+			}
+
 			// trace("** SEGMENT1 KEY HIT! "+keyhit);
 			this.handle_remote(handler,keyhit);
 			return(true);

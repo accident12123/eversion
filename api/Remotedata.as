@@ -66,6 +66,7 @@ class api.Remotedata {
 	private var episodedata:Array=null;
 	private var visiblefirst:Number=null;
 	private var visiblelast:Number=null;
+	public var peopleXML:XML=null;
 
 	function Remotedata() {
 		this.fn = {harddataloaded:Delegate.create(this, this.harddataloaded),
@@ -338,6 +339,11 @@ class api.Remotedata {
 
 		// proceed if good load
 		if(indexXML!=null) {
+			// save the peoplexml
+			if(this.peopleXML==null) {
+				this.peopleXML=this.datasource.personXML;
+			}
+
 			// set vars
 			this.totalTitles=total;
 			this.indexName=indexName;

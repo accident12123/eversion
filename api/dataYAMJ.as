@@ -33,7 +33,8 @@ class api.dataYAMJ {
 
 	// xml vars
 	private var xmlPer:Number = null;  // how many per
-	public var indexXML:Array = null;		 // array of original xml per title
+	public var indexXML:Array = null;  // array of original xml per title
+	public var personXML:XML = null; // array of person data
 
 	// index vars
 	private var indexTypeTemp:String=null;
@@ -690,16 +691,16 @@ class api.dataYAMJ {
 			if(url.indexOf("Other_New-TV") != -1) {
 				trace("TV index");
 				this.indexTypeTemp="NEWTV";
-			} else if(url.indexOf("Other_TV") != -1) {
+			} else if(url.indexOf("Other_TV") != -1 || url.indexOf("Library_TV") != -1){
 				trace("TV index");
 				this.indexTypeTemp="TV";
-			} else if(url.indexOf("Other_Movie") != -1) {
+			} else if(url.indexOf("Other_Movie") != -1 || url.indexOf("Library_Movie") != -1) {
 				trace("Movie index");
 				this.indexTypeTemp="MOVIE";
 			} else if(url.indexOf("Other_New-Movie") != -1) {
 				trace("Movie index");
 				this.indexTypeTemp="NEWMOVIE";
-			} else if(url.indexOf("Other_New_") != -1) {
+			} else if(url.indexOf("Other_New_") != -1 || url.indexOf("Library_New") != -1) {
 				trace("Movie index");
 				this.indexTypeTemp="NEW";
 			} else if(url.indexOf("Set_") != -1) {
@@ -758,6 +759,20 @@ class api.dataYAMJ {
 
 		if(success) {
 			this.currentfilename=null;
+
+			if(this.personXML==null) {
+				var ttXML=XPathAPI.selectSingleNode(xml.firstChild, "/library/person");
+				if(ttXML != undefined && ttXML != null && ttXML != '') {
+				    // adjust the xml for existing variable processing
+					this.personXML=new XML();
+					this.personXML.appendChild(new XML().createElement('movie'));
+					this.personXML.firstChild.appendChild(new XML().createElement('people'));
+					this.personXML.firstChild.firstChild.appendChild(ttXML);
+
+					trace("found person xml");
+					trace(this.personXML);
+				}
+			}
 
 			// get the currentindexcategory
 			this.currentindexcategory=XPathAPI.selectSingleNode(xml.firstChild, "/library/category[@current='true']").attributes.name.toString();
