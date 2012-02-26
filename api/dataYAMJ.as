@@ -112,32 +112,6 @@ class api.dataYAMJ {
 		}
 	}
 
-// *************************** PEOPLE **************************
-/*	public function people(xml:XMLNode, callBack:Function) {
-		this.fn.parsedata=Delegate.create(this, this.hardparse);
-
-		var xmlNodeList:Array = XPathAPI.selectNodeList(xml, "/movie/people/person");
-		var totalTitles=xmlNodeList.length;
-		//trace(totalTitles+" records");
-
-		var addto=new Array();
-		for(var i=0;i<totalTitles;i++) {
-			//var title=XPathAPI.selectSingleNode(xmlNodeList[i], "/person/title").firstChild.nodeValue.toString();
-			//trace("... title:   "+title);
-
-			// add it
-			addto.push({xml:xmlNodeList[i]});
-		}
-
-		if(addto.length<1) {
-			//trace("no eps");
-			callBack("ERROR", Common.evPrompts.enopeople);
-		} else {
-			//trace("returning ep array");
-			//callBack(null,null,addto);
-		}
-	}
-	*/
 // ****************************** EPISODES *****************************
 	public function episodes(xml:XMLNode, callBack:Function) {
 		this.Callback=callBack;
@@ -371,12 +345,6 @@ class api.dataYAMJ {
 				var fileImageURL=XPathAPI.selectSingleNode(xmlNodeList[i], "/file/fileImageURL[@part='"+u+"']").firstChild.nodeValue.toString();
 				var aired=XPathAPI.selectSingleNode(xmlNodeList[i], "/file/firstAired[@part='"+u+"']").firstChild.nodeValue.toString();
 
-				////trace("... episode: "+u);
-				////trace("... title:   "+title);
-				////trace("... watched: "+watched);
-				////trace("... plot:    "+filePlot);
-				////trace("... image:   "+fileImageFile);
-
 				// setup play name
 				if(newpart) {
 					if(special!=null) {
@@ -397,9 +365,6 @@ class api.dataYAMJ {
 					}
 					if(special!=null) name=name+" ("+Common.evPrompts.special.toUpperCase()+")";
 				}
-
-				// add it
-				//trace(".. found "+name+" part "+u+" new part:"+newpart);
 
 				var scoreyamj=Math.round(int(fileRating)/10)*10;
 				var score=int(fileRating)/10;
@@ -659,13 +624,8 @@ class api.dataYAMJ {
 				addto[place]={action:"SWITCH", data:index, file:index, title:name, originaltitle:originalName};
 				place++;
 			}
-			//trace(addto);
-			//trace("added data to "+what);
 			Common.indexes[what.toLowerCase()]=addto;
 			trace(Common.indexes[what]);
-		} else {
-			//trace("cat.xml: no data in "+what);
-			//this.Callback(null, "Categories.xml: "+Common.evPrompts.nodatain+" "+what);
 		}
 		delete addto;
 	}
@@ -767,12 +727,13 @@ class api.dataYAMJ {
 					var jjXML:XML=new XML('<movie/>');
 
 					for (var i=0; i<ttXML.childNodes.length; i++) {
-						jjXML.firstChild.appendChild(ttXML.childNodes[i]);
+						jjXML.firstChild.appendChild(ttXML.childNodes[i].cloneNode(true));
+						//trace(":: "+ttXML.childNodes[i]);
 					}
 					this.personXML=jjXML.firstChild;
 
 					trace("found person xml");
-					trace(this.personXML);
+					//trace(this.personXML);
 				}
 			}
 
@@ -823,8 +784,7 @@ class api.dataYAMJ {
 
 				if(itemLast==itemCurrent) {  // only count the titles from the last page
 					this.indexLastCount=xmlDataLen;
-					//trace("last page has "+this.indexLastCount+" titles");
-				} // else trace("this is not the last page, skipping last count");
+				}
 
 				// data or info processing?
 				if(this.infoprocessing==true) {
@@ -846,47 +806,31 @@ class api.dataYAMJ {
 					// if page 1, get more info
 					if(itemCurrent=="1") {
 						var per=this.indexXML[itemCurrent].length;
-						//trace("per page "+per);
 
 						// save what we have so far
 						if(itemLast == 1) {
 							this.xmlPer=0;
-							//trace("no more files needed");
 							this.infoProcessing(xml, indexNode);
 						} else {
 							this.xmlPer=int(per);
-							// get the last file
-							//trace("need last file");
+
 							var lastfile = XPathAPI.selectSingleNode(indexNode, "/index").attributes.last.toString();
-							//trace("lastfile "+lastfile);
 							Data.loadXML(Common.evSettings.yamjdatapath+lastfile+".xml", this.fn.onLoadyamjXML);
 						}
 					} else {
-						//trace("last page processing");
 						this.infoProcessing(xml, indexNode);
 					}
 				} else {
-					// we're data processing
-					//trace("data processing call");
-
-					// return the data we already saved up
 					var tempindex=this.indexXML[itemCurrent];
 					this.indexXML[itemCurrent]=null;
 					this.Callback(tempindex,int(itemCurrent));
 				}
 			} else {
 				// details file read in
-				//trace("details file");
-				this.processingCallback(null, "DET:"+Common.evPrompts.eprobfile+this.currentfilename);
-
-				// proces and return
-				//var detailsXML=XPathAPI.selectSingleNode(xml.firstChild, "/details/movie");
-
-				//this.Callback(detailsXML,"DETAILSDATA");
+				this.processingCallback(null, "Unsupported file format: "+Common.evPrompts.eprobfile+this.currentfilename);
 			}
 		} else {
 			// tell the caller we can't process directly
-			//trace("Problem with file "+this.currentfilename);
 			this.processingCallback(null, Common.evPrompts.eprobfile+this.currentfilename);
 		}
 	}
@@ -948,7 +892,6 @@ class api.dataYAMJ {
 			var indexType=this.indexTypeTemp;
 
 		}
-
 
 		trace("finished info processing");
 		this.infoprocessing=false;
@@ -1280,6 +1223,8 @@ class api.dataYAMJ {
 							itemResult="H264";
 						}else if(itemResult.indexOf("MPEG") != -1) {
 							itemResult="MPEG";
+						}else if(itemResult.indexOf("MICROSOFT") != -1) {
+							itemResult="VC1";
 						} else {
 							if(itemResult.length>6) {
 								itemResult="UNKNOWN";
@@ -1574,7 +1519,7 @@ class api.dataYAMJ {
 								var newfield:Array=field.split("@");
 								itemResult = XPathAPI.selectSingleNode(titleXML, "/movie/"+newfield[0]).attributes[newfield[1]].toString();
 							} else {
-								if(field=='birthday') {
+								if(field=='birthplace') {
 									trace("!!!!!! "+titleXML);
 								}
 								itemResult = XPathAPI.selectSingleNode(titleXML, "/movie/"+field).firstChild.nodeValue.toString();

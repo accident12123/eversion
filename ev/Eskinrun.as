@@ -195,7 +195,7 @@ class ev.Eskinrun {
 						break;
 					case 'text':
 						if(firstrun==false && Common.eskinmaster[eskin][file].code[tt].name != "clock"&& Common.eskinmaster[eskin][file].code[tt].name != "date") continue;
-						draw_text(Common.eskinmaster[eskin][file].code[tt],this.eskinMC,null,getdata);
+						draw_text(Common.eskinmaster[eskin][file].code[tt],this.eskinMC,null,getdata,undefined);
 						break;
 					case 'if':
 						this.perform_if(Common.eskinmaster[eskin][file].code[tt],this.eskinMC,null,getdata);
@@ -261,7 +261,7 @@ class ev.Eskinrun {
 						draw_image(Common.eskinmaster[eskin][file].code[tt],null,getdata);
 						break;
 					case 'text':
-						draw_text(Common.eskinmaster[eskin][file].code[tt],this.eskinMC,null,getdata);
+						draw_text(Common.eskinmaster[eskin][file].code[tt],this.eskinMC,null,getdata,undefined);
 						break;
 					case 'if':
 						this.perform_if(Common.eskinmaster[eskin][file].code[tt],this.eskinMC,null,getdata);
@@ -301,7 +301,7 @@ class ev.Eskinrun {
 						}
 						break;
 					case 'text':
-						draw_text(block.code[tt],thisMC,who,getdata);
+						draw_text(block.code[tt],thisMC,who,getdata,undefined);
 						break;
 					default:
 						//trace("unknown action "+block.code[tt].action);
@@ -377,7 +377,7 @@ class ev.Eskinrun {
 					draw_image(Common.eskinmaster[eskin][file].code[tt],null,getdata);
 					break;
 				case 'text':
-					draw_text(Common.eskinmaster[eskin][file].code[tt],this.eskinMC,null,getdata);
+					draw_text(Common.eskinmaster[eskin][file].code[tt],this.eskinMC,null,getdata,undefined);
 					break;
 				case 'if':
 					this.perform_if(Common.eskinmaster[eskin][file].code[tt],this.eskinMC,null,getdata);
@@ -499,7 +499,7 @@ class ev.Eskinrun {
 		for(var tt=0;tt<this.segments[segment].tile[0].code.length;tt++) {
 			switch(this.segments[segment].tile[0].code[tt].action) {
 				case 'text':
-					this.draw_text(this.segments[segment].tile[0].code[tt],tileMC,who,getdata);
+					this.draw_text(this.segments[segment].tile[0].code[tt],tileMC,who,getdata,hl);
 					break;
 				case 'image':
 					this.draw_tile_image(tileMC, this.segments[segment].tile[0].code[tt],who,getdata,hl);
@@ -600,7 +600,7 @@ class ev.Eskinrun {
 
 
 // ************** DRAW *******************
-	public function draw_text(block:Object,thisMC:MovieClip, who,getdata) {
+	public function draw_text(block:Object,thisMC:MovieClip, who,getdata, hl:Boolean) {
 	//	trace(".. text "+block.name);
 
 		// if check
@@ -656,7 +656,18 @@ class ev.Eskinrun {
 				thisMC[block.name].setTextFormat(txtfmt);
 				break;
 		}
-		thisMC[block.name]._visible=true;
+
+		if(block.highlight==true && !hl) {
+			thisMC[block.name]._visible=false;
+			//trace("++++ hidden");
+		} else if(block.highlight==false && hl) {
+			thisMC[block.name]._visible=false;
+			//trace("++++ hidden");
+		} else {
+			thisMC[block.name]._visible=true;
+			//trace("++++ default show");
+		}
+
 		delete txtfmt;
 	}
 
@@ -929,6 +940,12 @@ class ev.Eskinrun {
 							break;
 						case 'lower':
 							newdata=newdata.toLowerCase();
+							break;
+						case 'unescape':
+							newdata=unescape(newdata);
+							break;
+						case 'escape':
+							newdata=escape(newdata);
 							break;
 						case 'blank':
 							if(newdata=="UNKNOWN" || newdata=="unknown") newdata="";
