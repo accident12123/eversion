@@ -780,15 +780,16 @@ class ev.Eskinrun {
 		//trace("erun: ... total: "+Common.eskinmaster[eskin][file].segments.length);
 
 		for(var tt=0;tt<Common.eskinmaster[eskin][file].segments.length;tt++) {
-			//trace(".... "+Common.eskinmaster[eskin][file].segments[tt].name);
+			trace("%%%%%%%%%%%% .... "+Common.eskinmaster[eskin][file].segments[tt].name);
 			// add segment to quick list
 			//this.segments.push(Common.eskinmaster[eskin][file].segments[tt]);
 
 			// check condition
 			if(Common.eskinmaster[eskin][file].segments[tt].settings.condition != undefined) {
-				//trace("!!!! THERES A CONDITION ON THIS SEGMENT");
+				trace("!!!! THERES A CONDITION ON THIS SEGMENT");
+				trace("!!!!!!! "+Common.eskinmaster[eskin][file].segments[tt].settings.condition);
 				if(!this.process_condition(Common.eskinmaster[eskin][file].segments[tt].settings.condition, null,{get_data:this.jbgetdata})) {
-					//trace("!!! IF FAILED");
+					trace("!!! IF FAILED");
 					continue;
 				}
 			}
@@ -912,7 +913,7 @@ class ev.Eskinrun {
 				break;
 		}
 
-		trace("newdata now "+newdata);
+		//trace("newdata now "+newdata);
 
 		if(newdata!=null && newdata!=undefined) {
 			// if length isn't 1
@@ -1178,18 +1179,8 @@ class ev.Eskinrun {
 
 		//trace("PRE CONDITION: "+data+" "+opera+" "+value);
 
-	/*	// nothing to compare just fault out
-		if(data==undefined && value==undefined) {
-			switch(opera) {
-				case '!=':
-				case '!==':
-					return(false);
-				default:
-					return(true);
-			}
-		}*/
-
 		if(value == "unknown") value="UNKNOWN";
+		if(data == "unknown") data="UNKNOWN";
 		//if(value == "undefined") value=undefined;
 		//if(value == "null") value=null;
 		if(value == "blank") value="";
@@ -1197,7 +1188,7 @@ class ev.Eskinrun {
 		if(value == undefined || value == "undefined" || value==null || value=="") value=undefined;
 
 		// switch compare
-		//trace("CONDITION: "+data+" "+opera+" "+value);
+		trace("CONDITION: "+data+" "+opera+" "+value);
 		switch(opera) {
 			case '===':
 				if(data === value) return(true);
@@ -1214,22 +1205,26 @@ class ev.Eskinrun {
 				break;
 			case '>':
 			case '&gt':
+				if(data==undefined) return(false);
 				if(Number(data) > Number(value)) return(true);
 				break;
 			case '<':
 			case '&lt':
+				if(data==undefined) return(false);
 				if(Number(data) < Number(value)) return(true);
 				break;
 			case '&gt=':
 			case '=&gt':
 			case '>=':
 			case '=>':
+				if(data==undefined) return(false);
 				if(Number(data) >= Number(value)) return(true);
 				break;
 			case '&lt=':
 			case '=&lt':
 			case '<=':
 			case '=<':
+				if(data==undefined) return(false);
 				if(Number(data) <= Number(value)) return(true);
 				break;
 			case 'contains':

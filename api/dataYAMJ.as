@@ -34,7 +34,7 @@ class api.dataYAMJ {
 	// xml vars
 	private var xmlPer:Number = null;  // how many per
 	public var indexXML:Array = null;  // array of original xml per title
-	public var personXML:XML = null; // array of person data
+	public var personXML:XMLNode = null; // array of person data
 
 	// index vars
 	private var indexTypeTemp:String=null;
@@ -764,10 +764,12 @@ class api.dataYAMJ {
 				var ttXML=XPathAPI.selectSingleNode(xml.firstChild, "/library/person");
 				if(ttXML != undefined && ttXML != null && ttXML != '') {
 				    // adjust the xml for existing variable processing
-					this.personXML=new XML();
-					this.personXML.appendChild(new XML().createElement('movie'));
-					this.personXML.firstChild.appendChild(new XML().createElement('people'));
-					this.personXML.firstChild.firstChild.appendChild(ttXML);
+					var jjXML:XML=new XML('<movie/>');
+
+					for (var i=0; i<ttXML.childNodes.length; i++) {
+						jjXML.firstChild.appendChild(ttXML.childNodes[i]);
+					}
+					this.personXML=jjXML.firstChild;
 
 					trace("found person xml");
 					trace(this.personXML);
@@ -1572,6 +1574,9 @@ class api.dataYAMJ {
 								var newfield:Array=field.split("@");
 								itemResult = XPathAPI.selectSingleNode(titleXML, "/movie/"+newfield[0]).attributes[newfield[1]].toString();
 							} else {
+								if(field=='birthday') {
+									trace("!!!!!! "+titleXML);
+								}
 								itemResult = XPathAPI.selectSingleNode(titleXML, "/movie/"+field).firstChild.nodeValue.toString();
 							}
 						}
@@ -1661,10 +1666,13 @@ class api.dataYAMJ {
 			return("UNKNOWN");
 		}
 
+		trace(titleXML);
 		trace("looking for: "+person[1]);
+
 		var which:Number=int(person[2]);
 
 		var xmlNodeList:Array = XPathAPI.selectNodeList(titleXML,person[1]);
+		trace(xmlNodeList)
 		if(xmlNodeList.length>0) {
 			trace("found "+xmlNodeList.length);
 

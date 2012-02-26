@@ -317,7 +317,7 @@ class ev.Screen {
 				auxdata.xml=peopledata;
 				auxdata.minidexname="minidex";
 				var segnum=this.add_mini_segment(auxdata);
-				this.currentEskin.skin_start(this.eskin, this.segments[segnum].cbs.getevdata, this.segments[segnum].cbs.getdata);
+				this.currentEskin.skin_start(this.eskin, get_data, this.segments[segnum].cbs.getdata);
 				return;
 			}
 		}
