@@ -1,0 +1,57 @@
+CREDIT:
+
+PUrity flags are a community shared resource of the XBMC skin maker and artist KiSUAN.
+
+Thank you for making these available for public use.
+
+http://forum.xbmc.org/showthread.php?t=86759
+
+SPECIAL NOTE TO SKINNERS:
+
+Our mediainfo to filenames are a work in progress, if you come across media where it's wrong please let me know
+so I can modify the system to match correctly.
+
+
+USAGE INSIDE EVERSION:
+
+You can access these images using specific variables for the types of flags that best fit your eskins.   For index usage 
+we recommend you use the <swap>true</swap> option with your images.  this will avoid reloading them for no reason as you move
+around the index.
+
+
+ALL IMAGES AND BACKGROUNDS:
+
+All images start with the root path to the flags:  [:@sharedmedia:]purityflags/
+
+Example background: [:@sharedmedia:]purityflags/flag_frame.png
+
+
+ASPECT RATIO ICONS:
+
+Fill in the path to the type of flags you want and use the special [:flagratio:] variable at the end.
+
+Example: [:@sharedmedia:]purityflags/aspectratio/vanilla/[:flagaspect:].png
+
+
+AUDIO ICONS:
+
+Audio icons include # of channels and codec.
+
+Channels variable [:flagchannels:]
+Codec Variable [:flagaudiocodec:]
+
+VIDEO ICONS:
+
+Video icons include resolution and codec
+
+Resolution variable [:flagresolution:]
+Codec Variable [:flagvideocodec:]
+
+CERTIFICATIONS:
+
+There are a varity of different ratings.   Because of overlap it's recommended you make an eskin option for your users to put in the type of ratings they want:
+<rating>mpaa</rating>    (mpaa, bbfc, csa, Germany are the valids for this example)
+
+Example: [:@sharedmedia:]purityflags/ratings/custom/[:$rating,tolower:][:flagcertification:].png
+
+

@@ -251,6 +251,7 @@ class ev.Background {
 	public static function ver_jbdetailsloaded(success, xml) {
 		if(success) {
 			//trace("parsing jbdetails");
+			Common.jbmissing=false;
 
 			// extract jukebox stats
 			Common.evRun.ystatstotal=XPathAPI.selectSingleNode(xml.firstChild, "/root/statistics/Videos").firstChild.nodeValue.toString();
@@ -302,8 +303,9 @@ class ev.Background {
 				Common.evRun.yamjversion=yamjVersion;
 				Common.evRun.yamjrversion=yamjRVersion;
 			}
-		} else trace("problem loading jukebox_details");
-
-
+		} else {
+			trace("problem loading jukebox_details");
+			Common.jbmissing=true;
+		}
 	}
 }

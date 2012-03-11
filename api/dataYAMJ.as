@@ -613,13 +613,13 @@ class api.dataYAMJ {
 				var name = XPathAPI.selectSingleNode(itemNode, "/index").attributes.name.toString();
 				var originalName = XPathAPI.selectSingleNode(itemNode, "/index").attributes.originalName.toString();
 				var index= XPathAPI.selectSingleNode(itemNode, "/index").firstChild.nodeValue.toString();
-				//trace("+++++ ORIGINALNAME: "+originalName);
+				trace("+++++ ORIGINALNAME: "+originalName);
 				if(originalName==undefined || originalName==null || originalName=="") {
 					originalName=originaltitle_fix(index);
-					//trace("+++++ ORIGINALNAME2: "+originalName);
+					trace("+++++ ORIGINALNAME2: "+originalName);
 					if(originalName=="UNKNOWN") originalName=name;
 				}
-				//trace("+++++ ORIGINALNAME FINAL: "+originalName);
+				trace("+++++ ORIGINALNAME FINAL: "+originalName);
 				trace("index "+index+" named "+name+ " originalname "+originalName);
 				addto[place]={action:"SWITCH", data:index, file:index, title:name, originaltitle:originalName};
 				place++;
@@ -911,9 +911,10 @@ class api.dataYAMJ {
 		var originalName="UNKNOWN";
 
 		testname=testname.toLowerCase();
-		if(testname.indexOf("other") != -1) {
-			originalName="other";
-		} else if(testname.indexOf("genre") != -1) {
+		//if(testname.indexOf("other") != -1) {
+		//	originalName="other";
+		//} else
+		if(testname.indexOf("genre") != -1) {
 			originalName="genre";
 		} else if(testname.indexOf("title") != -1) {
 			originalName="title";
@@ -1210,6 +1211,7 @@ class api.dataYAMJ {
 					var codecResult:Array=get_full_codec(titleXML,"video");
 					var itemResult=codecResult.info;
 					if(codecResult.old==true) {
+						itemResult=itemResult.toUpperCase();
 						trace("video codec OLD "+itemResult);
 						if(itemResult.indexOf("AVC") != -1) {
 							itemResult="AVC";
@@ -1627,8 +1629,10 @@ class api.dataYAMJ {
 			}
 			which--;
 			if(person.length>4) {
+				trace("sub searching for "+person[3]+" attribute "+person[4]);
 				return(XPathAPI.selectSingleNode(xmlNodeList[which], person[3]).attributes[person[4]].toString());
 			} else {
+				trace("sub searching for "+person[3]);
 				return(XPathAPI.selectSingleNode(xmlNodeList[which], person[3]).firstChild.nodeValue.toString());
 			}
 		}

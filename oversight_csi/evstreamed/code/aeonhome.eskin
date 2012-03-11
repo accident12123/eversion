@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<eskin>
+    <control>
+		<fullscreen>true</fullscreen>
+    </control>
+	<background>
+		<file>[:@media:]home/1.eskin.used/background.png</file>
+	</background>
+	<image>
+		<name>overlay</name>
+		<file>[:@media:]home/1.eskin.used/aeon_overlay.png</file>
+		<posx>0</posx>
+		<posy>0</posy>
+		<width>1280</width>
+		<height>720</height>
+	</image>
+	<image>
+		<name>menubar</name>
+		<file>[:@media:]home/1.eskin.used/aeon_menubar.png</file>
+		<posx>0</posx>
+		<posy>520</posy>
+		<width>1280</width>
+		<height>114</height>
+	</image>	
+	<image>
+		<name>clockbg</name>
+		<file>[:@media:]common/1.eskin.used/aeon_clock.bg.png</file>
+		<posx>960</posx>
+		<posy>521.3</posy>
+		<width>352</width>
+		<height>30</height>
+	</image>
+	<text>
+		<name>clock</name>
+		<posx>980</posx>
+		<posy>526</posy>
+		<width>110.25</width>
+		<height>34.75</height>
+		<size>22</size>  
+		<align>center</align>
+		<color>FFFFFF</color>
+	</text>	
+	<text>
+		<name>date</name>
+		<posx>1080</posx>
+		<posy>526</posy>
+		<width>102</width>
+		<height>30</height>
+		<size>22</size>
+		<align>center</align>
+		<color>FFFFFF</color>
+	</text>	
+	
+	<segment>
+		<name>menubar</name>
+		<control>[:@eskin:]home</control>
+		<hyperscroll>false</hyperscroll>
+		<startx>0</startx>
+		<starty>550</starty>
+		<scroll>1</scroll>
+		<tile>
+			<cols>5</cols>
+			<rows>1</rows>
+			<width>256</width>
+			<height>55</height>
+			<static>true</static>
+			<offset>2</offset>
+			<text>
+				<name>mc</name>
+				<display>[:title:]</display>  <!-- An Eversion variable holdingthe title for the thing we are working with -->
+				<posx>0</posx>
+				<posy>0</posy>
+				<width>256</width>
+				<height>55</height>
+				<size>39</size>  
+				<align>center</align>  <!-- By default align is left -->
+				<color>2f2f2f</color>
+				<hlcolor>ffffff</hlcolor>
+				<bold>true</bold>
+			</text>	
+		</tile>
+		
+		<!-- Fanart which changes as the menu item selected changes-->
+		<fanart>
+			<file>[:@sharedmedia:]home/[:originaltitle:].jpg</file>  <!-- Originaltitle will find the image using it;s original name and not the translated name -->
+			<hyper>1</hyper>
+		</fanart>
+	</segment>
+</eskin>

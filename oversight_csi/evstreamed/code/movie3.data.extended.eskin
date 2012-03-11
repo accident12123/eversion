@@ -1,0 +1,334 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<eskin>
+<!-- Segements - See: http://www.dentedboxes.com/doku.php/eversion:eskins:block:segment -->	
+<!-- Segements-tiles - See: http://www.dentedboxes.com/doku.php/eversion:eskins:block:tile -->	
+<!-- Variables - See: http://www.dentedboxes.com/doku.php/eversion:eskins:ref:variables -->	
+<!-- Artwork Variables - See: http://www.dentedboxes.com/doku.php/eversion:eskins:ref:artvariables -->	
+<!-- Conditions - See: http://www.dentedboxes.com/doku.php/eversion:eskins:block:if -->	
+
+    <control>
+		<fullscreen>true</fullscreen>  <!-- Clear the previous screen, note this only removes the last screen not any others before it which may still be visible  -->
+		<clearhighresbg>false</clearhighresbg>  <!--  Don't clear the hires background (if avail)  -->
+    </control>
+
+	<!-- Background image for the list details -->
+	<image>
+		<name>details.bg</name>
+		<file>[:@media:]list/1.eskin.used/list.bg.png</file>
+		<posx>0</posx>
+		<posy>100</posy>
+		<width>1280</width>
+		<height>671</height>
+	</image>
+
+	<!-- Included eskin files -->
+	<include>common.poster</include>	
+	<include>common.mediainfo</include>	
+	<include>movie.remote</include>
+	
+
+	<!-- Details -->
+	<text>
+		<name>title</name>
+		<display>[:fulltitle:]</display>  <!-- Eversion variable holding the title -->
+		<posx>290</posx>
+		<posy>101</posy>
+		<width>474</width>
+		<height>40</height>
+		<size>27</size>  
+		<color>movie.title.color</color>
+	</text>	
+	<!-- For genre we want to see up to six of them, but if a movie is part of the top250 that should be included as a genre -->
+	<text>
+		<name>genres-250</name>
+		<condition>[:top250:] != -1</condition>  <!-- This block is only done if the title is in the top 250  -->
+		<display>[:%top250:]: #[:top250:], [:genres,5,blank:]</display>  <!-- Use the language files to display localized "Top250" + top250# + up to 5 genres found in the XML YAMJ created, if no genres display nothing  -->
+		<posx>290</posx>
+		<posy>131</posy>
+		<width>474</width>
+		<height>25</height>
+		<size>20</size>  
+		<italic>true</italic>  <!-- By default is false -->
+		<color>movie.genre.color</color>
+	</text>	
+	<text>
+		<name>genres</name>  <!-- Be sure to use a different name from the one just above as Eversion does not like two items with the same name  -->
+		<condition>[:top250:] = -1</condition>  <!-- This block is only done if the title is NOT in the top 250  -->
+		<display>[:genres,6,blank:]</display>  <!-- Display up to 6 genres found in the XML YAMJ created, if no genres display nothing  -->
+		<posx>290</posx>
+		<posy>131</posy>
+		<width>474</width>
+		<height>25</height>
+		<size>20</size>  
+		<italic>true</italic>  <!-- By default is false -->
+		<color>movie.genre.color</color>
+	</text>	
+	<image>
+		<name>rating.image</name>
+		<file>[:@media:]star.rating/1.eskin.used/star[:score,round:].png</file>  <!-- Use an image at \evstreamed\media\star.rating\1.eskin.used\ with a name that matches the Eversion variable score (rounded) + ".png"    -->
+		<posx>1084</posx>
+		<posy>106</posy>
+		<width>115</width>
+		<height>20</height>
+	</image>		
+	<text>
+		<name>rating</name>
+		<display>[:rating:]/100</display>  <!-- Display the rating found in the XML YAMJ created + "/100" -->
+		<posx>1207</posx>
+		<posy>106</posy>
+		<width>200</width>
+		<height>32</height>
+		<size>20</size>  
+		<color>movie.data.color</color>
+	</text>	
+	<text>
+		<name>year-cert-runtime</name>
+		<condition>[:certification:] != UNKNOWN</condition>  <!-- This block is only done if the certification is known -->
+		<display>[:year,blank:],  [:certification,upper:],  [:runtime,blank:]</display>
+		<posx>1064</posx>
+		<posy>128</posy>
+		<width>200</width>
+		<height>25</height>
+		<size>20</size>  
+		<align>right</align>  <!-- By default align is left -->
+		<color>movie.data.color</color>
+	</text>
+	<text>
+		<name>year-certunrated-runtime</name>
+		<condition>[:certification:] = UNKNOWN</condition>  <!-- This block is only done if the certification is unknown -->
+		<display>UNRATED,  [:year,blank:],  [:runtime,blank:]</display>
+		<posx>1064</posx>
+		<posy>128</posy>
+		<width>200</width>
+		<height>25</height>
+		<size>20</size>  
+		<align>right</align>  <!-- By default align is left -->
+		<color>movie.data.color</color>
+	</text>
+	<text>
+		<name>writer.label</name>
+		<display>[:%writers:]:</display>  <!-- Use the language files to display localized "writes" -->
+		<posx>290</posx>
+		<posy>156</posy>
+		<width>100</width>
+		<height>25</height>
+		<size>20</size>  
+		<color>movie.label.color</color>
+	</text>
+	<text>
+		<name>writer</name>
+		<display>[:writers,2,blank:]</display>  <!-- Display up to 2 writers found in the XML YAMJ created, if none found display nothing -->
+		<posx>390</posx>
+		<posy>156</posy>
+		<width>1140</width>
+		<height>25</height>
+		<size>20</size>  
+		<color>movie.data.color</color>
+	</text>
+	<text>
+		<name>director.label</name>
+		<display>[:%directors:]:</display>  <!-- Use the language files to display localized "directors" -->
+		<posx>290</posx>
+		<posy>179</posy>
+		<width>100</width>
+		<height>25</height>
+		<size>20</size>  
+		<color>movie.label.color</color>
+	</text>
+	<text>
+		<name>director</name>
+		<display>[:directors,2,blank:]</display>  <!-- Display up to 2 directors found in the XML YAMJ created, if none found display nothing -->
+		<posx>390</posx>
+		<posy>179</posy>
+		<width>1140</width>
+		<height>25</height>
+		<size>20</size>  
+		<color>movie.data.color</color>
+	</text>
+	<text>
+		<name>actor.label</name>
+		<display>[:%actors:]:</display>  <!-- Use the language files to display localized "actors" -->
+		<posx>290</posx>
+		<posy>202</posy>
+		<width>100</width>
+		<height>25</height>
+		<size>20</size>  
+		<color>movie.label.color</color>
+	</text>
+	<text>
+		<name>actor</name>
+		<display>[:actors,20,blank:]</display>  <!-- Display up to 20 actors found in the XML YAMJ created, if none found display nothing -->
+		<posx>390</posx>
+		<posy>202</posy>
+		<width>875</width>
+		<height>100</height>
+		<size>20</size>  
+		<wordwrap>true</wordwrap>  <!-- By default is false -->
+		<color>movie.data.color</color>
+	</text>	
+	<text>
+		<name>plot</name>
+		<display>[:plot:]</display>  <!-- Eversion variable holding the title plot -->
+		<posx>290</posx>
+		<posy>304</posy>
+		<width>973</width>
+		<height>260</height>
+		<size>21</size>  
+		<wordwrap>true</wordwrap>  <!-- By default is false -->
+		<color>movie.plot.color</color>
+	</text>			
+
+	<text>
+		<name>video.label</name>
+		<display>[:%video:]:</display>  <!-- Use the language files to display localized "video" -->
+		<posx>290</posx>
+		<posy>560</posy>
+		<width>100</width>
+		<height>25</height>
+		<size>20</size>  
+		<color>movie.label.color</color>
+	</text>	
+	<text>
+		<name>video</name>
+		<display>[:videoCodec:]</display>  <!-- Display the videocodec found in the XML YAMJ created -->
+		<posx>400</posx>
+		<posy>560</posy>
+		<width>300</width>
+		<height>25</height>
+		<size>20</size>  
+		<color>movie.data.color</color>
+	</text>		
+	<text>
+		<name>audio.label</name>
+		<display>[:%audio:]:</display>  <!-- Use the language files to display localized "audio" -->
+		<posx>290</posx>
+		<posy>584</posy>
+		<width>100</width>
+		<height>25</height>
+		<size>20</size>  
+		<color>movie.label.color</color>
+	</text>		
+	<text>
+		<name>audio</name>
+		<display>[:audioCodec:]</display>  <!-- Display the audiocodec found in the XML YAMJ created -->
+		<posx>400</posx>
+		<posy>584</posy>
+		<width>300</width>
+		<height>25</height>
+		<size>20</size>  
+		<color>movie.data.color</color>
+	</text>		
+	<text>
+		<name>channels.label</name>
+		<display>[:%channels:]:</display>  <!-- Use the language files to display localized "channels" -->
+		<posx>290</posx>
+		<posy>608</posy>
+		<width>100</width>
+		<height>25</height>
+		<size>20</size>  
+		<color>movie.label.color</color>
+	</text>		
+	<text>
+		<name>channels</name>
+		<display>[:audioChannels:]</display>  <!-- Display the audiochannels found in the XML YAMJ created -->
+		<posx>400</posx>
+		<posy>608</posy>
+		<width>300</width>
+		<height>25</height>
+		<size>20</size>  
+		<color>movie.data.color</color>
+	</text>		
+	<text>
+		<name>subtitles.label</name>
+		<display>[:%subtitles:]:</display>  <!-- Use the language files to display localized "subtitles" -->
+		<posx>290</posx>
+		<posy>632</posy>
+		<width>100</width>
+		<height>25</height>
+		<size>20</size>  
+		<color>movie.label.color</color>
+	</text>		
+	<text>
+		<name>subtitles</name>
+		<display>[:subtitles:]</display>  <!-- Display the subtitles found in the XML YAMJ created -->
+		<posx>400</posx>
+		<posy>632</posy>
+		<width>300</width>
+		<height>25</height>
+		<size>20</size>  
+		<color>movie.data.color</color>
+	</text>	
+	<text>
+		<name>extras.label</name>
+		<display>[:%extras:]:</display>  <!-- Use the language files to display localized "extras" -->
+		<posx>290</posx>
+		<posy>656</posy>
+		<width>100</width>
+		<height>25</height>
+		<size>20</size>  
+		<color>movie.label.color</color>
+	</text>	
+	<text>
+		<name>extras</name>
+		<display>[:isextras:]</display>  <!-- Use the language files to display localized "no", in uppercase -->
+		<posx>400</posx>
+		<posy>656</posy>
+		<width>300</width>
+		<height>25</height>
+		<size>20</size>  
+		<color>movie.data.color</color>
+	</text>	
+	<segment>
+		<condition>[:isextras:] == YES</condition>  <!-- This block is only done if there are extras -->
+		<name>extraslist</name>  <!-- This name is special for extras -->
+		<datasource>extras</datasource>
+		<startx>730</startx>
+		<starty>575</starty>
+		<tilesize>true</tilesize>
+		<scroll>2</scroll>		
+		<cursor>
+			<file>[:@media:]common/1.eskin.used/cursor.png</file>
+			<above>false</above>
+			<posx>0</posx>
+			<posy>0</posy>
+			<width>520</width>
+			<height>34</height>  
+		</cursor>		
+		<tile>
+			<cols>1</cols>
+			<rows>3</rows>
+			<width>513</width>
+			<height>34</height>
+			<text>
+				<name>mc</name>
+				<display>[:title:]</display>  <!-- Eversion variable holding the title -->
+				<posx>0</posx>
+				<posy>5</posy>
+				<width>520</width>
+				<height>34</height>
+				<size>23</size>  
+				<align>center</align>  <!-- By default align is left -->
+				<color>list.list.color</color>
+				<hlcolor>list.list.highlight.color</hlcolor>
+			</text>	
+		</tile>
+
+		<!-- Remote commands to play extras. Only use select, Play plays the movie-->
+		<remote>
+			<button>SELECT</button>
+			<action>PLAYFILE</action>	
+		</remote>	
+	</segment>		
+
+	<!-- Remote commands to go back to the normal details screen-->
+	<remote>  
+		<button>COMMA</button>
+		<action>BACK</action>
+		<data>1</data>
+	</remote>		
+	<remote>  
+		<button>INFO</button>  
+		<action>BACK</action>
+		<data>1</data>
+	</remote>
+</eskin>

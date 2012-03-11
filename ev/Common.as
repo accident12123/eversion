@@ -21,6 +21,10 @@ class ev.Common {
     // system
 	public static var evRun:Object=null;						// runtime vars
 
+	// oversight
+	public static var overSight:Boolean=false;
+	public static var jbmissing:Boolean=false;
+
 	// ev
 	public static var evPrompts:Array=null;
 	public static var evSettings:Array=null;
@@ -61,6 +65,8 @@ class ev.Common {
 		Common.indexes=null;
 
 		Common.count=1;
+		Common.overSight=false;
+		Common.jbmissing=false;
 	}
 
 	// setup enviromental variables
@@ -83,9 +89,14 @@ class ev.Common {
 		trace(".. root path "+Common.evRun.rootpath);
 		trace(".. storage root path "+Common.evRun.storagerootpath);
 
+		if(Common.evRun.rootpath=='file:///share/Apps/eversion') {
+			trace(".. oversight install!");
+			Common.overSight=true;
+		}
+
 		Common.evRun.minyamj=2833;
-		Common.evRun.evversion="0.2.8.6";
-		Common.evRun.evrversion="R0148";
+		Common.evRun.evversion="0.2.8.10";
+		Common.evRun.evrversion="R0162";
 
 		Popapi.disabled=false;
 	}

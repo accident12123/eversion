@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<eskin>
+<!-- Segements - See: http://www.dentedboxes.com/doku.php/eversion:eskins:block:segment -->	
+<!-- Segements-tiles - See: http://www.dentedboxes.com/doku.php/eversion:eskins:block:tile -->	
+<!-- Variables - See: http://www.dentedboxes.com/doku.php/eversion:eskins:ref:variables -->	
+<!-- Artwork Variables - See: http://www.dentedboxes.com/doku.php/eversion:eskins:ref:artvariables -->	
+
+    <control>
+		<fullscreen>true</fullscreen>  <!-- Clear the previous screen  -->
+		<clearhighresbg>false</clearhighresbg>  <!--  Don't clear the hires background (if avail)  -->
+ 		<passthrough>movie3.data</passthrough>  <!-- This passthrough file is where the movie details are, done this way to accomplish the more info feature -->
+   </control>
+
+	<!-- Background -->
+	<background>
+		<file>[:@jukebox:][:smartfanart1.large:]</file>  <!-- Eversion artwork variable holding the name of the fanart YAMJ created-->
+	</background>
+
+	<!-- Included eskin files -->
+	<!-- These have been carefully ordered to ensure that they are drawn in the order we want  -->
+	<include>global.clock</include>	
+</eskin>
