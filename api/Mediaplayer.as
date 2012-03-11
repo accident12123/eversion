@@ -313,8 +313,12 @@ class api.Mediaplayer {
 		if(Common.overSight || Common.jbmissing) {
 			if(!StringUtil.beginsWith(file,"file:///opt") && StringUtil.beginsWith(file,"file://")) {
 				trace("adjusting path for oversight");
-				var newfile:String=file.slice(7);
-				file="file:///opt/sybhttpd/localhost.drives/NETWORK_SHARE/"+newfile;
+				var newfile:String=unescape(file.slice(7));
+				file=escape("file:///opt/sybhttpd/localhost.drives/NETWORK_SHARE/"+newfile);
+				file=StringUtil.replace(file,"%2F","/");
+				file=StringUtil.replace(file,"%3A",":");
+				file=StringUtil.replace(file,"%2E",".");
+				file=StringUtil.replace(file,"%5F","_");
 				trace(".. new path: "+file);
 			}
 		}
