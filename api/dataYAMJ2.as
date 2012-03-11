@@ -1,61 +1,45 @@
-// Eversion, the flash interface for YAMJ on the Syabas Embedded Players
-// Copyright (C) 2012  Bryan Socha, aka Accident
-
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-
-// You should have received a copy of the GNU General Public License
-// along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 import ev.Common;
 import ev.Background;
 import tools.Data;
 import tools.StringUtil;
 import mx.xpath.XPathAPI;
 import mx.utils.Delegate;
-
-class api.dataYAMJ2 {
+ 
+class api.dataYAMJ2 {	
 	// state stuff
 	private var fn:Object = null;
-
+	
 	// constructor
-	function dataYAMJ2() {
+	function dataYAMJ2() {	
 		this.fn = {parsedata:Delegate.create(this, this.hardparse)
-			};
+			};	
 	}
-
+	
 	public function cleanup():Void {
 		delete this.fn;
 		this.fn=null;
 		//this.reload();
 	}
-
+	
 	public function reload():Void {
 		//trace(".. reloaded");
-	}
-
-
-// *************************** PEOPLE **************************
+	}	
+	
+	
+// *************************** PEOPLE **************************	
 	public function people(xml:XMLNode, callBack:Function) {
 		trace("datayamj2 start people data");
 		this.fn.parsedata=Delegate.create(this, this.hardparse);
 
 		var xmlNodeList:Array = XPathAPI.selectNodeList(xml, "/movie/people/person");
-		var totalTitles=xmlNodeList.length;
-		trace(totalTitles+" records");
+		var totalTitles=xmlNodeList.length;			
+		trace(totalTitles+" records");		
 
 		var addto=new Array();
-		for(var i=0;i<totalTitles;i++) {
-			//var title=XPathAPI.selectSingleNode(xmlNodeList[i], "/person/title").firstChild.nodeValue.toString();
+		for(var i=0;i<totalTitles;i++) {	
+			//var title=XPathAPI.selectSingleNode(xmlNodeList[i], "/person/title").firstChild.nodeValue.toString();		
 			//trace("... title:   "+title);
-
+			
 			// add it
 			addto.push({xml:xmlNodeList[i]});
 		}
@@ -66,13 +50,13 @@ class api.dataYAMJ2 {
 		} else {
 			trace("returning people array");
 			callBack(null,null,addto);
-		}
-	}
-
+		}		
+	}	
+	
 	public function hardparse(field:String,titledata,howmany:Number):String {
 		switch(field) {
 			case 'episode':
-				if(titledata.special!=undefined) return(Common.evPrompts.special.toUpperCase()+titledata[field]);
+				if(titledata.special!=undefined) return(Common.evPrompts.special.toUpperCase()+titledata[field]);				
 				// break missing on purpose
 			default:
 				if(titledata[field] != undefined) {
@@ -90,14 +74,14 @@ class api.dataYAMJ2 {
 						} else {
 							trace("...node var");
 							itemResult = XPathAPI.selectSingleNode(titledata.xml, field).firstChild.nodeValue.toString();
-						}
+						}									
 					}
 					trace(".. result:" +itemResult);
 					return(itemResult);
 				} else return(undefined);
 		}
 	}
-
+	
 // ************************** data processing ******************************
 
 	public function process_data(field:String,titleXML,howmany:Number):String {
@@ -107,20 +91,20 @@ class api.dataYAMJ2 {
 
 	private function multi_vars(field,titleXML) {
 		trace("multi processing: "+field);
-
+		
 		var person:Array=field.split("-");
 		if(person.length<4 || person.length>5) {
 			trace("not enough elements");
 			return("UNKNOWN");
 		}
-
+		
 		trace("looking for: "+person[1]);
-		var which:Number=int(person[2]);
-
+		var which:Number=int(person[2]);		
+		
 		var xmlNodeList:Array = XPathAPI.selectNodeList(titleXML,person[1]);
 		if(xmlNodeList.length>0) {
 			trace("found "+xmlNodeList.length);
-
+			
 			if(xmlNodeList.length<which) {
 				trace("element "+which+" not found");
 				return("UNKNOWN");
@@ -131,28 +115,28 @@ class api.dataYAMJ2 {
 			} else {
 				return(XPathAPI.selectSingleNode(xmlNodeList[which], person[3]).firstChild.nodeValue.toString());
 			}
-		}
-
+		} 
+		
 		return("UNKNOWN");
-	}
-
+	}	
+	
 	private function person_vars(field,titleXML) {
 		trace("person processing: "+field);
-
+		
 		var person:Array=field.split("-");
 		if(person.length<3 || person.length>4) {
 			trace("not enough elements");
 			return("UNKNOWN");
 		}
-
+		
 		trace("looking for: "+person[1]);
-		var which:Number=int(person[2]);
-
+		var which:Number=int(person[2]);		
+		
 		var xpathvar:String="/movie/people/person[@job='"+person[1]+"']";
 		var xmlNodeList:Array = XPathAPI.selectNodeList(titleXML,xpathvar);
 		if(xmlNodeList.length>0) {
 			trace("found "+xmlNodeList.length);
-
+			
 			if(xmlNodeList.length<which) {
 				trace("element "+which+" not found");
 				return("UNKNOWN");
@@ -163,8 +147,8 @@ class api.dataYAMJ2 {
 			} else {
 				return(XPathAPI.selectSingleNode(xmlNodeList[which], "/person").firstChild.nodeValue.toString());
 			}
-		}
-
+		} 
+		
 		return("UNKNOWN");
 	}
 }

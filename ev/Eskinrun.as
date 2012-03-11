@@ -1109,6 +1109,10 @@ class ev.Eskinrun {
 				newdata="NO";
 				if(Background.artworkscanner==true) newdata="YES";
 				break;
+			case 'oversight':
+				newdata="NO";
+				if(Common.overSight || Common.jbmissing) newdata="YES";
+				break;
 			default:
 				if(this.tempgetdata != undefined && this.tempgetdata !=null) {  // check the temp data for answer
 					//trace("trying tempgetdata");
@@ -1205,7 +1209,7 @@ class ev.Eskinrun {
 		if(value == undefined || value == "undefined" || value==null || value=="") value=undefined;
 
 		// switch compare
-		trace("CONDITION: "+data+" "+opera+" "+value);
+		//trace("CONDITION: "+data+" "+opera+" "+value);
 		switch(opera) {
 			case '===':
 				if(data === value) return(true);
@@ -1252,6 +1256,15 @@ class ev.Eskinrun {
 				break;
 			case 'endswith':
 				return(StringUtil.endsWith(data, value));
+				break;
+			case 'notcontains':
+				if(data.indexOf(value) == -1) return(true);
+				break;
+			case 'notstartswith':
+				if(!StringUtil.beginsWith(data, value)) return(true);
+				break;
+			case 'notendswith':
+				if(!StringUtil.endsWith(data, value)) return (true);
 				break;
 			default:
 				trace("unknown opera "+opera);
