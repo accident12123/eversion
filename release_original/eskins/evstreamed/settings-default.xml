@@ -1,22 +1,22 @@
-<settings>	
+<settings>
 <!--********************** NOT UPDATE FRIENDLY  *********************
 	This file will be overwritten by any skin updates.  If you want
 	to make changes to any of these values you should create a file
 	called settings.xml in the same folder and place all your edits
-	there.  
+	there.
 	******************************************************************-->
-	
+
     <!-- Category types to display for home or menu -->
 	<homelist>Other,Library</homelist>
-	<menulist>Other,Genres,Title,Library,Year,Rating</menulist>	
-	
-	<!-- Movie details certification images to use: mpaa, bbfc, csa or germany -->
-	<certification>mpaa</certification>    
+	<menulist>Other,Genres,Title,Library,Year,Rating</menulist>
 
-	
+	<!-- Movie details certification images to use: mpaa, bbfc, csa or germany -->
+	<certification>mpaa</certification>
+
+
     <!-- Colors -->
 	<clock.color>FFFFFF</clock.color> 								<!-- Color for the global.clock -->
-	
+
 	<home.color>808080</home.color> 								<!-- Color for home text -->
 	<home.highlight.color>FFFFFF</home.highlight.color> 			<!-- Color for home selected text -->
 
@@ -28,33 +28,33 @@
 	<about.label.color>FFFFFF</about.label.color> 					<!-- Color for labels on the about screen -->
 	<about.data.color>666666</about.data.color> 					<!-- Color for data on the about screen -->
 
-	<nav.index.color>FFFFFF</nav.index.color>						<!-- Color for the current index in use --> 
+	<nav.index.color>FFFFFF</nav.index.color>						<!-- Color for the current index in use -->
 	<nav.label.color>0066FF</nav.label.color>						<!-- Color for navigation labels -->
 	<nav.data.color>FFFFFF</nav.data.color> 						<!-- Color for navigation data -->
-	
-	<list.data.color>FFFFFF</list.data.color> 						<!-- Color for general data on list screens --> 
-	<list.title.color>FFFFFF</list.title.color> 					<!-- Color for the title on list screens --> 
-	<list.genre.color>AAAAAA</list.genre.color> 					<!-- Color for the genre on list screens --> 
-	<list.outline.color>AAAAAA</list.outline.color> 				<!-- Color for the outline on list screens --> 
+
+	<list.data.color>FFFFFF</list.data.color> 						<!-- Color for general data on list screens -->
+	<list.title.color>FFFFFF</list.title.color> 					<!-- Color for the title on list screens -->
+	<list.genre.color>AAAAAA</list.genre.color> 					<!-- Color for the genre on list screens -->
+	<list.outline.color>AAAAAA</list.outline.color> 				<!-- Color for the outline on list screens -->
 	<list.list.color>808080</list.list.color>						<!-- Color for lists text -->
 	<list.list.highlight.color>FFFFFF</list.list.highlight.color>	<!-- Color for lists selected text -->
 
 	<wall.data.color>FFFFFF</wall.data.color>						<!-- Color for general data on the wall screens -->
-	<wall.title.color>FFFFFF</wall.title.color> 					<!-- Color for the title on the wall screens --> 
+	<wall.title.color>FFFFFF</wall.title.color> 					<!-- Color for the title on the wall screens -->
 	<wall.outline.color>FFFFFF</wall.outline.color>					<!-- Color for outline on the wall screens -->
 	<wall.label.color>0066FF</wall.label.color> 					<!-- Color for labels on the wall screens -->
 
 	<mediainfo.color>FFFFFF</mediainfo.color>						<!-- Color for title related data -->
-	
-	<movie.data.color>FFFFFF</movie.data.color> 					<!-- Color for general data on movie screens --> 
-	<movie.title.color>FFFFFF</movie.title.color> 					<!-- Color for the title on movie screens --> 
-	<movie.genre.color>AAAAAA</movie.genre.color> 					<!-- Color for the genre on movie screens --> 
-	<movie.plot.color>AAAAAA</movie.plot.color> 					<!-- Color for the outline on movie screens --> 
+
+	<movie.data.color>FFFFFF</movie.data.color> 					<!-- Color for general data on movie screens -->
+	<movie.title.color>FFFFFF</movie.title.color> 					<!-- Color for the title on movie screens -->
+	<movie.genre.color>AAAAAA</movie.genre.color> 					<!-- Color for the genre on movie screens -->
+	<movie.plot.color>AAAAAA</movie.plot.color> 					<!-- Color for the outline on movie screens -->
 	<movie.label.color>0066FF</movie.label.color>					<!-- Color for labels on the movie screens -->
-	
-	<tv.data.color>FFFFFF</tv.data.color> 							<!-- Color for general data on tv screens --> 
-	<tv.episode.color>FFFFFF</tv.episode.color>						<!-- Color for the episode title on the tv screens --> 
-	<tv.outline.color>AAAAAA</tv.outline.color> 					<!-- Color for the outline on tv screens --> 
+
+	<tv.data.color>FFFFFF</tv.data.color> 							<!-- Color for general data on tv screens -->
+	<tv.episode.color>FFFFFF</tv.episode.color>						<!-- Color for the episode title on the tv screens -->
+	<tv.outline.color>AAAAAA</tv.outline.color> 					<!-- Color for the outline on tv screens -->
 	<tv.label.color>0066FF</tv.label.color>							<!-- Color for labels on the tv screens -->
 
 
@@ -70,14 +70,12 @@
 	<detailsTV>tv1</detailsTV>							<!-- File used for TV series pages.  This eskin only has one so don't change it -->
 	<detailsMOVIE>movie2</detailsMOVIE>					<!-- File used for movie details pages.  Valid choices are movie1, movie2, movie3 -->
     <!-- * = While a valid choice it's unlikely you will have the artwork necessary to make this look good  -->
-	
+
 	<!-- (additional types you might want to use)
-	<indexNEWMOVIE>wall.poster.summary</indexMOVIE>			
+	<indexNEWMOVIE>wall.poster.summary</indexMOVIE>
 	<indexNEWTV>wall.banner.summary2</indexTV>
 	-->
 
     <!-- Settings specific to this eskin -->
 	<wall.fanart.overlay>true</wall.fanart.overlay>			<!-- Use an overlay for the fanart on the wall.poster.fanart screen: true or false -->
-	<wall.unwatched.overlay>false</wall.unwatched.overlay>	<!-- Use an unwatched overlay on the poster walls: true or false -->
-	<wall.watched.overlay>true</wall.watched.overlay>		<!-- Use a watched overlay on the poster walls: true or false -->
 </settings>

@@ -3,23 +3,17 @@
 
     <control>
 		<fullscreen>true</fullscreen>  <!-- Clear the previous screen  -->
-		<clearhighresbg>true</clearhighresbg>  <!--  Clear the hires background (if avail)  -->
     </control>
-
-	<!-- Background -->
-	<background>
-		<file>[:@media:]wall/1.eskin.used/background.png</file>  <!-- The image is at \media\wall\1.eskin.used\background.png -->
-	</background>
 
 	<!-- Included eskin files -->
 	<!-- These have been carefully ordered to ensure that they are drawn in the order we want  -->
-	<include>common.upper.underlay</include>	
-	<include>common.upper.index</include>	
+	<include>common.upper.underlay</include>
+	<include>common.upper.index</include>
 	<include>common.upper.navbar</include>
 	<include>global.clock</include>
-	<include>wall.common.lower.underlay</include>	
-	<include>wall.common.title.trailer</include>	
-	<include>common.lower.navbar</include>	
+	<include>wall.common.lower.underlay</include>
+	<include>wall.common.title.trailer</include>
+	<include>common.lower.navbar</include>
 
 	<segment>
 		<name>trailerfeed</name>
@@ -34,8 +28,8 @@
 			<posx>0</posx>
 			<posy>0</posy>
 			<width>151</width>
-			<height>212</height>  
-		</cursor>		
+			<height>212</height>
+		</cursor>
 		<tile>
 			<cols>8</cols>
 			<rows>3</rows>
@@ -44,17 +38,18 @@
 			<image>
 				<name>thumbnail</name>
 				<file>[:cover:]</file>
+				<altfile>[:@media:]dummy/dummy.jpg</altfile>
 				<posx>10</posx>
 				<posy>10</posy>
 				<width>131</width>
 				<height>192</height>
-			</image>			
-		</tile>		
+			</image>
+		</tile>
 
 		<!-- Remote commands -->
 		<remote>
 		   <button>PLAY</button>
 		   <action>PLAYFILE</action>
-		</remote>					
-	</segment>	
+		</remote>
+	</segment>
 </eskin>

@@ -1,7 +1,4 @@
 <settings>
-<!-- OVERSIGHT DEFAULT VERSION -->
-
-
 <!--********************** NOT UPDATE FRIENDLY  *********************
 	This file will be overwritten by any skin updates.  If you want
 	to make changes to any of these values you should create a file
@@ -66,10 +63,10 @@
 	<menuHOME>aeonhome</menuHOME>						<!-- File used if startpage = home.  Valid choices are home and aeonhome -->
 	<menuMENU>global.menu</menuMENU>					<!-- File used for the menu.  This eskin only has one so don't change it -->
 	<indexMOVIE>wall.poster.summary</indexMOVIE>			<!-- File used for "movie" indexes.  Valid choices are wall.poster.full, wall.poster.full2, wall.poster.summary, wall.poster.fanart, list.text.summary, list.text.properties, wall.banner.full*, wall.banner.summary*, wall.banner.summary2*, list.banner.summary* -->
-	<indexTV>wall.poster.summary</indexTV>				<!-- File used for "TV" indexes.  Valid choices are wall.banner.full, wall.banner.summary, wall.banner.summary2, wall.poster.full, wall.poster.full2, wall.poster.summary, wall.poster.fanart, list.banner.summary, list.text.summary, list.text.properties -->
+	<indexTV>wall.banner.summary2</indexTV>				<!-- File used for "TV" indexes.  Valid choices are wall.banner.full, wall.banner.summary, wall.banner.summary2, wall.poster.full, wall.poster.full2, wall.poster.summary, wall.poster.fanart, list.banner.summary, list.text.summary, list.text.properties -->
 	<indexINDEX>wall.poster.summary</indexINDEX>			<!-- File used for all other indexes (All, HD, watched, etc)  Valid choices are the same as the two above  -->
 	<indexMOVIESET>list.text.summary</indexMOVIESET>	<!-- File used for movie sets.  Valid choices are list.text.summary, list.text.properties, wall.poster.full, wall.poster.full2, wall.poster.summary, wall.poster.fanart, list.banner.summary*, wall.banner.full*, wall.banner.summary*, wall.banner.summary2* -->
-	<indexTVSET>list.text.summary</indexTVSET>		<!-- File used for TV sets.  Valid choices are list.banner.summary, list.text.summary, list.text.properties, wall.banner.full, wall.banner.summary, wall.banner.summary2, wall.poster.full, wall.poster.full2, wall.poster.summary, wall.poster.fanart  -->
+	<indexTVSET>list.banner.summary</indexTVSET>		<!-- File used for TV sets.  Valid choices are list.banner.summary, list.text.summary, list.text.properties, wall.banner.full, wall.banner.summary, wall.banner.summary2, wall.poster.full, wall.poster.full2, wall.poster.summary, wall.poster.fanart  -->
 	<detailsTV>tv1</detailsTV>							<!-- File used for TV series pages.  This eskin only has one so don't change it -->
 	<detailsMOVIE>movie2</detailsMOVIE>					<!-- File used for movie details pages.  Valid choices are movie1, movie2, movie3 -->
     <!-- * = While a valid choice it's unlikely you will have the artwork necessary to make this look good  -->
@@ -81,6 +78,4 @@
 
     <!-- Settings specific to this eskin -->
 	<wall.fanart.overlay>true</wall.fanart.overlay>			<!-- Use an overlay for the fanart on the wall.poster.fanart screen: true or false -->
-	<wall.unwatched.overlay>false</wall.unwatched.overlay>	<!-- Use an unwatched overlay on the poster walls: true or false -->
-	<wall.watched.overlay>true</wall.watched.overlay>		<!-- Use a watched overlay on the poster walls: true or false -->
 </settings>

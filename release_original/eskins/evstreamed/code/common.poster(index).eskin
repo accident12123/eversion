@@ -5,17 +5,17 @@
 	it's been separated out on it's own and is "included" by the other
 	.eskin files.
 
-	This file is identical to common.poster except for the use of the 
+	This file is identical to common.poster except for the use of the
 	index segname and hyper.
-	
+
 	Used with:
 	list.text.summary
 	list.text.properties
 	list.banner.summary
 	******************************************************************-->
-<!-- Hyper - See: http://www.dentedboxes.com/doku.php/eversion:eskins:dev -->	
-<!-- Variables - See: http://www.dentedboxes.com/doku.php/eversion:eskins:ref:variables -->	
-<!-- Conditions - See: http://www.dentedboxes.com/doku.php/eversion:eskins:block:if -->	
+<!-- Hyper - See: http://www.dentedboxes.com/doku.php/eversion:eskins:dev -->
+<!-- Variables - See: http://www.dentedboxes.com/doku.php/eversion:eskins:ref:variables -->
+<!-- Conditions - See: http://www.dentedboxes.com/doku.php/eversion:eskins:block:if -->
 
 	<!-- Poster -->
 	<image>
@@ -23,6 +23,7 @@
 		<segname>index</segname>  <!-- segname and hyper are necessary for the lists -->
 		<hyper>3</hyper>
 		<file>[:@jukebox:][:smartposter1large:]</file>  <!-- Eversion artwork variable holding the name of the poster YAMJ created-->
+		<altfile>[:@media:]dummy/dummy.jpg</altfile>
 		<posx>19</posx>
 		<posy>332</posy>
 		<width>257</width>

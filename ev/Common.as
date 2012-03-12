@@ -95,8 +95,8 @@ class ev.Common {
 		}
 
 		Common.evRun.minyamj=2833;
-		Common.evRun.evversion="0.2.8.11";
-		Common.evRun.evrversion="R0164";
+		Common.evRun.evversion="0.2.8.12";
+		Common.evRun.evrversion="R0166";
 
 		Popapi.disabled=false;
 	}

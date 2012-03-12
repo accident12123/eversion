@@ -14,7 +14,6 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-// this class contains all of our image loading functions
 import tools.StringUtil;
 import ev.Common;
 import api.Popapi;
@@ -27,15 +26,29 @@ class ev.Loadimage {
 	public static var bgvisible:Object=null;
 	public static var lastsuccess=null;
 
-	public static function load(loadImgMCId:String, parentMC:MovieClip, x:Number, y:Number, width:Number, height:Number, url:String,keepaspect:Boolean,valigned,haligned,hl:Boolean):Void
+	public static function load(loadImgMCId:String, parentMC:MovieClip, x:Number, y:Number, width:Number, height:Number, url:String, alt:String,keepaspect:Boolean,valigned,haligned,hl:Boolean):Void
 	{
 		if(url==undefined || url==null || url=="UNKNOWN" || url.length<5 || StringUtil.endsWith(url,"UNKNOWN")) return;
 		if(height<3||width<3) return;
 
 		if(parentMC[loadImgMCId]._visible == true) return;
 
-		//trace(",,,,,LOAD  loading: "+url);
+		if(parentMC[loadImgMCId]._visible!=undefined) {  // figure out if we even need to reload
+			if(Common.evSettings.wintesting) url=StringUtil.replace(url,"/","\\");
+			trace(loadImgMCId+" LOAD my url "+url);
 
+			for (var tt in parentMC[loadImgMCId]) {
+				if (typeof (parentMC[loadImgMCId][tt]) == "movieclip") {
+					trace("LOAD check url "+parentMC[loadImgMCId][tt]._url);
+					if(StringUtil.endsWith(parentMC[loadImgMCId][tt]._url,url)) {
+						trace("..skipping load, image loaded already");
+						parentMC[loadImgMCId][tt]._visible=true;
+						parentMC[loadImgMCId]._visible=true;
+						return;
+					}
+				}
+			}
+		}
 		parentMC[loadImgMCId].removeMovieClip();
 
 		var loadImgBaseMC:MovieClip = parentMC.createEmptyMovieClip(loadImgMCId, parentMC.getNextHighestDepth());
@@ -63,6 +76,33 @@ class ev.Loadimage {
 
 		imgLoaderListener.onLoadComplete = function(targetMC:MovieClip, httpStatus:Number):Void {
 			targetMC._parent._visible=hl;
+			var mydepth=targetMC.getDepth();
+
+			for (var i in targetMC._parent) {
+				if (typeof (targetMC._parent[i]) == "movieclip") {
+					if(targetMC._parent[i]._url != targetMC._url) {
+						if(targetMC._parent[i].getDepth() < mydepth) {
+							targetMC._parent[i].removeMovieClip();
+						}
+					}
+				}
+			}
+		}
+
+		imgLoaderListener.onLoadError = function(targetMC:MovieClip, errorCode:String, httpStatus:Number) {
+
+			trace("load failed: "+errorCode+" httpstatus "+httpStatus);
+
+			if(alt != undefined && alt!=null) {
+				trace('alternate image available, trying '+alt);
+
+				targetMC._parent.removeMovieClip();
+				Loadimage.load(loadImgMCId, parentMC, x, y, width, height, alt, null,keepaspect,valigned,haligned,hl);
+				return;
+			}
+
+			targetMC._parent.removeMovieClip();
+			return;
 		}
 
 		imgLoader.loadClip(url, loadImgMC);
@@ -141,7 +181,7 @@ class ev.Loadimage {
 				var h:Number=720;
 			}
 			//trace("x "+x+" y "+y+" w "+w+" h "+h)
-			Loadimage.uiload(loadMC, parentMC, x, y, w, h, depth, url, Loadimage.nextbgmc, true, false);
+			Loadimage.uiload(loadMC, parentMC, x, y, w, h, depth, url, null, Loadimage.nextbgmc, true, false);
 		}
 	}
 
@@ -237,51 +277,40 @@ class ev.Loadimage {
 		Loadimage.bgloading=false;
 	}
 
-	public static function uiload(loadImgMCId:String, parentMC:MovieClip, x:Number, y:Number, width:Number, height:Number, depth:Number, url:String, callback:Function, showit:Boolean, keepaspect:Boolean,valigned,haligned):Void
+	public static function uiload(loadImgMCId:String, parentMC:MovieClip, x:Number, y:Number, width:Number, height:Number, depth:Number, url:String, alt:String, callback:Function, showit:Boolean, keepaspect:Boolean,valigned,haligned):Void
 	{
 		if(url==undefined || url==null || url=="UNKNOWN" || url.length<5 || StringUtil.endsWith(url,"UNKNOWN")) return;
 		if(height<3||width<3) return;
 
 		if(showit==undefined) showit=true;
 
-		//trace("KEEPASPECT test="+keepaspect);
+		if(depth==undefined || depth==null) depth=parentMC.getNextHighestDepth();
 
-		// depth tracking
-		if(depth==undefined || depth==null) {
-			depth=parentMC.getNextHighestDepth();
-			callback(loadImgMCId, depth);
-			//trace("uiload depth changed to "+depth);
-		}
+		//trace("KEEPASPECT test="+keepaspect);
+		var newdepth:Number=parentMC[loadImgMCId].getNextHighestDepth();
 
 		if(parentMC[loadImgMCId]._visible!=undefined) {  // figure out if we even need to reload
-			var newdepth:Number=parentMC[loadImgMCId].getNextHighestDepth();
-			var testdepth=newdepth-1;
+			if(Common.evSettings.wintesting) url=StringUtil.replace(url,"/","\\");
+			trace(loadImgMCId+" my url "+url);
 
-			// check if we need to load
-			//trace("newdepth "+newdepth);
-			//trace("testdepth "+testdepth);
-			if(testdepth>-1) {
-				//trace("existing image url "+parentMC[loadImgMCId][testdepth]._url);
-				if(Common.evSettings.wintesting) url=StringUtil.replace(url,"/","\\");
-				//trace("url about to load "+url);
-				if(StringUtil.endsWith(parentMC[loadImgMCId][testdepth]._url, url)) {
-					//trace("..skipping uiload, image loaded already");
-					parentMC[loadImgMCId][testdepth]._visible=true;  // just in case it's not showing
-					parentMC[loadImgMCId]._visible=showit;
-					callback(null, null, true);
-					return;
+			for (var tt in parentMC[loadImgMCId]) {
+				if (typeof (parentMC[loadImgMCId][tt]) == "movieclip") {
+					trace("check url "+parentMC[loadImgMCId][tt]._url);
+					if(StringUtil.endsWith(parentMC[loadImgMCId][tt]._url,url)) {
+						trace("..skipping uiload, image loaded already");
+						parentMC[loadImgMCId][tt]._visible=true;
+						parentMC[loadImgMCId]._visible=showit;
+						callback(null, null, true);
+						return;
+					}
 				}
 			}
-
-			// we're not just making it visible, yank it down just in case and start it over
-			//parentMC[loadImgMCId].removeMovieClip();
 		} else {
 			// actual image loading needs to happen
 			var loadImgBaseMC:MovieClip = parentMC.createEmptyMovieClip(loadImgMCId, depth);
 			loadImgBaseMC._x = x;
 			loadImgBaseMC._y = y;
 			loadImgBaseMC._visible=showit;
-			//Common.overscan_adjust(loadImgBaseMC);
 		}
 
 		var loadImgMC:MovieClip = parentMC[loadImgMCId].createEmptyMovieClip(newdepth, newdepth);
@@ -309,7 +338,7 @@ class ev.Loadimage {
 			//targetMC._parent._visible=showit;
 			for (var i in targetMC._parent) {
 				if (typeof (targetMC._parent[i]) == "movieclip") {
-					if(targetMC._parent[i]._name!=targetMC._name) {
+					if(targetMC._parent[i]._url != targetMC._url) {
 						if(targetMC._parent[i].getDepth() < mydepth) {
 							targetMC._parent[i].removeMovieClip();
 						}
@@ -321,13 +350,22 @@ class ev.Loadimage {
 
 
 		imgLoaderListener.onLoadError = function(targetMC:MovieClip, errorCode:String, httpStatus:Number) {
-		/*
-			targetMC._parent._visible=false;
-			targetMC.removeMovieClip();
-		*/
 			trace("uiload failed: "+errorCode+" httpstatus "+httpStatus);
 			targetMC._parent.removeMovieClip();
 			callback(null, null, false);
+
+			trace("uiload failed: "+errorCode+" httpstatus "+httpStatus);
+
+			if(alt != undefined && alt!=null) {
+				trace('alternate image available, trying '+alt);
+
+				targetMC._parent.removeMovieClip();
+				Loadimage.uiload(loadImgMCId, parentMC, x, y, width, height, depth, alt, null, callback, showit, keepaspect,valigned,haligned);
+				return;
+			}
+
+			targetMC._parent.removeMovieClip();
+			return;
 		}
 
 		imgLoader.loadClip(url, loadImgMC);

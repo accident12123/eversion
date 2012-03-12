@@ -709,6 +709,9 @@ class ev.Eskinload {
 		// file
 		var filename:String=XPathAPI.selectSingleNode(xml, "/image/file").firstChild.nodeValue.toString();
 
+		// alt
+		var altfilename:String=XPathAPI.selectSingleNode(xml, "/image/altfile").firstChild.nodeValue.toString();
+
 		// x,y
 		var posx:Number=Number(XPathAPI.selectSingleNode(xml, "/image/posx").firstChild.nodeValue.toString())*Common.evSettings.overscanx;
 		var posy:Number=Number(XPathAPI.selectSingleNode(xml, "/image/posy").firstChild.nodeValue.toString())*Common.evSettings.overscany;
@@ -742,7 +745,7 @@ class ev.Eskinload {
 		//trace(".. condition: "+condition);
 		//trace(".. keepaspect: "+keepaspect);
 
-		return({action:"image",name:name,swap:swap, keepaspect:keepaspect,valigned:valigned,haligned:haligned, condition:condition, file:filename,posx:posx,posy:posy,width:width,height:height,segname:segname,highlight:highlight,hyper:hyper});
+		return({action:"image",name:name,swap:swap, keepaspect:keepaspect,valigned:valigned,haligned:haligned, condition:condition, file:filename,altfile:altfilename,posx:posx,posy:posy,width:width,height:height,segname:segname,highlight:highlight,hyper:hyper});
 	}
 
 	private function process_block_background(xml:XML) {

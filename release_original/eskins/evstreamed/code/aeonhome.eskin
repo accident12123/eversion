@@ -3,9 +3,6 @@
     <control>
 		<fullscreen>true</fullscreen>
     </control>
-	<background>
-		<file>[:@media:]home/1.eskin.used/background.png</file>
-	</background>
 	<image>
 		<name>overlay</name>
 		<file>[:@media:]home/1.eskin.used/aeon_overlay.png</file>
@@ -21,7 +18,7 @@
 		<posy>520</posy>
 		<width>1280</width>
 		<height>114</height>
-	</image>	
+	</image>
 	<image>
 		<name>clockbg</name>
 		<file>[:@media:]common/1.eskin.used/aeon_clock.bg.png</file>
@@ -36,10 +33,10 @@
 		<posy>526</posy>
 		<width>110.25</width>
 		<height>34.75</height>
-		<size>22</size>  
+		<size>22</size>
 		<align>center</align>
 		<color>FFFFFF</color>
-	</text>	
+	</text>
 	<text>
 		<name>date</name>
 		<posx>1080</posx>
@@ -49,8 +46,8 @@
 		<size>22</size>
 		<align>center</align>
 		<color>FFFFFF</color>
-	</text>	
-	
+	</text>
+
 	<segment>
 		<name>menubar</name>
 		<control>[:@eskin:]home</control>
@@ -72,14 +69,14 @@
 				<posy>0</posy>
 				<width>256</width>
 				<height>55</height>
-				<size>39</size>  
+				<size>39</size>
 				<align>center</align>  <!-- By default align is left -->
 				<color>2f2f2f</color>
 				<hlcolor>ffffff</hlcolor>
 				<bold>true</bold>
-			</text>	
+			</text>
 		</tile>
-		
+
 		<!-- Fanart which changes as the menu item selected changes-->
 		<fanart>
 			<file>[:@sharedmedia:]home/[:originaltitle:].jpg</file>  <!-- Originaltitle will find the image using it;s original name and not the translated name -->

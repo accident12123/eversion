@@ -692,8 +692,9 @@ class ev.Eskinrun {
 
 		//trace("..... file: "+block.file);
 		var showing:String=process_variable(block.file,null,getdata);
+		var alt:String=process_variable(block.altfile,null,getdata);
 		//trace("..... processed url: "+showing);
-		Loadimage.uiload(block.name, this.eskinMC, block.posx,block.posy,block.width,block.height,this.depthtrack[block.name], showing, this.fn.updatedepthtrack,true, block.keepaspect,block.valigned,block.haligned);
+		Loadimage.uiload(block.name, this.eskinMC, block.posx,block.posy,block.width,block.height,this.depthtrack[block.name], showing, alt,this.fn.updatedepthtrack,true, block.keepaspect,block.valigned,block.haligned);
 	}
 
 	private function draw_tile_image(thisMC:MovieClip, block:Object, who,getdata,hl:Boolean) {
@@ -711,7 +712,8 @@ class ev.Eskinrun {
 
 		thisMC._visible=true;
 		var showing:String=process_variable(block.file, who,getdata);
-		Loadimage.load(block.name, thisMC, block.posx,block.posy,block.width,block.height,showing,block.keepaspect,block.valigned,block.haligned,hl);
+		var alt:String=process_variable(block.altfile, who,getdata);
+		Loadimage.load(block.name, thisMC, block.posx,block.posy,block.width,block.height,showing,alt,block.keepaspect,block.valigned,block.haligned,hl);
 
 		//trace("tile block: "+block.name+" highlight: "+block.highlight);
 /*		if(block.highlight==true) {
@@ -751,7 +753,7 @@ class ev.Eskinrun {
 					var w:Number=1280;
 					var h:Number=720;
 				}
-				Loadimage.uiload("evbg", this.eskinMC, x, y, w, h,this.depthtrack.evbg, showing, this.fn.updatedepthtrack, showit);
+				Loadimage.uiload("evbg", this.eskinMC, x, y, w, h,this.depthtrack.evbg, showing, null, this.fn.updatedepthtrack, showit);
 			//} else {
 			//	trace("background image loading highres");
 			//	Loadimage.bgload("evbg", this.eskinMC, this.depthtrack.evbg, showing);

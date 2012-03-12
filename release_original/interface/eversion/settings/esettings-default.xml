@@ -101,12 +101,12 @@
 	<!-- how many cycles before hyper level changes -->
 	<hypercycles>2</hypercycles>
 	<!-- a per device adjustment to fine tune image loading.  higher usually means faster remote response but less images being handled per cycle -->
-	<pchhyperdraw>3</pchhyperdraw>
-	<abhyperdraw>3</abhyperdraw>
-	<pbhyperdraw>2</pbhyperdraw>
-	<v8hyperdraw>2</v8hyperdraw>
-	<a3hyperdraw>2</a3hyperdraw>
-	<c3hyperdraw>2</c3hyperdraw>
+	<pchhyperdraw>2</pchhyperdraw>
+	<abhyperdraw>2</abhyperdraw>
+	<pbhyperdraw>1</pbhyperdraw>
+	<v8hyperdraw>1</v8hyperdraw>
+	<a3hyperdraw>1</a3hyperdraw>
+	<c3hyperdraw>1</c3hyperdraw>
 	<noghyperdraw>2</noghyperdraw>
 
 	<!-- when set to true, eversion will use the indexcount that yamj makes instead of counting the number of items in an index itself.  It is faster
@@ -255,5 +255,5 @@
 	<renderquality>HIGH</renderquality>
 
 	<!-- used to verify settings match interface version -->
-    <eversion>R0164</eversion>
+    <eversion>R0166</eversion>
 </settings>

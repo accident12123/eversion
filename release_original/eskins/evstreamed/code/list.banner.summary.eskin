@@ -1,20 +1,14 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <eskin>
-<!-- Segements - See: http://www.dentedboxes.com/doku.php/eversion:eskins:block:segment -->	
-<!-- Segements-tiles - See: http://www.dentedboxes.com/doku.php/eversion:eskins:block:tile -->	
-<!-- Variables - See: http://www.dentedboxes.com/doku.php/eversion:eskins:ref:variables -->	
-<!-- Artwork Variables - See: http://www.dentedboxes.com/doku.php/eversion:eskins:ref:artvariables -->	
-<!-- Conditions - See: http://www.dentedboxes.com/doku.php/eversion:eskins:block:if -->	
+<!-- Segements - See: http://www.dentedboxes.com/doku.php/eversion:eskins:block:segment -->
+<!-- Segements-tiles - See: http://www.dentedboxes.com/doku.php/eversion:eskins:block:tile -->
+<!-- Variables - See: http://www.dentedboxes.com/doku.php/eversion:eskins:ref:variables -->
+<!-- Artwork Variables - See: http://www.dentedboxes.com/doku.php/eversion:eskins:ref:artvariables -->
+<!-- Conditions - See: http://www.dentedboxes.com/doku.php/eversion:eskins:block:if -->
 
     <control>
 		<fullscreen>true</fullscreen>  <!-- Clear the previous screen  -->
-		<clearhighresbg>false</clearhighresbg>  <!--  Don't clear the hires background (if avail)  -->
     </control>
-
-	<!-- Background -->
-	<background>
-		<file>[:@media:]list/1.eskin.used/background.png</file> 
-	</background>
 
 	<!-- Background image for the list details -->
 	<image>
@@ -28,11 +22,11 @@
 
 	<!-- Included eskin files -->
 	<!-- These have been carefully ordered to ensure that they are drawn in the order we want  -->
-	<include>common.upper.underlay</include>	
-	<include>common.upper.index</include>	
-	<include>global.clock</include>	
-	<include>common.upper.studiologo(index)</include>	
-	<include>common.upper.navbar</include>	
+	<include>common.upper.underlay</include>
+	<include>common.upper.index</include>
+	<include>global.clock</include>
+	<include>common.upper.studiologo(index)</include>
+	<include>common.upper.navbar</include>
 	<include>list.summary.data</include>
 	<include>common.poster(index)</include>
 	<include>common.mediainfo(index)</include>
@@ -50,8 +44,8 @@
 			<posx>1</posx>
 			<posy>-2</posy>
 			<width>423</width>
-			<height>91</height>  
-		</cursor>		
+			<height>91</height>
+		</cursor>
 		<tile>
 			<cols>1</cols>
 			<rows>3</rows>
@@ -60,24 +54,25 @@
 			<image>
 				<name>banner</name>
 				<file>[:@jukebox:][:banner1small:]</file>  <!-- Eversion artwork variable holding the name of the banner YAMJ created-->
+				<altfile>[:@media:]dummy/dummy_banner.jpg</altfile>
 				<posx>3</posx>
 				<posy>4</posy>
 				<width>420</width>
 				<height>78</height>
 				<keepaspect>true</keepaspect>
-			</image>		
+			</image>
 		</tile>
 
 		<!-- Fanart -->
 		<fanart>
 			<file>[:@jukebox:][:smartfanart1large:]</file><!-- Eversion artwork variable holding the name of the fanart YAMJ created-->
 			<hyper>1</hyper>
-		</fanart>		
+		</fanart>
 
 		<!-- Remote commands -->
 		<remote>
 		   <button>PLAY</button>
 		   <action>PLAYALL</action>
-		</remote>		
-	</segment>	
+		</remote>
+	</segment>
 </eskin>
