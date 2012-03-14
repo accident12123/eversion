@@ -311,14 +311,13 @@ class api.Mediaplayer {
 		}
 
 		if(Common.overSight || Common.jbmissing) {
-			if(!StringUtil.beginsWith(file,"file:///opt") && StringUtil.beginsWith(file,"file://")) {
+			if(!StringUtil.beginsWith(file,"file:///opt") && StringUtil.beginsWith(file,"file://") && !StringUtil.beginsWith(file,"file:///")) {
 				trace("adjusting path for oversight");
 				var newfile:String=unescape(file.slice(7));
-				file=escape("file:///opt/sybhttpd/localhost.drives/NETWORK_SHARE/"+newfile);
-				file=StringUtil.replace(file,"%2F","/");
-				file=StringUtil.replace(file,"%3A",":");
-				file=StringUtil.replace(file,"%2E",".");
-				file=StringUtil.replace(file,"%5F","_");
+				file="file:///opt/sybhttpd/localhost.drives/NETWORK_SHARE/"+newfile;
+				file=StringUtil.replace(file,"&","%26");
+				file=StringUtil.replace(file,"?","%3F");
+				file=StringUtil.replace(file,"+","%2B");
 				trace(".. new path: "+file);
 			}
 		}
@@ -761,6 +760,7 @@ class api.Mediaplayer {
 					Mediaplayer.tryingmount=true;
 					Popapi.get("network_browse?arg0=list_network_content&arg1="+newmount+"&arg2=&arg3="+username+"&arg4="+password+"&arg5=0&arg6=1&arg7=true&arg8=true&arg9=false&arg10=",Mediaplayer.smbpwmount);
 				} else {
+					Mediaplayer.tryingmount=false;
 					Mediaplayer.mount_error(Mediaplayer.mountqueue[0].file);
 				}
 			}

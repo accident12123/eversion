@@ -194,7 +194,7 @@ class ev.Eskinrun {
 						draw_image(Common.eskinmaster[eskin][file].code[tt],null,getdata);
 						break;
 					case 'text':
-						if(firstrun==false && Common.eskinmaster[eskin][file].code[tt].name != "clock"&& Common.eskinmaster[eskin][file].code[tt].name != "date") continue;
+						if(firstrun==false && Common.eskinmaster[eskin][file].code[tt].name != "clock"&& Common.eskinmaster[eskin][file].code[tt].name != "date"&& Common.eskinmaster[eskin][file].code[tt].name != "dow") continue;
 						draw_text(Common.eskinmaster[eskin][file].code[tt],this.eskinMC,null,getdata,undefined);
 						break;
 					case 'if':
@@ -567,7 +567,7 @@ class ev.Eskinrun {
 			return;
 		}
 
-		if(block.name=="clock" || block.name=="date") return;
+		if(block.name=="clock" || block.name=="date"|| block.name=="dow") return;
 
 		// adjust
 		if(block.wordwrap) {
@@ -645,6 +645,11 @@ class ev.Eskinrun {
 			case 'date':
 				thisMC.date.text=" ";
 				thisMC.date.setTextFormat(txtfmt);
+				Background.update_date(thisMC);
+				break;
+			case 'dow':
+				thisMC.dow.text=" ";
+				thisMC.dow.setTextFormat(txtfmt);
 				Background.update_date(thisMC);
 				break;
 			default:

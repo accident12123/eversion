@@ -26,6 +26,7 @@ class ev.Background {
 	// clock.
 	public static var clockMC:MovieClip=null;
 	public static var dateMC:MovieClip=null;
+	public static var dowMC:MovieClip=null;
 
 	// vercheck.
 	public static var verevbad:Boolean=null;
@@ -138,6 +139,16 @@ class ev.Background {
 		Background.clock();
 	}
 
+	public static function update_dow(newMC:MovieClip) {
+		trace("updating dow");
+
+		// setup the new MC
+		Background.dowMC=newMC;
+
+		// update the clock now
+		Background.clock();
+	}
+
 	public static function clock() {
 		//trace("clock called");
 
@@ -145,6 +156,7 @@ class ev.Background {
 
 		var clocktxtfmt=Background.clockMC.clock.getTextFormat();
 		var datetxtfmt=Background.dateMC.date.getTextFormat();
+		var dowtxtfmt=Background.dateMC.date.getTextFormat();
 
 		//trace("updating clock");
 
@@ -209,6 +221,32 @@ class ev.Background {
 				break;
 		}
 		Background.dateMC.date.setTextFormat(datetxtfmt);
+
+		var dayN = mydate.getDay();
+		switch (dayN) {
+			case 0 :
+				Background.dowMC.day.text="Sunday";
+				break;
+			case 1 :
+				Background.dowMC.day.text="Monday";
+				break;
+			case 2 :
+				Background.dowMC.day.text="Tuesday";
+				break;
+			case 3 :
+				Background.dowMC.day.text="Wednesday";
+				break;
+			case 4 :
+				Background.dowMC.day.text="Thursday";
+				break;
+			case 5 :
+				Background.dowMC.day.text="Friday";
+				break;
+			case 6 :
+				Background.dowMC.day.text="Saturday";
+				break;
+		}
+		Background.dowMC.dow.setTextFormat(dowtxtfmt);
 	}
 
 // **************** VERSION CHECKS **************************
