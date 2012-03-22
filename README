@@ -35,6 +35,13 @@ An additional setup in flash is added where it's debugged/published in device ce
 I'm not sure if that carries over in the FLA file or a flash itself setting you need
 to adjust.
 
+***********
+CS4 and CS5
+***********
+
+As requested, CS4 and CS5 fla files have been saved.   These have never been tried and
+it's normally built from the fla file with cs5.5
+
 *****************
 UGLY CODE WARNING
 *****************
