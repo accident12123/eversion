@@ -89,14 +89,16 @@ class ev.Common {
 		trace(".. root path "+Common.evRun.rootpath);
 		trace(".. storage root path "+Common.evRun.storagerootpath);
 
-		if(Common.evRun.rootpath=='file:///share/Apps/eversion') {
+		if(Common.evRun.rootpath=='file:///share/Apps/eversion' || Common.evRun.rootpath=='file:///share/Apps/Eversion') {
 			trace(".. oversight install!");
 			Common.overSight=true;
 		}
 
+		Common.evRun.hardware.cfgmounts='auto';
+
 		Common.evRun.minyamj=2833;
-		Common.evRun.evversion="0.2.8.12";
-		Common.evRun.evrversion="R0166";
+		Common.evRun.evversion="0.2.8.14";
+		Common.evRun.evrversion="R0169";
 
 		Popapi.disabled=false;
 	}

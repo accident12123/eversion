@@ -16,7 +16,6 @@
 
 // THIS CLASS IS OUR MEDIA PLAYING INTERFACE.  IT IS THE DEVICE INDEPENDED MIDDLEMAN
 import ev.Common;
-//import yamj.tools.YAMJfileprocess;
 import api.dataYAMJ;
 import api.Popapi;
 import tools.StringUtil;
@@ -311,9 +310,10 @@ class api.Mediaplayer {
 		}
 
 		if(Common.overSight || Common.jbmissing) {
-			if(!StringUtil.beginsWith(file,"file:///opt") && StringUtil.beginsWith(file,"file://") && !StringUtil.beginsWith(file,"file:///")) {
+			var cleancheck:String=unescape(file);
+			if(!StringUtil.beginsWith(cleancheck,"file:///opt") && StringUtil.beginsWith(cleancheck,"file://") && !StringUtil.beginsWith(cleancheck,"file:///")) {
 				trace("adjusting path for oversight");
-				var newfile:String=unescape(file.slice(7));
+				var newfile:String=cleancheck.slice(7);
 				file="file:///opt/sybhttpd/localhost.drives/NETWORK_SHARE/"+newfile;
 				file=StringUtil.replace(file,"&","%26");
 				file=StringUtil.replace(file,"?","%3F");
@@ -394,7 +394,7 @@ class api.Mediaplayer {
 			trace('.. player will be native');
 			Mediaplayer.nativeplayerStart();
 		} else {
-			trace('.. player will be YAMJ');
+			trace('.. player will be SDK');
 			Mediaplayer.startYAMJPlayer();
 		}
 	}
@@ -406,7 +406,7 @@ class api.Mediaplayer {
 			return;
 		}
 
-		// relative path support
+		// simple relative path support
 		if(StringUtil.beginsWith(file,"../")) {
 			trace("relative path detected "+file);
 			trace("path "+Mediaplayer.parentMC._url);
@@ -509,18 +509,25 @@ class api.Mediaplayer {
 // ***************************** DELAYED QUEUE **************************************
 	public static function delayedqueuecheck() {
 		if(Mediaplayer.mountqueue.length!=0) {
+			var queuenow=false;
+
 			// if zero mount
 			if(StringUtil.beginsWith(Mediaplayer.mountqueue[0].file,"smb://") || StringUtil.beginsWith(Mediaplayer.mountqueue[0].file,"nfs://") || StringUtil.beginsWith(Mediaplayer.mountqueue[0].file,"nfs-tcp://")) {
-				Preloader.update( Common.evPrompts.prepnet);
-
 				// if nfs-tcp and converted enabled
 				if(Common.evSettings.mountnfstcpasnfs==true && StringUtil.beginsWith(Mediaplayer.mountqueue[0].file,"nfs-tcp://")) {
 					trace("swapping nfs-tcp to nfs");
 					Mediaplayer.mountqueue[0].file=StringUtil.replace(Mediaplayer.mountqueue[0].file, "nfs-tcp://", "nfs://");
 				} else trace("nfs-tcp url but user choose to not convert");
 
-				trace("Mount for: "+Mediaplayer.mountqueue[0].file);
-				Popapi.get("file_operation?arg0=list_user_storage_file&arg1="+Mediaplayer.mountqueue[0].file+"&arg2=0&arg3=1&arg4=true&arg5=true&arg6=false&arg7=", Mediaplayer.afterMount);
+				// full mount skip
+				if((Common.evRun.hardware.fullmounts==false && Common.evRun.hardware.cfgmounts!='false') || Common.evRun.hardware.cfgmounts=='true') {
+					trace("full mounts not needed, direct queue");
+					queuenow=false;
+				} else {
+					Preloader.update( Common.evPrompts.prepnet);
+					trace("Mount for: "+Mediaplayer.mountqueue[0].file);
+					Popapi.get("file_operation?arg0=list_user_storage_file&arg1="+Mediaplayer.mountqueue[0].file+"&arg2=0&arg3=1&arg4=true&arg5=true&arg6=false&arg7=", Mediaplayer.afterMount);
+				}
 			} else if(StringUtil.beginsWith(Mediaplayer.mountqueue[0].file,"ev-usb://")) { // ev-usb:// paths
 				// convert to usb_drive only, file check comes later
 
@@ -595,6 +602,10 @@ class api.Mediaplayer {
 				Preloader.update(Common.evPrompts.prepnet);
 				Mediaplayer.nativeNetCheck();
 			} else {
+				queuenow=true;
+			}
+
+			if(queuenow) {
 				// no preloader change for this one.
 				trace("delayed non-mount: "+Mediaplayer.mountqueue[0].file);
 				var isNative:Boolean=Mediaplayer.addQueue(Mediaplayer.mountqueue[0].file, Mediaplayer.mountqueue[0].name, Mediaplayer.mountqueue[0].zcd, Mediaplayer.mountqueue[0].realstart);
@@ -1189,9 +1200,6 @@ class api.Mediaplayer {
 		Mediaplayer.startYAMJPlayer();
 	}
 }
-
-
-
 
 /*  SDK error messages
 

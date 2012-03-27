@@ -1,19 +1,3 @@
-// Eversion, the flash interface for YAMJ on the Syabas Embedded Players
-// Copyright (C) 2012  Bryan Socha, aka Accident
-
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-
-// You should have received a copy of the GNU General Public License
-// along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 import ev.Common;
 import api.Popapi;
 import tools.Data;
@@ -258,33 +242,8 @@ class ev.EVSettings {
 		if(Common.evSettings.yellow == undefined) Common.evSettings.yellow='start';
 		if(Common.evSettings.search == undefined) Common.evSettings.search='menu';
 
-		/*
-		if(Common.evSettings.highresbg=="true" && Popapi.disabled!=true && Common.evRun.hardware.bghighres==true) {
-			Common.evRun.bghighres=true;
-			Common.evRun.bghrspeed=int(Common.evSettings[Common.evRun.hardware.settingcode+"highresdelay"]);
-			if(Common.evRun.bghrspeed < 500) Common.evRun.bghrspeed=2900;
-			switch(Common.evSettings.highresmethod) {
-				case 'swap':
-					Common.evRun.hardware.bghighresplaylist=false;
-					break;
-				case 'playlist':
-					Common.evRun.hardware.bghighresplaylist=true;
-					break;
-				default:
-					break;
-			}
-			switch(Common.evSettings.highresplskip) {
-				case 'true':
-					Common.evRun.hardware.bghighresplaylistskipnext=false;
-					break;
-				case 'false':
-					Common.evRun.hardware.bghighresplaylistskipnext=true;
-					break;
-				default:
-					break;
-			}
-		} else Common.evRun.bghighres=false;
-		*/
+        // legacy, might still be needed
+        Common.evRun.bghighres=false;
 
 		switch(Common.evSettings.youtubequality) {
 			case 'small':
@@ -406,6 +365,17 @@ class ev.EVSettings {
 		}
 		trace("yamjdatapath "+Common.evSettings.yamjdatapath);
 		trace("eskinrootpath "+Common.evSettings.eskinrootpath);
+
+		if(Common.evSettings.oversight=='true') {
+			Common.overSight=true;
+			trace("oversight enabled in settings");
+		}
+
+		if(Common.evSettings.fullmounts!='true' && Common.evSettings.fullmounts!='false' && Common.evSettings.fullmounts=='auto') {
+			Common.evRun.hardware.cfgmounts='auto';
+        } else {
+			Common.evRun.hardware.cfgmounts=Common.evSettings.fullmounts;
+		}
 	}
 
 	private function fixplayertype(setting:String):String {

@@ -20,8 +20,8 @@ import tools.StringUtil;
 import mx.xpath.XPathAPI;
 
 class api.Popapi {
-	public static var apiurl:String="127.0.0.1:8008/";
-	//public static var apiurl:String="10.1.2.210/relay.php?";
+	//public static var apiurl:String="127.0.0.1:8008/";
+	public static var apiurl:String="10.1.2.210/relay.php?";
 	public static var disabled:Boolean=null;
 
 // ****************  CALLED ROUTINES ***************
@@ -78,6 +78,7 @@ class api.Popapi {
 		if(success) {
 			// most likely commons
 			Common.evRun.hardware.isPCH=true;
+			Common.evRun.hardware.fullmounts=true;
 			Common.evRun.hardware.remotecodes="SYABAS";
 			Common.evRun.hardware.sharesfrom="pch";
 			Common.evRun.hardware.loadpage=true;
@@ -208,7 +209,7 @@ class api.Popapi {
 				Common.evRun.hardware.settingcode="nog";
 				Common.evRun.hardware.sharepwstrip=false;
 				Common.evRun.hardware.bghighresplaylist=true;
-
+				Common.evRun.hardware.fullmounts=false;
 			}
 
 			trace("high res bg support availble");
