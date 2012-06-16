@@ -18,10 +18,12 @@ import ev.Common;
 import tools.Data;
 import tools.StringUtil;
 import mx.xpath.XPathAPI;
+import ExtCommand;
 
 class api.Popapi {
-	//public static var apiurl:String="127.0.0.1:8008/";
-	public static var apiurl:String="10.1.2.210/relay.php?";
+	public static var apiurl:String="127.0.0.1:8008/";
+	//public static var apiurl:String="10.1.2.224:8008/";
+	//public static var apiurl:String="10.1.2.210/relay.php?";
 	public static var disabled:Boolean=null;
 
 // ****************  CALLED ROUTINES ***************

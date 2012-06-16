@@ -15,6 +15,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import api.Popapi;
+import api.Duneapi;
 import tools.StringUtil;
 
 class ev.Common {
@@ -97,9 +98,10 @@ class ev.Common {
 		Common.evRun.hardware.cfgmounts='auto';
 
 		Common.evRun.minyamj=2833;
-		Common.evRun.evversion="0.2.8.14";
-		Common.evRun.evrversion="R0169";
+		Common.evRun.evversion="0.2.8.15";
+		Common.evRun.evrversion="R0170";
 
 		Popapi.disabled=false;
+		Duneapi.disabled=false;
 	}
 }

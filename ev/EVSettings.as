@@ -1,5 +1,6 @@
 import ev.Common;
 import api.Popapi;
+import api.Duneapi;
 import tools.Data;
 import tools.StringUtil;
 import mx.xpath.XPathAPI;
@@ -131,9 +132,21 @@ class ev.EVSettings {
 				this.activeMC.message_txt.text="Hardware not responding";
 				this.callBack("ERROR","Hardware not responding (MAC) "+errorcode);
 			} else {
+				// syabas api is disabled if hits here
 				Popapi.disabled=true;
-				Common.evRun.hardware.id="APIDISABLED";
-				this.finished();
+
+				var ds=Duneapi.macaddress();
+
+				if(ds != undefined) {
+					trace("DUNE PLAYER!");
+					Common.evRun.hardware.id=ds.toString();
+					Data.loadXML(this.savevars.url+Common.evRun.hardware.id+'.xml', this.fn.onperxml);
+				} else {
+					Duneapi.disabled=true;
+					trace("dune api disabled");
+					Common.evRun.hardware.id="APIDISABLED";
+					this.finished();
+				}
 			}
 		}
 	}
@@ -141,6 +154,12 @@ class ev.EVSettings {
 	private function onperxml(success:Boolean, xml:XML) {
 		if(success) {
 			this.process_xmltoarray_force(xml, this.settings);
+		}
+
+		// done if syabas api is closed
+		if (Duneapi.disabled==false) {
+			Duneapi.setup();
+			this.finished();
 		}
 
 		// get drives and player type if not skin settings
@@ -371,10 +390,10 @@ class ev.EVSettings {
 			trace("oversight enabled in settings");
 		}
 
-		if(Common.evSettings.fullmounts!='true' && Common.evSettings.fullmounts!='false' && Common.evSettings.fullmounts=='auto') {
-			Common.evRun.hardware.cfgmounts='auto';
-        } else {
+		if(Common.evSettings.fullmounts=='true' || Common.evSettings.fullmounts=='false' || Common.evSettings.fullmounts=='auto') {
 			Common.evRun.hardware.cfgmounts=Common.evSettings.fullmounts;
+        } else {
+			Common.evRun.hardware.cfgmounts='auto';
 		}
 	}
 

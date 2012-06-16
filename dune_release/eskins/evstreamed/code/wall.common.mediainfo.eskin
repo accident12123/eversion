@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<eskin>
+<!--******************************************************************
+	This .eskin file contains code that is common to many screens so
+	it's been separated out on it's own and is "included" by the other
+	.eskin files.
+	
+	Used with:
+	wall.poster.full
+	wall.poster.full2
+	wall.poster.summary
+	wall.poster.fanart
+	wall.banner.full
+	wall.banner.summary
+	wall.banner.summary2
+	wall.trailer.full
+	******************************************************************-->
+<!-- Hyper - See: http://www.dentedboxes.com/doku.php/eversion:eskins:dev -->	
+<!-- Variables - See: http://www.dentedboxes.com/doku.php/eversion:eskins:ref:variables -->	
+	
+	<!-- Star rating -->
+	<image>
+		<name>rating.bg</name>
+		<file>[:@media:]common/1.eskin.used/blank.200.png</file>
+		<posx>485</posx>
+		<posy>10</posy>
+		<width>200</width>
+		<height>32</height>
+	</image>		
+	<image>
+		<name>rating.image</name>
+		<segname>index</segname>  <!-- segname and hyper are necessary for the walls -->
+		<hyper>3</hyper>
+		<file>[:@media:]star.rating/1.eskin.used/star[:score,round:].png</file>  <!-- Use an image at \evstreamed\media\star.rating\1.eskin.used\ with a name that matches the Eversion variable score (rounded) + ".png"    -->
+		<posx>495</posx>
+		<posy>14</posy>
+		<width>115</width>
+		<height>19</height>
+	</image>		
+	<text>
+		<name>rating</name>
+		<segname>index</segname>  <!-- segname and hyper are necessary for the walls -->
+		<hyper>3</hyper>
+		<display>[:rating:]/100</display>  <!-- Display the rating found in the XML YAMJ created + "/100" -->
+		<posx>616</posx>
+		<posy>13</posy>
+		<width>200</width>
+		<height>32</height>
+		<size>20</size>  
+		<color>mediainfo.color</color>
+	</text>	
+
+	<!-- media info -->
+	<image>
+		<name>videocodec.bg</name>
+		<file>[:@media:]common/1.eskin.used/blank.100.png</file>
+		<posx>685</posx>
+		<posy>10</posy>
+		<width>100</width>
+		<height>32</height>
+	</image>	
+	<text>
+		<name>videocodec</name>
+		<segname>index</segname>  <!-- segname and hyper are necessary for the walls -->
+		<hyper>3</hyper>
+		<display>[:smartvideocodec,upper,blank:]</display>  <!-- Eversion variables holding the video codec, in uppercase, if none found display nothing -->
+		<posx>685</posx>
+		<posy>13</posy>
+		<width>100</width>
+		<height>32</height>
+		<size>20</size>  
+		<align>center</align>  <!-- By default align is left -->
+		<color>mediainfo.color</color>
+	</text>	
+	<image>
+		<name>audiocodec.bg</name>
+		<file>[:@media:]common/1.eskin.used/blank.100.png</file>
+		<posx>785</posx>
+		<posy>10</posy>
+		<width>100</width>
+		<height>32</height>
+	</image>
+	<text>
+		<name>audiocodec</name>
+		<segname>index</segname>  <!-- segname and hyper are necessary for the walls -->
+		<hyper>3</hyper>
+		<display>[:smartaudiocodec,upper,blank:]</display>  <!-- Eversion variables holding the audio codec, in uppercase, if none found display nothing -->
+		<posx>785</posx>
+		<posy>13</posy>
+		<width>100</width>
+		<height>32</height>
+		<size>20</size>  
+		<align>center</align>  <!-- By default align is left -->
+		<color>mediainfo.color</color>
+	</text>	
+	<image>
+		<name>source.bg</name>
+		<file>[:@media:]common/1.eskin.used/blank.100.png</file>
+		<posx>885</posx>
+		<posy>10</posy>
+		<width>100</width>
+		<height>32</height>
+	</image>	
+	<text>
+		<name>source</name>
+		<segname>index</segname>  <!-- segname and hyper are necessary for the walls -->
+		<hyper>3</hyper>
+		<display>[:videoSource,upper,blank:]</display>  <!-- Display the videosource found in the XML YAMJ created, in uppercase, if none found display nothing -->
+		<posx>885</posx>
+		<posy>13</posy>
+		<width>100</width>
+		<height>32</height>
+		<size>20</size>  
+		<align>center</align>  <!-- By default align is left -->
+		<color>mediainfo.color</color>
+	</text>		
+</eskin>

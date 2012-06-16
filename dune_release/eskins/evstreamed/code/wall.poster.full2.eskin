@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<eskin>
+<!-- Segements - See: http://www.dentedboxes.com/doku.php/eversion:eskins:block:segment -->
+<!-- Segements-tiles - See: http://www.dentedboxes.com/doku.php/eversion:eskins:block:tile -->
+<!-- Variables - See: http://www.dentedboxes.com/doku.php/eversion:eskins:ref:variables -->
+<!-- Artwork Variables - See: http://www.dentedboxes.com/doku.php/eversion:eskins:ref:artvariables -->
+<!-- Conditions - See: http://www.dentedboxes.com/doku.php/eversion:eskins:block:if -->
+
+    <control>
+		<fullscreen>true</fullscreen>  <!-- Clear the previous screen  -->
+    </control>
+
+	<!-- Included eskin files -->
+	<!-- These have been carefully ordered to ensure that they are drawn in the order we want  -->
+	<include>common.upper.underlay</include>
+	<include>common.upper.index</include>
+	<include>global.clock</include>
+	<include>wall.common.mediainfo</include>
+	<include>common.upper.studiologo(index)</include>
+	<include>common.upper.navbar</include>
+	<include>wall.common.lower.underlay</include>
+	<include>wall.common.title</include>
+	<include>common.lower.navbar</include>
+
+	<!-- Draw the thumbnails (2 rows of 5) -->
+	<segment>
+		<name>index</name>
+		<startx>100</startx>
+		<starty>50</starty>
+		<scroll>2</scroll>
+		<cursor>
+			<file>[:@media:]wall/1.eskin.used/thumbnail.cursor.png</file>
+			<above>true</above>
+			<posx>-10</posx>
+			<posy>-10</posy>
+			<width>235</width>
+			<height>332</height>
+		</cursor>
+		<tile>
+			<cols>5</cols>
+			<rows>2</rows>
+			<width>215</width>
+			<height>312</height>
+			<image>
+				<name>thumbnail</name>
+				<file>[:@jukebox:][:poster1large:]</file>  <!-- Eversion artwork variable holding the name of the thumbnail poster YAMJ created-->
+				<altfile>[:@media:]dummy/dummy.jpg</altfile>
+				<posx>3</posx>
+				<posy>3</posy>
+				<width>209</width>
+				<height>306</height>
+				<keepaspect>true</keepaspect>
+			</image>
+			<image>
+				<name>watched.overlay</name>
+				<condition>[:watched:] == true</condition>  <!-- This block is done if the condition is true-->
+				<file>[:@media:]wall/1.eskin.used/watched.overlay.png</file>
+				<posx>3</posx>
+				<posy>3</posy>
+				<width>65</width>
+				<height>64</height>
+			</image>
+		</tile>
+
+	<!-- Remote commands -->
+		<remote>
+		   <button>PLAY</button>
+		   <action>PLAYALL</action>
+		</remote>
+	</segment>
+</eskin>

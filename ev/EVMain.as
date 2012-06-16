@@ -21,6 +21,7 @@ import ev.Eskinload;
 import ev.Background;
 import api.RemoteControl;
 import api.Popapi;
+import api.Duneapi;
 import tools.Preloader;
 import tools.StringUtil;
 import mx.utils.Delegate;
@@ -202,6 +203,9 @@ class ev.EVMain {
 			trace("exitpage prep for eject button");
 		}
 		trace("EXIT REQUESTED, user set: "+Common.evSettings.exitpage);
+
+		// if dune, exit
+		Duneapi.exit();
 
 		switch(Common.evSettings.exitpage) {
 			case 'apps':

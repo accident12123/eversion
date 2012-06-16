@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<eskin>
+<!--******************************************************************
+	This .eskin file contains code that is common to many screens so
+	it's been separated out on it's own and is "included" by the other
+	.eskin files.
+	
+	Used with:
+	wall.poster.full
+	wall.poster.full2
+	wall.poster.summary
+	wall.poster.fanart
+	wall.banner.full
+	wall.banner.summary
+	wall.banner.summary2
+	wall.trailer.full
+	list.text.summary
+	list.text.properties
+	list.banner.summary
+	tv1
+	******************************************************************-->
+
+	<!-- Add an underlay bar to the top of the screen, useful when the background is not black  -->
+	<image>
+		<name>upper.navbar.bg</name>
+		<file>[:@media:]common/1.eskin.used/underlay.png</file>
+		<posx>0</posx>
+		<posy>0</posy>
+		<width>1280</width>
+		<height>50</height>
+	</image>
+</eskin>

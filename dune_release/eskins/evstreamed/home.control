@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<control>
+<!--******************************************************************
+	This is the .control file for the home screen.  It lists all the
+	items which  appear on the home screen and defines what each one
+	does when selected.  
+	******************************************************************-->
+<!-- Actions - See: http://www.dentedboxes.com/doku.php/eversion:eskins:ref:actions  -->	
+
+	<!-- List all the categories defined in \evstreamed\settings-default.xml in the homelist property-->
+	<insert>
+		<info>homelist</info>
+	</insert>
+
+	<!-- Go to trailers -->
+	<item>
+		<action>SWITCH</action>
+		<title>[:%trailers:]</title>  <!-- Use the language files to display localized "trailers" -->
+		<originaltitle>Trailers</originaltitle>  <!-- Used to ensure the background image can be found even if the option is translated to a different language -->
+		<data>eskin://wall.trailer.full</data>
+		<feed>http://trailers.lundman.net</feed>
+	</item>	
+
+	<!-- To play a disc in units with a physical drive -->
+	<insert>
+		<info>playrom</info>
+	</insert>	
+
+	<!-- Go to apps -->
+	<item>
+		<action>apps</action>
+		<title>[:%apps:]</title>  <!-- Use the language files to display localized "apps" -->
+		<originaltitle>Apps</originaltitle>  <!-- Used to ensure the background image can be found even if the option is translated to a different language -->
+	</item>
+
+	<!-- Exit Eversion -->
+	<item>
+		<action>exit</action>
+		<title>[:%exit:]</title>  <!-- Use the language files to display localized "exit" -->
+		<originaltitle>Exit</originaltitle>  <!-- Used to ensure the background image can be found even if the option is translated to a different language -->
+	</item>
+</control>

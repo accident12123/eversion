@@ -77,13 +77,13 @@ class api.RemoteControl {
 			var keyhit=Key.getCode();
 			//trace("keyhit "+keyhit);
 
-			if(keyhit==Key.VOLUME_DOWN || keyhit=="SOFT2" || keyhit==90) {  //soft2 doesn't work in cs5.5
+			if(keyhit==Key.VOLUME_DOWN || keyhit=="SOFT2" || keyhit==90 || keyhit==16777218) {  //soft2 doesn't work in cs5.5
 				if(Common.evSettings.volupdown!='true') {
 					RemoteControl.skinBusy=false;
 					return;
 				}
 				keyhit=Key.PGDN;
-			} else if(keyhit==Key.VOLUME_UP || keyhit=="SOFT1" || keyhit==65) { //soft1 doesn't work in cs5.5
+			} else if(keyhit==Key.VOLUME_UP || keyhit=="SOFT1" || keyhit==65 || keyhit==16777217) { //soft1 doesn't work in cs5.5
 				if(Common.evSettings.volupdown!='true') {
 					RemoteControl.skinBusy=false;
 					return;
@@ -101,7 +101,8 @@ class api.RemoteControl {
 			//trace("keyhit3 "+keyhit);
 
 			switch(keyhit) {			   // MASTER
-				case 0x1000040F:
+				case 0x1000040F:		   // syabas eject
+				case 16777246:			   // dune top_menu
 					trace("global eject hit");
 					RemoteControl.remoteExit("EXIT", "Eject button pressed");
 					break;
@@ -175,6 +176,42 @@ class api.RemoteControl {
 
 		// hardware conversions
 		switch(who) {
+			case 'DUNE':
+				RemoteControl.remotemap[Key.SHIFT]='ENTER';   // select button reverse map
+
+				RemoteControl.remotemapname['RED']=16777247;
+				RemoteControl.remotemapname['GREEN']=16777248;
+				RemoteControl.remotemapname['YELLOW']=16777249;
+				RemoteControl.remotemapname['BLUE']=16777250;
+				RemoteControl.remotemapname['BACK']=16777238;	// return key
+				RemoteControl.remotemapname['MENU']=16777234;	// popup menu
+				RemoteControl.remotemapname['INFO']=16777235;
+				RemoteControl.remotemapname['PAGEUP']=16777220;
+				RemoteControl.remotemapname['PAGEDOWN']=16777221;
+				RemoteControl.remotemapname['SEARCH']=268436490;
+				RemoteControl.remotemapname['SETUP']=16777244;
+				RemoteControl.remotemapname['FILEMODE']=0x10000405;
+				RemoteControl.remotemapname['TITLE']=0x10000406;
+				RemoteControl.remotemapname['REPEAT']=16777241;
+				RemoteControl.remotemapname['ANGLE']=16777236;
+				RemoteControl.remotemapname['SLOW']=16777228;
+				RemoteControl.remotemapname['TIMESEEK']=0x1000040A;
+				RemoteControl.remotemapname['ZOOM']=16777233;
+				RemoteControl.remotemapname['TVMODE']=16777232;
+				RemoteControl.remotemapname['SOURCE']=0x1000040E;
+				RemoteControl.remotemapname['EJECT']=0x1000040F;
+				RemoteControl.remotemapname['MUTE']=16777219;
+				RemoteControl.remotemapname['PLAY']=16777223;
+				RemoteControl.remotemapname['PAUSE']=16777224;
+				RemoteControl.remotemapname['STOP']=0x01000009;
+				RemoteControl.remotemapname['FASTFORWARD']=16777226;
+				RemoteControl.remotemapname['FAST_FORWARD']=16777226;
+				RemoteControl.remotemapname['REWIND']=16777227;
+				RemoteControl.remotemapname['SKIPFORWARD']=16777230;
+				RemoteControl.remotemapname['SKIPBACK']=16777231;
+				RemoteControl.remotemapname['AUDIO']=16777239;
+				RemoteControl.remotemapname['SUBTITLE']=16777240;
+				break;
 			default:    // syabas
 				trace("using default codes");
 				RemoteControl.remotemap[0x1000040D]="AUDIO";

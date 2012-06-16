@@ -1,0 +1,19 @@
+*********************
+Overlays for Eversion 
+*********************
+
+Overlays are additional processing YAMJ can do with various artwork.  They can be simple effects or in same
+cases a complete page for speed reasons.
+
+Your eskin may use special overlays so always check with your eskin for compatibility.  The included overlays,
+sample images and how to add them to your setup please visit http://www.dentedboxes.com/doku.php/eversionb2:settings:images
+
+These overlays require YAMJ r2832 or newer to work.
+
+Thanks,
+Accident.
+
+Special Thanks:
+
+rezurfer (author of the evhell eskin) has put together the default overlays for eversion.   To check out his full eskin visit
+http://forum.dentedboxes.com/thread-916.html
