@@ -56,7 +56,7 @@ class api.Popapi {
 	public static function htmlexit(page, show, callback:Function) {
 		var exit="system?arg0=load_page&arg1="+escape(page);
 		if(show) {
-			exit=exit+"&arg2=show"
+			exit=exit+"&arg2=switch"
 		}
 		trace("popapi: load_page: "+exit);
 		Popapi.get(exit,callback, callback);
