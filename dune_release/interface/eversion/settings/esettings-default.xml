@@ -108,6 +108,7 @@
 	<a3hyperdraw>1</a3hyperdraw>
 	<c3hyperdraw>1</c3hyperdraw>
 	<noghyperdraw>2</noghyperdraw>
+	<dunehyperdraw>1</dunehyperdraw>
 
 	<!-- when set to true, eversion will use the indexcount that yamj makes instead of counting the number of items in an index itself.  It is faster
 	     when set to true to get into an index however the yamj count is not always accurate and can cause unexpected problems.  It is recommended
@@ -269,5 +270,5 @@
 	<renderquality>HIGH</renderquality>
 
 	<!-- used to verify settings match interface version -->
-    <eversion>R0170</eversion>
+    <eversion>R0171</eversion>
 </settings>

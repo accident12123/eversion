@@ -18,6 +18,7 @@
 import ev.Common;
 import api.dataYAMJ;
 import api.Popapi;
+import api.Duneapi;
 import tools.StringUtil;
 import tools.Preloader;
 import tools.Data;
@@ -95,7 +96,7 @@ class api.Mediaplayer {
 		Mediaplayer.errorstate=null;
 		Mediaplayer.playstate=0;
 
-		Mediaplayer.sdkpathsize=239327;
+		Mediaplayer.sdkpathsize=244728;
 
 		delete Mediaplayer.playerObj;
 		Mediaplayer.playerObj = new Object();
@@ -322,6 +323,8 @@ class api.Mediaplayer {
 			}
 		}
 
+
+
 		// see if we're delaying or immediately queuing.
 		var delayed:Boolean=true;
 		if(Mediaplayer.mountqueue.length != 0 || StringUtil.beginsWith(file,"//") || StringUtil.beginsWith(file,"smb://") || StringUtil.beginsWith(file,"nfs") || StringUtil.beginsWith(file,"ev-usb") || file.indexOf("NETWORK_SHARE") != -1) {
@@ -367,6 +370,9 @@ class api.Mediaplayer {
 
 		// play it
 		if(Mediaplayer.useyoutube==true) {
+			// error out if dune
+			if(noDunePlayer()) return;
+
 			trace(".. player will be youtube");
 			// disable others
 			Mediaplayer.usenative=false;
@@ -380,6 +386,9 @@ class api.Mediaplayer {
 			// start playing
 			Mediaplayer.startYAMJPlayer();
 		} else if(Mediaplayer.useflv==true) {
+			// error out if dune
+			if(noDunePlayer()) return;
+
 			trace(".. player will be flv");
 			// disable native
 			Mediaplayer.usenative=false;
@@ -390,10 +399,12 @@ class api.Mediaplayer {
 
 			// start playing
 			Mediaplayer.startYAMJPlayer();
-		} else if(Mediaplayer.usenative==true) {
+		} else if(Mediaplayer.startDune()) {       // dune
+			trace("dune enabled playback");
+		} else if(Mediaplayer.usenative==true) {   // syabas native
 			trace('.. player will be native');
 			Mediaplayer.nativeplayerStart();
-		} else {
+		} else {								   // syabas sdk
 			trace('.. player will be SDK');
 			Mediaplayer.startYAMJPlayer();
 		}
@@ -500,6 +511,15 @@ class api.Mediaplayer {
 			}
 		}
 		trace("added "+title+" file: "+file+" realstart "+realstart);
+
+		file=unescape(file);
+
+		if(StringUtil.beginsWith(file,"http")) {
+			file=StringUtil.replace(file,"&","%26");
+			file=StringUtil.replace(file,"+","%2B");
+			//file=escape(file);
+		}
+
 		Mediaplayer.playqueue.push({url:file, title:title, realstart:realstart});
 
 		return(usenative);
@@ -511,8 +531,10 @@ class api.Mediaplayer {
 		if(Mediaplayer.mountqueue.length!=0) {
 			var queuenow=false;
 
-			// if zero mount
-			if(StringUtil.beginsWith(Mediaplayer.mountqueue[0].file,"smb://") || StringUtil.beginsWith(Mediaplayer.mountqueue[0].file,"nfs://") || StringUtil.beginsWith(Mediaplayer.mountqueue[0].file,"nfs-tcp://")) {
+			// dune support
+			if(Duneapi.disabled==false) {
+				queuenow=true;
+			} else if(StringUtil.beginsWith(Mediaplayer.mountqueue[0].file,"smb://") || StringUtil.beginsWith(Mediaplayer.mountqueue[0].file,"nfs://") || StringUtil.beginsWith(Mediaplayer.mountqueue[0].file,"nfs-tcp://")) { // if zero mount
 				// if nfs-tcp and converted enabled
 				if(Common.evSettings.mountnfstcpasnfs==true && StringUtil.beginsWith(Mediaplayer.mountqueue[0].file,"nfs-tcp://")) {
 					trace("swapping nfs-tcp to nfs");
@@ -878,7 +900,7 @@ class api.Mediaplayer {
 			if(Common.evSettings[Common.evRun.hardware.settingcode+"nativebm"]=="false") bookmark="0";
 
 			trace("bookmark is: "+bookmark);
-			if(!StringUtil.beginsWith(Mediaplayer.current.url,"http")) Mediaplayer.current.url=unescape(Mediaplayer.current.url);
+
 			if(Mediaplayer.isPlaying==false) {
 				// start the player
 				trace("START: "+Mediaplayer.current.title+" "+Mediaplayer.current.url);
@@ -1199,8 +1221,34 @@ class api.Mediaplayer {
 		Preloader.clear();
 		Mediaplayer.startYAMJPlayer();
 	}
-}
 
+// ****************************** DUNE PLAYER *********************************************
+	public static function startDune() {
+		if(Duneapi.disabled==false) {
+			trace("dune playback");
+
+			// find first
+			var loopend=Mediaplayer.playqueue.length;
+			for(var i=0;i<loopend;i++) {
+				if(Mediaplayer.playqueue[0].realstart==true) {
+					Duneapi.playvid(Mediaplayer.playqueue[0].url);
+					return(true);
+				} else Mediaplayer.playqueue.shift();
+			}
+
+			// if we made it here, there was nothing to play
+			return(false);
+		} else return(false);
+	}
+
+	public static function noDunePlayer() {
+		if(Duneapi.disabled==false) {
+			trace("no support in dune");
+			Mediaplayer.Callback("ERROR", "Dune hardware does not support this video");
+			return(true);
+		} else return(false);
+	}
+}
 /*  SDK error messages
 
 1 invalid file

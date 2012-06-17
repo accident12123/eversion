@@ -209,10 +209,11 @@ class ev.Dex {
 				}
 				break;
 			case 'WAKE':  // we're back in control!
+				trace("waking");
+				this.segdetails.erun.skin_segname_update(this.mysegment,{get_data:this.fn.get_current_data,get_ev_data:this.fn.get_ev_data});
 				this.indexActive=true;
 				this.hyperReset();
-				this.hyperDraw(true);
-				this.segdetails.erun.skin_segname_update(this.mysegment,{get_data:this.fn.get_current_data,get_ev_data:this.fn.get_ev_data});
+				this.hyperDraw(true,true);
 				//this.menuActiveMore=true;
 				break;
 			case 'UPDATE':  // called after preload when eskin is ready to go
@@ -503,7 +504,7 @@ class ev.Dex {
 		}
 
 		var firsttile=drawFirst*this.menuSettings.stack;   // first tile to load
-		var lasttile=firsttile+this.menuSettings.pagesize;      // last tile to load
+		var lasttile=(firsttile+this.menuSettings.pagesize)-1;      // last tile to load
 
 		if(Common.evSettings.hyperscrolldrawmode=="nice") {  // predraw 1 screen mode
 			if(this.menuDirection==1) { // user is traveling up in the count
@@ -592,7 +593,6 @@ class ev.Dex {
 		var hl:Boolean=false
 		if(who==this.menuCursor) hl=true;
 		this.segdetails.erun.draw_tile(this.mysegment, who, this.mainMC.menuMC.listMC[who], {get_data:this.fn.get_data,get_ev_data:this.fn.get_ev_data},hl);
-
 
 		return(true);
 	}

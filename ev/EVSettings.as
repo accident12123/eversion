@@ -126,6 +126,9 @@ class ev.EVSettings {
 	// when pch mac address finished loading
 	private function onMacLoaded(success:Boolean, xml, errorcode) {
 		if(success) {
+			Duneapi.disabled=true;
+			trace("dune api disabled");
+
 			Data.loadXML(this.savevars.url+Common.evRun.hardware.id+'.xml', this.fn.onperxml);
 		} else {
 			if(this.settings.bypassapi!="true") {

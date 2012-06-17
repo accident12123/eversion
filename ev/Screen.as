@@ -734,11 +734,11 @@ class ev.Screen {
 	}
 
 	private function play_wake() {
+		this.screen_show();
+
 		if(Common.eskinmaster[this.eskinmaster][this.skinfile].control.fullscreen==false) {
 			this.callback("PLAYWAKE");
 		}
-
-		this.screen_show();
 	}
 
 	private function screen_wake() {
@@ -1125,8 +1125,8 @@ class ev.Screen {
 			default:
 				Preloader.clear();
 				Popapi.systemled("off");
-				this.screen_wake();
 				this.play_wake();
+				this.screen_wake();
 				Mediaplayer.resetQueue();
 				break;
 		}

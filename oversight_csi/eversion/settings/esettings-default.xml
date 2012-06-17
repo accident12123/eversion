@@ -30,7 +30,7 @@
 	<!-- where do we go when you exit the skin?? -->
 	<exitpage>eject</exitpage>
 	<!-- PCH path to jukebox folder if not using a default install (99% of users should not touch this) -->
-	<yamjdatapath>file:///share/Apps/JukeBox/webui/xml/</yamjdatapath>
+	<yamjdatapath>http://127.0.0.1:8883/oversight/oversight.cgi?yamj/</yamjdatapath>
 	<!-- PCH path to eskin folders (99% of users should not touch this) -->
 	<eskinrootpath>./</eskinrootpath>
 
@@ -104,7 +104,7 @@
 	<!-- how many cycles before hyper level changes -->
 	<hypercycles>2</hypercycles>
 	<!-- a per device adjustment to fine tune image loading.  higher usually means faster remote response but less images being handled per cycle -->
-	<pchhyperdraw>2</pchhyperdraw>
+	<pchhyperdraw>3</pchhyperdraw>
 	<abhyperdraw>2</abhyperdraw>
 	<pbhyperdraw>1</pbhyperdraw>
 	<v8hyperdraw>1</v8hyperdraw>
@@ -270,5 +270,5 @@
 	<renderquality>HIGH</renderquality>
 
 	<!-- used to verify settings match interface version -->
-    <eversion>R0169</eversion>
+    <eversion>R0171</eversion>
 </settings>

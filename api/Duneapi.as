@@ -39,6 +39,12 @@ class api.Duneapi {
 
 		trace("model: "+Common.evRun.playerfirmware);
 		trace("firm: "+Common.evRun.hardware.firmware);
+
+		// not sure these are needed but just in case
+		Common.evRun.hardware.bghighres=false;
+		Common.evRun.hardware.settingcode="dune";
+		Common.evRun.hyperdraw=int(Common.evSettings["dunehyperdraw"]);
+		if(Common.evRun.hyperdraw < 0 || Common.evRun.hyperdraw > 10) Common.evRun.hyperdraw=0;
 	}
 
 	public static function exit() {
@@ -47,6 +53,15 @@ class api.Duneapi {
 			ExtCommand.exitFlash();
 		} else {
 			trace("skipped dune exit, not a dune");
+		}
+	}
+
+	public static function playvid(url:String) {
+		if(Duneapi.disabled == false) {
+			trace("duneapi: play "+url);
+			ExtCommand.requestFilePlayerOnExitWithReturn(unescape(url));
+		} else {
+			trace("skipped dune play, not a dune");
 		}
 	}
 }

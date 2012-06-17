@@ -101,7 +101,7 @@
 	<!-- how many cycles before hyper level changes -->
 	<hypercycles>2</hypercycles>
 	<!-- a per device adjustment to fine tune image loading.  higher usually means faster remote response but less images being handled per cycle -->
-	<pchhyperdraw>2</pchhyperdraw>
+	<pchhyperdraw>3</pchhyperdraw>
 	<abhyperdraw>2</abhyperdraw>
 	<pbhyperdraw>1</pbhyperdraw>
 	<v8hyperdraw>1</v8hyperdraw>
@@ -269,5 +269,5 @@
 	<renderquality>HIGH</renderquality>
 
 	<!-- used to verify settings match interface version -->
-    <eversion>R0169</eversion>
+    <eversion>R0171</eversion>
 </settings>
