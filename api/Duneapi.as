@@ -60,6 +60,7 @@ class api.Duneapi {
 		if(Duneapi.disabled == false) {
 			trace("duneapi: play "+url);
 			ExtCommand.requestFilePlayerOnExitWithReturn(unescape(url));
+			ExtCommand.exitFlash();
 		} else {
 			trace("skipped dune play, not a dune");
 		}

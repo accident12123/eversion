@@ -1,2 +1,0 @@
-The skin uses the files in the "1.skin.used" folder.
-To use different images simply copy the files from one of the other folders into the 1.skin.used folder

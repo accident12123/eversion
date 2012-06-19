@@ -613,14 +613,14 @@ class api.dataYAMJ {
 				var name = XPathAPI.selectSingleNode(itemNode, "/index").attributes.name.toString();
 				var originalName = XPathAPI.selectSingleNode(itemNode, "/index").attributes.originalName.toString();
 				var index= XPathAPI.selectSingleNode(itemNode, "/index").firstChild.nodeValue.toString();
-				trace("+++++ ORIGINALNAME: "+originalName);
+				//trace("+++++ ORIGINALNAME: "+originalName);
 				if(originalName==undefined || originalName==null || originalName=="") {
 					originalName=originaltitle_fix(index);
 					trace("+++++ ORIGINALNAME2: "+originalName);
 					if(originalName=="UNKNOWN") originalName=name;
 				}
-				trace("+++++ ORIGINALNAME FINAL: "+originalName);
-				trace("index "+index+" named "+name+ " originalname "+originalName);
+				//trace("+++++ ORIGINALNAME FINAL: "+originalName);
+				//trace("index "+index+" named "+name+ " originalname "+originalName);
 				addto[place]={action:"SWITCH", data:index, file:index, title:name, originaltitle:originalName};
 				place++;
 			}

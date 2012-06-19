@@ -175,10 +175,6 @@ class ev.Screen {
 		this.skinfile=skinfile.toLowerCase();
 		if(Common.eskinmaster[this.eskinmaster][this.skinfile].control.fullscreen!=false) {
 			trace("fullscreen is true, hiding former");
-			if(Common.eskinmaster[this.eskinmaster][this.skinfile].control.clearhighresbg==true) {
-				Loadimage.bgclearall();
-				//Popapi.clear_pod_bg();
-			}
 			this.callback("HIDE");
 		} else {
 			trace("fullscreen is false, leaving previous screen on");
@@ -375,6 +371,7 @@ class ev.Screen {
 							return;
 						}
 					}
+					trace("back in "+this.mycount);
 					this.return_cleanup();					// clean last screen
 					this.screen_wake();
 					Common.evRun.popupactive=false;
@@ -721,11 +718,10 @@ class ev.Screen {
 // ************************** COMMON **********************************
 
 	private function screen_hide(playhide:Boolean) {
-		trace("!! screenhide");
+		trace("!! screenhide for "+this.mycount);
 		this.mainMC._visible=false;				// hide screen
 		this.segments_alert("UNLOAD"); 			// unload segments
 		this.currentEskin.skin_memory_clear();  // unload eskin
-
 
 		// hide the previous if we're not fullscreen
 		if(playhide==true && Common.eskinmaster[this.eskinmaster][this.skinfile].control.fullscreen==false) {
@@ -773,7 +769,10 @@ class ev.Screen {
 		if(this.nextScreen==null && this.errorScreen==null) {
 			Preloader.clear();
 			RemoteControl.startRemote("screen",this.fn.globalKeyHit);
-			if(this.alertInterval==null) this.alertInterval = setInterval(this.fn.alert_check,2000);
+			if(this.alertInterval==null) {
+				trace("========================= starting alert check");
+				this.alertInterval = setInterval(this.fn.alert_check,2000);
+			}
 		} else trace("cannot retake remote, we are not top screen");
 	}
 
@@ -1156,6 +1155,7 @@ class ev.Screen {
 		}
 	}
 
+
 	private function do_error_message(message:String) {
 		this.start_popup("ERROR", "error", message, true);
 	}
@@ -1218,18 +1218,7 @@ class ev.Screen {
 
 // *************************** CLEANUP ********************************
 	private function return_cleanup() {
-		// disable the remote/keyboard
-		//if(RemoteControl.keyListener.screen == this.fn.globalKeyHit) RemoteControl.stopAllRemote();
-
-		if(Common.evRun.bghighres==true && Common.eskinmaster[this.eskinmaster][this.skinfile].control.fullscreen==true && Common.eskinmaster[this.eskinmaster][this.skinfile].control.clearhighresbg==true) {
-			Popapi.clear_pod_bg();
-		}
-
 		Loadimage.bgclearall();
-		/*
-		if(Common.evRun.bghighres!=true) {
-			Loadimage.bgclearall();
-		}*/
 
 		// make sure we're not abandoning someone higher than us.
 		if(this.nextScreen!=null) {
@@ -1248,7 +1237,10 @@ class ev.Screen {
 	}
 
 	public function cleanup():Void {
+		trace("cleanup start for "+this.mycount);
 		this.return_cleanup();
+
+		trace("cleanup for "+this.mycount);
 
 		this.parentMC = null;
 		this.mainMC.removeMovieClip();

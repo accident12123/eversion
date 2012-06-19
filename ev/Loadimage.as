@@ -421,6 +421,7 @@ class ev.Loadimage {
 					targetMC._x=(neww/2) - (thisWidth/2);
 					break;
 			}
+
 			//trace("+++ New Width: "+targetMC._width);
 			//trace("+++ New Height: "+targetMC._height);
 			//trace("+++ New x: "+targetMC._x);

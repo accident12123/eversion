@@ -126,32 +126,32 @@ class ev.EVSettings {
 	// when pch mac address finished loading
 	private function onMacLoaded(success:Boolean, xml, errorcode) {
 		if(success) {
-			Duneapi.disabled=true;
 			trace("dune api disabled");
-
-			Data.loadXML(this.savevars.url+Common.evRun.hardware.id+'.xml', this.fn.onperxml);
+			Duneapi.disabled=true;
 		} else {
-			if(this.settings.bypassapi!="true") {
-				this.activeMC.message_txt.text="Hardware not responding";
-				this.callBack("ERROR","Hardware not responding (MAC) "+errorcode);
+			trace("syabas api disabled");
+			Popapi.disabled=true;
+
+			var ds=Duneapi.macaddress();
+
+			if(ds != undefined) {
+				trace("DUNE PLAYER!");
+				Common.evRun.hardware.id=ds.toString();
 			} else {
-				// syabas api is disabled if hits here
-				Popapi.disabled=true;
+				Duneapi.disabled=true;
+				trace("dune api disabled");
 
-				var ds=Duneapi.macaddress();
-
-				if(ds != undefined) {
-					trace("DUNE PLAYER!");
-					Common.evRun.hardware.id=ds.toString();
-					Data.loadXML(this.savevars.url+Common.evRun.hardware.id+'.xml', this.fn.onperxml);
+				if(this.settings.bypassapi!="true") {
+					this.activeMC.message_txt.text="Hardware not responding";
+					this.callBack("ERROR","Hardware not responding (MAC) "+errorcode);
+					return;
 				} else {
-					Duneapi.disabled=true;
-					trace("dune api disabled");
 					Common.evRun.hardware.id="APIDISABLED";
-					this.finished();
 				}
 			}
 		}
+
+		Data.loadXML(this.savevars.url+Common.evRun.hardware.id+'.xml', this.fn.onperxml);
 	}
 
 	private function onperxml(success:Boolean, xml:XML) {
@@ -159,10 +159,15 @@ class ev.EVSettings {
 			this.process_xmltoarray_force(xml, this.settings);
 		}
 
-		// done if syabas api is closed
+		// dune
 		if (Duneapi.disabled==false) {
 			Duneapi.setup();
+		}
+
+		// disabled (no need to go further)
+		if (Popapi.disabled==true) {
 			this.finished();
+			return;
 		}
 
 		// get drives and player type if not skin settings
@@ -175,13 +180,8 @@ class ev.EVSettings {
 	}
 
 	private function onDrivesLoaded(success:Boolean, xml:XML, errorcode) {
-	//	if(success) {
-			// FINISHED.. TIME TO RETURN.
-			this.finished();
-	//    } else {
-	//		this.activeMC.message_txt.text="Hardware not responding";
-	//		this.callBack("ERROR","Hardware not responding (player detect) "+errorcode);
-	//	}
+		// legacy, really should remove
+		this.finished();
 	}
 
 	private function onDetectPlayer(success:Boolean, xml:XML,errorcode) {

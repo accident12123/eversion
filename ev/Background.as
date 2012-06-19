@@ -256,8 +256,8 @@ class ev.Background {
 		// ev version
 		if(Common.evRun.evversionok != true) {
 			trace("checking ev version");
-			//trace("Common.evRun.evrversion "+Common.evRun.evrversion);
-			//trace("Common.evSettings.eversion "+Common.evSettings.eversion);
+			trace("Common.evRun.evrversion "+Common.evRun.evrversion);
+			trace("Common.evSettings.eversion "+Common.evSettings.eversion);
 			if(Common.evRun.evrversion!=Common.evSettings.eversion) {
 				if(Common.evRun.evrversion<Common.evSettings.eversion) {
 					Background.verevupdated=true;
