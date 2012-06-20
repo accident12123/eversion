@@ -58,7 +58,7 @@ class api.Duneapi {
 
 	public static function playvid(url:String) {
 		if(Duneapi.disabled == false) {
-			trace("duneapi: play "+url);
+			trace("duneapi: play "+unescape(url));
 			ExtCommand.requestFilePlayerOnExitWithReturn(unescape(url));
 			ExtCommand.exitFlash();
 		} else {

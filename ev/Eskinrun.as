@@ -1120,6 +1120,10 @@ class ev.Eskinrun {
 				newdata="NO";
 				if(Common.overSight || Common.jbmissing) newdata="YES";
 				break;
+			case 'jukeboxupdate':
+				newdata="NO";
+				if(Common.evRun.updated) newdata="YES";
+				break;
 			default:
 				if(this.tempgetdata != undefined && this.tempgetdata !=null) {  // check the temp data for answer
 					//trace("trying tempgetdata");

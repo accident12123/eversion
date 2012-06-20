@@ -371,7 +371,7 @@ class api.Mediaplayer {
 		// play it
 		if(Mediaplayer.useyoutube==true) {
 			// error out if dune
-			//if(noDunePlayer()) return;
+			if(noDunePlayer()) return;
 
 			trace(".. player will be youtube");
 

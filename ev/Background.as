@@ -329,6 +329,7 @@ class ev.Background {
 						if(Background.verlasttime != newtimestamp) {
 							trace(".. jb updated!");
 							Background.verjb=true;
+							Common.evRun.updated=true;
 						}
 					}
 				}

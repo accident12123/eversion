@@ -1,7 +1,4 @@
 <settings>
-	<!-- OVERSIGHT DEFAULT VERSION -->
-	<oversight>true</oversight>
-
     <!-- ********* OVERSCAN SETTINGS -->
 
 	<!-- Overscan is when your tv enlarges the image and it appears the edges are cut off.  The best fix for the highest
@@ -30,7 +27,7 @@
 	<!-- where do we go when you exit the skin?? -->
 	<exitpage>eject</exitpage>
 	<!-- PCH path to jukebox folder if not using a default install (99% of users should not touch this) -->
-	<yamjdatapath>http://127.0.0.1:8883/oversight/oversight.cgi?yamj/</yamjdatapath>
+	<yamjdatapath>./</yamjdatapath>
 	<!-- PCH path to eskin folders (99% of users should not touch this) -->
 	<eskinrootpath>./</eskinrootpath>
 
@@ -76,7 +73,7 @@
 	<!-- set to true to enable specials to merge with seasons in their proper airing order
 	     note: does not work everywhere yet, work in progress
 		       requires thetvdb specials airing information in yamj R2524+  -->
-	<epmerge>false</epmerge>
+	<epmerge>true</epmerge>
 
 
 	<!-- ********* HyperScroll settings  -->
@@ -104,13 +101,14 @@
 	<!-- how many cycles before hyper level changes -->
 	<hypercycles>2</hypercycles>
 	<!-- a per device adjustment to fine tune image loading.  higher usually means faster remote response but less images being handled per cycle -->
-	<pchhyperdraw>3</pchhyperdraw>
+	<pchhyperdraw>2</pchhyperdraw>
 	<abhyperdraw>2</abhyperdraw>
 	<pbhyperdraw>1</pbhyperdraw>
 	<v8hyperdraw>1</v8hyperdraw>
 	<a3hyperdraw>1</a3hyperdraw>
 	<c3hyperdraw>1</c3hyperdraw>
 	<noghyperdraw>2</noghyperdraw>
+	<dunehyperdraw>1</dunehyperdraw>
 
 	<!-- when set to true, eversion will use the indexcount that yamj makes instead of counting the number of items in an index itself.  It is faster
 	     when set to true to get into an index however the yamj count is not always accurate and can cause unexpected problems.  It is recommended
@@ -167,7 +165,7 @@
 	<!-- When set to true, files are checked when you have native /opt network share paths before playing.
 	     It will also attempt to mount shares not mounted and provide family friendly error messages when it cannot play.
 		 This option can delay the start of videos playing so if you have a good setup with 1 share you may want to disable it -->
-	<playercheckmounts>true</playercheckmounts>
+	<playercheckmounts>false</playercheckmounts>
 
 	<!-- some firmware works better if we do not try to mount shared and then play.
 	     auto: attempt to determine automatically the best setting to use based on your hardware and firmware
@@ -182,7 +180,9 @@
 	<fullmounts>auto</fullmounts>
 
 	<!-- A firmware bug does not allow us to mount an nfs-tcp mount as nfs-tcp.   Setting this option to true will mount as nfs instead -->
-	<mountnfstcpasnfs>true</mountnfstcpasnfs>
+	<mountnfstcpasnfs>false</mountnfstcpasnfs>
+
+
 
 	<!-- Are native bookmarks enabled with native player on popbox V8 -->
 	<v8nativebm>true</v8nativebm>
@@ -257,9 +257,9 @@
 
 	<!-- ***** VERSION CHECKING -->
 	<!-- how many seconds should we look to see if yamj and the skin has updated while you were using it.  disable: 0 -->
-	<jbcheck>0</jbcheck>
+	<jbcheck>300</jbcheck>
 	<!-- Look for yamj version problems-->
-	<yamjcheck>false</yamjcheck>
+	<yamjcheck>true</yamjcheck>
 	<!-- autoreload: when set to true, eversion will reset without warning when yamj jukebox updates happen -->
 	<autoreset>false</autoreset>
 
@@ -270,5 +270,5 @@
 	<renderquality>HIGH</renderquality>
 
 	<!-- used to verify settings match interface version -->
-    <eversion>R0171</eversion>
+    <eversion>R0173</eversion>
 </settings>
