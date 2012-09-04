@@ -58,7 +58,18 @@
 		<posy>470</posy>
 		<width>270</width>
 		<height>155</height>
-	</image>			
+	</image>
+	<image>
+        <name>watched.overlay</name>
+        <segname>eplist</segname>
+        <hyper>4</hyper>
+        <condition>[:watched:] == true</condition>  <!-- This block is done if the condition is true-->
+        <file>[:@media:]wall/1.eskin.used/watched.overlay.png</file>
+        <posx>19</posx>
+        <posy>470</posy>
+        <width>65</width>
+        <height>64</height>
+    </image> 
 	<text>
 		<name>aired.label</name>		
 		<display>[:%aired,upper:]:</display><!-- Use the language files to display localized "aired date" in uppercase -->
@@ -118,17 +129,32 @@
 			<width>520</width>
 			<height>36</height>			
 			<text>
-				<name>mc</name>
-				<display>[:title:]</display>  <!-- Eversion variable holding the title -->
-				<posx>0</posx>
-				<posy>5</posy>
-				<width>520</width>
-				<height>36</height>
-				<size>21</size>  
-				<align>center</align>  <!-- By default align is left -->
-				<color>list.list.color</color>
-				<hlcolor>list.list.highlight.color</hlcolor>
-			</text>	
+                <name>mc.watched</name>
+                <display>[:title:]</display>  <!-- Eversion variable holding the title -->
+                <condition>[:watched:] == true</condition>  <!-- This block is done if the condition is true-->
+                <posx>0</posx>
+                <posy>5</posy>
+                <width>520</width>
+                <height>36</height>
+                <size>21</size>
+                <align>center</align>  <!-- By default align is left -->
+                <color>list.list.color</color>
+                <hlcolor>list.list.highlight.color</hlcolor>
+            </text>
+            <text>
+                <name>mc.unwatched</name>
+                <display>[:title:]</display>  <!-- Eversion variable holding the title -->
+                <condition>[:watched:] == false</condition>  <!-- This block is done if the condition is true-->
+                <posx>0</posx>
+                <posy>5</posy>
+                <width>520</width>
+                <height>36</height>
+                <size>21</size>
+                <align>center</align>  <!-- By default align is left -->
+                <color>fdab1a</color>
+                <hlcolor>fdab1a</hlcolor>
+            </text> 
+
 		</tile>
 
 		<!-- Remote commands -->

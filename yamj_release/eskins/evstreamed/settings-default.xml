@@ -23,14 +23,15 @@
 	<menu.header.color>0066FF</menu.header.color> 					<!-- Color for menu header -->
 	<menu.color>808080</menu.color> 								<!-- Color for menu text -->
 	<menu.highlight.color>FFFFFF</menu.highlight.color> 			<!-- Color for menu selected text -->
+	<menu.header.color>fdab1a</menu.header.color>                     <!-- Color for menu header -->
 
-	<about.header.color>0066FF</about.header.color> 				<!-- Color for headers on the about screen -->
+	<about.header.color>fdab1a</about.header.color>                 <!-- Color for headers on the about screen -->
 	<about.label.color>FFFFFF</about.label.color> 					<!-- Color for labels on the about screen -->
 	<about.data.color>666666</about.data.color> 					<!-- Color for data on the about screen -->
 
 	<nav.index.color>FFFFFF</nav.index.color>						<!-- Color for the current index in use -->
-	<nav.label.color>0066FF</nav.label.color>						<!-- Color for navigation labels -->
 	<nav.data.color>FFFFFF</nav.data.color> 						<!-- Color for navigation data -->
+	<nav.label.color>fdab1a</nav.label.color>                        <!-- Color for navigation labels -->
 
 	<list.data.color>FFFFFF</list.data.color> 						<!-- Color for general data on list screens -->
 	<list.title.color>FFFFFF</list.title.color> 					<!-- Color for the title on list screens -->
@@ -42,7 +43,7 @@
 	<wall.data.color>FFFFFF</wall.data.color>						<!-- Color for general data on the wall screens -->
 	<wall.title.color>FFFFFF</wall.title.color> 					<!-- Color for the title on the wall screens -->
 	<wall.outline.color>FFFFFF</wall.outline.color>					<!-- Color for outline on the wall screens -->
-	<wall.label.color>0066FF</wall.label.color> 					<!-- Color for labels on the wall screens -->
+	<wall.label.color>fdab1a</wall.label.color>                     <!-- Color for labels on the wall screens -->
 
 	<mediainfo.color>FFFFFF</mediainfo.color>						<!-- Color for title related data -->
 
@@ -50,12 +51,12 @@
 	<movie.title.color>FFFFFF</movie.title.color> 					<!-- Color for the title on movie screens -->
 	<movie.genre.color>AAAAAA</movie.genre.color> 					<!-- Color for the genre on movie screens -->
 	<movie.plot.color>AAAAAA</movie.plot.color> 					<!-- Color for the outline on movie screens -->
-	<movie.label.color>0066FF</movie.label.color>					<!-- Color for labels on the movie screens -->
+	<movie.label.color>fdab1a</movie.label.color>                    <!-- Color for labels on the movie screens -->
 
 	<tv.data.color>FFFFFF</tv.data.color> 							<!-- Color for general data on tv screens -->
 	<tv.episode.color>FFFFFF</tv.episode.color>						<!-- Color for the episode title on the tv screens -->
 	<tv.outline.color>AAAAAA</tv.outline.color> 					<!-- Color for the outline on tv screens -->
-	<tv.label.color>0066FF</tv.label.color>							<!-- Color for labels on the tv screens -->
+	<tv.label.color>fdab1a</tv.label.color>                            <!-- Color for labels on the tv screens -->
 
 
     <!-- Default pages -->

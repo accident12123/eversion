@@ -30,4 +30,16 @@
 		<height>380</height>
 		<swap>true</swap>
 	</image>
+	
+	<image>
+        <name>watched.overlay</name>
+        <segname>index</segname>  <!-- segname and hyper are necessary for the lists -->
+        <hyper>3</hyper>
+        <condition>[:watched:] == true</condition>  <!-- This block is done if the condition is true-->
+        <file>[:@media:]wall/1.eskin.used/watched.overlay.png</file>
+        <posx>19</posx>
+        <posy>332</posy>
+        <width>65</width>
+        <height>64</height>
+    </image> 
 </eskin>

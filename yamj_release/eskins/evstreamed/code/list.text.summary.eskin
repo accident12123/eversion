@@ -51,18 +51,32 @@
 			<rows>8</rows>
 			<width>480</width>
 			<height>34</height>
-			<text>
-				<name>mc</name>
-				<display>[:fulltitle:]</display>  <!-- Eversion variable holding the title -->
-				<posx>0</posx>
-				<posy>5</posy>
-				<width>480</width>
-				<height>34</height>
-				<size>23</size>
-				<align>center</align>  <!-- By default align is left -->
-				<color>list.list.color</color>
-				<hlcolor>list.list.highlight.color</hlcolor>
-			</text>
+			  <text>
+                <name>mc.watched</name>
+                <display>[:fulltitle:]</display>  <!-- Eversion variable holding the title -->
+                <condition>[:watched:] == true</condition>  <!-- This block is done if the condition is true-->
+                <posx>0</posx>
+                <posy>5</posy>
+                <width>480</width>
+                <height>34</height>
+                <size>23</size>
+                <align>center</align>  <!-- By default align is left -->
+                <color>list.list.color</color>
+                <hlcolor>list.list.highlight.color</hlcolor>
+            </text>
+            <text>
+                <name>mc.unwatched</name>
+                <display>[:fulltitle:]</display>  <!-- Eversion variable holding the title -->
+                <condition>[:watched:] == false</condition>  <!-- This block is done if the condition is true-->
+                <posx>0</posx>
+                <posy>5</posy>
+                <width>480</width>
+                <height>34</height>
+                <size>23</size>
+                <align>center</align>  <!-- By default align is left -->
+                <color>fdab1a</color>
+                <hlcolor>fdab1a</hlcolor>
+            </text> 
 		</tile>
 
 		<!-- Fanart -->
