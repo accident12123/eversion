@@ -425,15 +425,13 @@ class api.dataYAMJ {
 	public function getCat(callBack:Function):Void {
 		this.Callback=callBack;
 
-		//trace("datayamj, categories loading");
-
 		// load up the categories
 		Data.loadXML(Common.evSettings.yamjdatapath+"Categories.xml", this.fn.onLoadcatXML);
 	}
 
 	private function onLoadcatXML(success:Boolean, xml:XML) {
 		if(success) {
-			//trace("loaded categories.xml");
+			trace("loaded categories.xml");
 
 			// prep the global
 			delete Common.indexes;
@@ -442,23 +440,13 @@ class api.dataYAMJ {
 			// prep what we're looking for
 			var needed:Array=new Array();
 			needed=needed.concat(Common.esSettings.homelist.split(","),Common.esSettings.menulist.split(","));
-			if(Common.esSettings.userlist!=undefined &&  Common.esSettings.userlist!=null) {
-				needed=needed.concat(Common.esSettings.userlist.split(","));
-			}
-			if(Common.esSettings.userlist2!=undefined &&  Common.esSettings.userlist2!=null) {
-				needed=needed.concat(Common.esSettings.userlist2.split(","));
-			}
-			if(Common.esSettings.userlist3!=undefined &&  Common.esSettings.userlist3!=null) {
-				needed=needed.concat(Common.esSettings.userlist3.split(","));
-			}
-			if(Common.esSettings.userlist4!=undefined &&  Common.esSettings.userlist4!=null) {
-				needed=needed.concat(Common.esSettings.userlist4.split(","));
-			}
+			if(Common.esSettings.userlist!=undefined &&  Common.esSettings.userlist!=null) needed=needed.concat(Common.esSettings.userlist.split(","));
+			if(Common.esSettings.userlist2!=undefined &&  Common.esSettings.userlist2!=null) needed=needed.concat(Common.esSettings.userlist2.split(","));
+			if(Common.esSettings.userlist3!=undefined &&  Common.esSettings.userlist3!=null) needed=needed.concat(Common.esSettings.userlist3.split(","));
+			if(Common.esSettings.userlist4!=undefined &&  Common.esSettings.userlist4!=null) needed=needed.concat(Common.esSettings.userlist4.split(","));
 
 			for(var i=0;i<needed.length;i++) {
-				if(Common.indexes[needed[i].toLowerCase()] == undefined) {
-					processCat(xml, needed[i]);
-				} // else trace(".. already done, skipped processing of "+needed[i]);
+				if(Common.indexes[needed[i].toLowerCase()] == undefined) processCat(xml, needed[i]);
 			}
 
 			// prepare the homelist
@@ -489,12 +477,11 @@ class api.dataYAMJ {
 			homelist=Common.esSettings.menulist.split(",");
 
 			for(var i=0;i<homelist.length;i++) {
-				//trace(".. adding "+homelist[i]+" to menu");
+				trace(".. adding "+homelist[i]+" to menu");
 
 				if(Common.indexes[homelist[i].toLowerCase()]!= undefined) {
 					homedata.push({action:"catlist", arraydata:homelist[i].toLowerCase(), title:Common.evPrompts[homelist[i].toLowerCase()],originaltitle:homelist[i].toLowerCase()});
-					//trace("... success");
-				} // else trace("... didn't exist");
+				}
 			}
 
 			// send it off (if we have something)
@@ -509,12 +496,9 @@ class api.dataYAMJ {
 				homelist=Common.esSettings.userlist.split(",");
 
 				for(var i=0;i<homelist.length;i++) {
-					//trace(".. adding "+homelist[i]+" to user");
-
 					if(Common.indexes[homelist[i].toLowerCase()]!= undefined) {
 						homedata.push({action:"catlist", arraydata:homelist[i].toLowerCase(), title:Common.evPrompts[homelist[i].toLowerCase()],originaltitle:homelist[i].toLowerCase()});
-						//trace("... success");
-					} // else trace("... didn't exist");
+					}
 				}
 
 				// send it off (if we have something)
@@ -530,7 +514,6 @@ class api.dataYAMJ {
 				homelist=Common.esSettings.userlist2.split(",");
 
 				for(var i=0;i<homelist.length;i++) {
-					//trace(".. adding "+homelist[i]+" to user");
 
 					if(Common.indexes[homelist[i].toLowerCase()]!= undefined) {
 						homedata.push({action:"catlist", arraydata:homelist[i].toLowerCase(), title:Common.evPrompts[homelist[i].toLowerCase()],originaltitle:homelist[i].toLowerCase()});
@@ -613,10 +596,11 @@ class api.dataYAMJ {
 				var name = XPathAPI.selectSingleNode(itemNode, "/index").attributes.name.toString();
 				var originalName = XPathAPI.selectSingleNode(itemNode, "/index").attributes.originalName.toString();
 				var index= XPathAPI.selectSingleNode(itemNode, "/index").firstChild.nodeValue.toString();
+				if(index==undefined) index=XPathAPI.selectSingleNode(itemNode, "/index").attributes.filename.toString();
 				//trace("+++++ ORIGINALNAME: "+originalName);
 				if(originalName==undefined || originalName==null || originalName=="") {
 					originalName=originaltitle_fix(index);
-					trace("+++++ ORIGINALNAME2: "+originalName);
+					//trace("+++++ ORIGINALNAME2: "+originalName);
 					if(originalName=="UNKNOWN") originalName=name;
 				}
 				//trace("+++++ ORIGINALNAME FINAL: "+originalName);
@@ -625,7 +609,7 @@ class api.dataYAMJ {
 				place++;
 			}
 			Common.indexes[what.toLowerCase()]=addto;
-			trace(Common.indexes[what]);
+			//trace(Common.indexes[what]);
 		}
 		delete addto;
 	}
@@ -643,7 +627,7 @@ class api.dataYAMJ {
 		var name:Array=url.split("_");
 		name.pop();
 		this.baseIndexName=name.join("_")+"_";
-		trace("basename is "+this.baseIndexName);
+		//trace("basename is "+this.baseIndexName);
 		trace(url);
 
 		if(url != null) {
@@ -674,7 +658,7 @@ class api.dataYAMJ {
 				this.indexTypeTemp="INDEX";
 			}
 
-			trace("index type currently: "+this.indexTypeTemp);
+			//trace("index type currently: "+this.indexTypeTemp);
 
 			// are we info processing
 			this.infoprocessing=true;
@@ -732,7 +716,7 @@ class api.dataYAMJ {
 					}
 					this.personXML=jjXML.firstChild;
 
-					trace("found person xml");
+					//trace("found person xml");
 					//trace(this.personXML);
 				}
 			}
@@ -795,9 +779,7 @@ class api.dataYAMJ {
 						if(indexcount!= undefined && indexcount!=null) {
 							if(itemLast == 1) {
 								this.xmlPer=0;
-							} else {
-								this.xmlPer=int(this.indexXML[itemCurrent].length);
-							}
+							} else this.xmlPer=int(this.indexXML[itemCurrent].length);
 							this.infoProcessing(xml, indexNode);
 							return;
 						}
@@ -987,7 +969,7 @@ class api.dataYAMJ {
 					for(var i=0;i<xmlDataLen;i++) {
 						var setname=XPathAPI.selectSingleNode(xmlNodeList[i], "/set").firstChild.nodeValue.toString();
 						if(setname==this.indexname) {
-							trace("found: "+setname);
+							//trace("found: "+setname);
 							itemResult=XPathAPI.selectSingleNode(xmlNodeList[i], "/set").attributes.order.toString();
 							break;
 						} else {
@@ -998,7 +980,7 @@ class api.dataYAMJ {
 					if(itemResult=="NONE") {
 						itemResult = XPathAPI.selectSingleNode(titleXML, "/movie/sets/[set="+this.indexname+"]/set").attributes.order.toString();
 					}
-					trace("SET ORDER: "+itemResult);
+					//trace("SET ORDER: "+itemResult);
 					break;
 				case 'mtype':
 					itemResult = XPathAPI.selectSingleNode(titleXML, "/movie").attributes.isSet.toString();
@@ -1521,23 +1503,15 @@ class api.dataYAMJ {
 								var newfield:Array=field.split("@");
 								itemResult = XPathAPI.selectSingleNode(titleXML, "/movie/"+newfield[0]).attributes[newfield[1]].toString();
 							} else {
-								if(field=='birthplace') {
-									trace("!!!!!! "+titleXML);
-								}
 								itemResult = XPathAPI.selectSingleNode(titleXML, "/movie/"+field).firstChild.nodeValue.toString();
 							}
 						}
 					}
 			}
-		} else {
-			////trace("titleXML is missing/null/empty");
-
-			//trace(titleXML);
 		}
 		////trace("getData "+field+" result: "+itemResult);
 		return(itemResult);
 	}
-
 
 	private function get_full_codec(titleXML,field) {
 		trace("extended codec check for "+field);
@@ -1619,20 +1593,20 @@ class api.dataYAMJ {
 		var which:Number=int(person[2]);
 
 		var xmlNodeList:Array = XPathAPI.selectNodeList(titleXML,person[1]);
-		trace(xmlNodeList)
+		//trace(xmlNodeList)
 		if(xmlNodeList.length>0) {
-			trace("found "+xmlNodeList.length);
+			//trace("found "+xmlNodeList.length);
 
 			if(xmlNodeList.length<which) {
-				trace("element "+which+" not found");
+				//trace("element "+which+" not found");
 				return("UNKNOWN");
 			}
 			which--;
 			if(person.length>4) {
-				trace("sub searching for "+person[3]+" attribute "+person[4]);
+				//trace("sub searching for "+person[3]+" attribute "+person[4]);
 				return(XPathAPI.selectSingleNode(xmlNodeList[which], person[3]).attributes[person[4]].toString());
 			} else {
-				trace("sub searching for "+person[3]);
+				//trace("sub searching for "+person[3]);
 				return(XPathAPI.selectSingleNode(xmlNodeList[which], person[3]).firstChild.nodeValue.toString());
 			}
 		}
@@ -1649,16 +1623,16 @@ class api.dataYAMJ {
 			return("UNKNOWN");
 		}
 
-		trace("looking for: "+person[1]);
+		//trace("looking for: "+person[1]);
 		var which:Number=int(person[2]);
 
 		var xpathvar:String="/movie/people/person[@job='"+person[1]+"']";
 		var xmlNodeList:Array = XPathAPI.selectNodeList(titleXML,xpathvar);
 		if(xmlNodeList.length>0) {
-			trace("found "+xmlNodeList.length);
+			//trace("found "+xmlNodeList.length);
 
 			if(xmlNodeList.length<which) {
-				trace("element "+which+" not found");
+				//trace("element "+which+" not found");
 				return("UNKNOWN");
 			}
 			which--;
@@ -1693,8 +1667,6 @@ class api.dataYAMJ {
 				//trace(itemResult);
 			} else itemResult="UNKNOWN";
 			//trace(itemResult);
-		} else {
-			////trace("multi titleXML is missing/null/empty");
 		}
 		return(itemResult);
 	}
