@@ -53,7 +53,8 @@ class api.dataYAMJ {
 		this.fn = {onLoadyamjXML:Delegate.create(this, this.onLoadyamjXML),
 				   onLoadcatXML:Delegate.create(this, this.onLoadcatXML),
 				   parsedata:Delegate.create(this, this.xml_parse),
-				   episodes_findspecials:Delegate.create(this, this.episodes_findspecials)
+				   episodes_findspecials:Delegate.create(this, this.episodes_findspecials),
+				   onLoadcatsmallXML:Delegate.create(this,this.onLoadcatsmallXML)
 			};
 
 		this.artsize=new Array("SMALL","MEDIUM","LARGE","ORIGINAL");
@@ -82,35 +83,6 @@ class api.dataYAMJ {
 		this.currentindexcategory=null;
 	}
 
-// ****************************** EXTRAS *****************************
-	public function extras(xml:XMLNode, callBack:Function) {
-		this.fn.parsedata=Delegate.create(this, this.hardparse);
-
-		var xmlNodeList:Array = XPathAPI.selectNodeList(xml, "/movie/extras/extra");
-		var totalTitles=xmlNodeList.length;
-		trace(totalTitles+" records");
-
-		var addto=new Array();
-		for(var i=0;i<totalTitles;i++) {
-
-			var title=XPathAPI.selectSingleNode(xmlNodeList[i], "/extra").attributes.title.toString();
-			var file=XPathAPI.selectSingleNode(xmlNodeList[i], "/extra").firstChild.nodeValue.toString();
-
-			trace("... title:   "+title);
-			trace("... file:   "+file);
-
-			// add it
-			addto.push({title:title, file:file});
-		}
-
-		if(addto.length<1) {
-			//trace("no eps");
-			callBack("ERROR", Common.evPrompts.enoextras);
-		} else {
-			//trace("returning ep array");
-			callBack(null,null,addto);
-		}
-	}
 
 // ****************************** EPISODES *****************************
 	public function episodes(xml:XMLNode, callBack:Function) {
@@ -390,43 +362,21 @@ class api.dataYAMJ {
 		}
 	}
 
-// ***************************** MPARTS **********************************
-	public function mpartsall(xml:XMLNode, callBack:Function) {
-		this.fn.parsedata=Delegate.create(this, this.hardparse);
-
-		//trace("dataYAMJ parsing out episodes");
-
-		var xmlNodeList:Array = XPathAPI.selectNodeList(xml, "/movie/files/file");
-		var totalTitles=xmlNodeList.length;
-		trace(totalTitles+" records");
-
-		var addto=new Array();
-		addto.push({title:"Play All",action:"PLAYALLMULTI",episode:0});
-		for(var i=0;i<totalTitles;i++) {
-			// get the first/last parts
-			var firstpart=int(XPathAPI.selectSingleNode(xmlNodeList[i], "/file").attributes.firstPart.toString());
-			var title=XPathAPI.selectSingleNode(xmlNodeList[i], "/file/fileTitle[@part='"+firstpart+"'").firstChild.nodeValue.toString();
-			if(title=="UNKNOWN") title="PART "+firstpart;
-
-			// add it
-			addto.push({episode:firstpart, title:title, action:"PLAYSINGLE"});
-		}
-
-		if(addto.length<2) {
-			callBack("ERROR", Common.evPrompts.enoparts);
-		} else {
-			callBack(null,null,addto);
-		}
-	}
-
-
 // ****************************** CATEGORIES *****************************
 
 	public function getCat(callBack:Function):Void {
 		this.Callback=callBack;
 
 		// load up the categories
-		Data.loadXML(Common.evSettings.yamjdatapath+"Categories.xml", this.fn.onLoadcatXML);
+		Data.loadXML(Common.evSettings.yamjdatapath+"Categories_small.xml", this.fn.onLoadcatsmallXML);
+	}
+
+	public function onLoadcatsmallXML(success:Boolean, xml:XML):Void {
+		if(success) {
+			this.onLoadcatXML(success, xml);
+	    } else {
+			Data.loadXML(Common.evSettings.yamjdatapath+"Categories.xml", this.fn.onLoadcatXML);
+		}
 	}
 
 	private function onLoadcatXML(success:Boolean, xml:XML) {
@@ -477,7 +427,7 @@ class api.dataYAMJ {
 			homelist=Common.esSettings.menulist.split(",");
 
 			for(var i=0;i<homelist.length;i++) {
-				trace(".. adding "+homelist[i]+" to menu");
+				//trace(".. adding "+homelist[i]+" to menu");
 
 				if(Common.indexes[homelist[i].toLowerCase()]!= undefined) {
 					homedata.push({action:"catlist", arraydata:homelist[i].toLowerCase(), title:Common.evPrompts[homelist[i].toLowerCase()],originaltitle:homelist[i].toLowerCase()});

@@ -125,6 +125,12 @@ class ev.EVSettings {
 
 	// when pch mac address finished loading
 	private function onMacLoaded(success:Boolean, xml, errorcode) {
+		// DUNE TESTING
+		// trace("dune testing enabled");
+		// Duneapi.disabled=false;
+		// Popapi.disabled=true;
+		// Common.evRun.hardware.id="DUNETEST";
+
 		if(success) {
 			trace("dune api disabled");
 			Duneapi.disabled=true;

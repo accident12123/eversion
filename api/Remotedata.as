@@ -213,12 +213,12 @@ class api.Remotedata {
 					}
 					break;
 				case 'extras':
-					this.datasource=new dataYAMJ();
+					this.datasource=new dataYAMJ2();
 					this.indexType="XTRA";
 					this.datasource.extras(this.segDetails.xml, this.fn.harddataloaded);
 					break;
 				case 'mpartsall':
-					this.datasource=new dataYAMJ();
+					this.datasource=new dataYAMJ2();
 					this.indexType="PARTS";
 					this.datasource.mpartsall(this.segDetails.xml, this.fn.harddataloaded);
 					break;
