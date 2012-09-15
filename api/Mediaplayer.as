@@ -542,6 +542,13 @@ class api.Mediaplayer {
 					Mediaplayer.mountqueue[0].file=StringUtil.replace(Mediaplayer.mountqueue[0].file, "nfs-tcp://", "nfs://");
 				} else trace("nfs-tcp url but user choose to not convert");
 
+				// fix dune nfs path on pch
+				var fix=Mediaplayer.mountqueue[0].file.split(":");
+				if(fix.length!=2 && fix[0][0]!="s") {
+					Mediaplayer.mountqueue[0].file=fix[0]+":"+fix[1]+fix[2];
+					trace("dune nfs path fixed for pch "+Mediaplayer.mountqueue[0].file);
+				}
+
 				// full mount skip
 				if((Common.evRun.hardware.fullmounts==false && Common.evRun.hardware.cfgmounts!='false') || Common.evRun.hardware.cfgmounts=='true') {
 					trace("full mounts not needed, direct queue");

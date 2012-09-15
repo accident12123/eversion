@@ -98,8 +98,8 @@ class ev.Common {
 		Common.evRun.hardware.cfgmounts='auto';
 
 		Common.evRun.minyamj=2833;
-		Common.evRun.evversion="0.2.8.15";
-		Common.evRun.evrversion="R0175";
+		Common.evRun.evversion="0.2.8.16";
+		Common.evRun.evrversion="R0176";
 		Common.evRun.updated=false;
 
 		Popapi.disabled=false;
