@@ -935,7 +935,7 @@ class ev.Screen {
 				} else if(StringUtil.beginsWith(command, "file://") || StringUtil.beginsWith(command, "http://")) {
 					if(Common.evRun.hardware.loadpage) {
 						trace("gaya url");
-						Popapi.htmlexit(escape(command), true);
+						Popapi.htmlexit(command, true);
 						Popapi.presseject(); // press eject for the user
 					}
 				} else if(StringUtil.beginsWith(command, "eskin://")) {

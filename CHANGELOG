@@ -1,5 +1,8 @@
 Eversion Changelog
 
+R0178:
+- fixed file:// and http:// exitpage and switch actions not going anywhere.
+
 R0177:
 - added this changelog file.
 - added temporary 891x chipset detection until we have more specific a400 info
