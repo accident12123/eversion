@@ -99,8 +99,9 @@ class ev.Common {
 
 		Common.evRun.minyamj=2833;
 		Common.evRun.evversion="0.2.8.16";
-		Common.evRun.evrversion="R0176";
+		Common.evRun.evrversion="R0177";
 		Common.evRun.updated=false;
+		Common.evRun.highperf=false;  // high end chipset
 
 		Popapi.disabled=false;
 		Duneapi.disabled=false;

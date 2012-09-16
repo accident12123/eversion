@@ -78,7 +78,7 @@
 
 	<!-- ********* HyperScroll settings  -->
 	<!-- Activate hyperscroll.   true means on -->
-	<hyperscroll>true</hyperscroll>
+	<hyperscroll>auto</hyperscroll>
 	<!-- hyperscroll timer.   -->
 	<hyperscrolltimer>480</hyperscrolltimer>
 	<!-- how fast should the screen start removing parts of hte screen.  choices: slow, medium, fast.  Default: slow -->
@@ -109,6 +109,7 @@
 	<c3hyperdraw>1</c3hyperdraw>
 	<noghyperdraw>2</noghyperdraw>
 	<dunehyperdraw>1</dunehyperdraw>
+	<highperfhyperdraw>1</highperfhyperdraw>
 
 	<!-- when set to true, eversion will use the indexcount that yamj makes instead of counting the number of items in an index itself.  It is faster
 	     when set to true to get into an index however the yamj count is not always accurate and can cause unexpected problems.  It is recommended
@@ -208,6 +209,9 @@
 	<!-- Are native bookmarks enabled with native player on unknown players without gaya -->
 	<nognativebm>true</nognativebm>
 
+	<!-- Are native bookmarks enabled with native player on 891x players without gaya -->
+	<highperfnativebm>true</highperfnativebm>
+
 
 	<!-- Native player loop fromhere playlists.
 
@@ -270,5 +274,5 @@
 	<renderquality>HIGH</renderquality>
 
 	<!-- used to verify settings match interface version -->
-    <eversion>R0175</eversion>
+    <eversion>R0177</eversion>
 </settings>

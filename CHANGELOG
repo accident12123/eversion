@@ -1,0 +1,42 @@
+Eversion Changelog
+
+R0177:
+- added this changelog file.
+- added temporary 891x chipset detection until we have more specific a400 info
+- 891x players use custom settings prefix highperf
+- 891x players activate highperf mode (for lack of better name)
+- added highperf defaults.
+- hyperscoll defaults to auto.   highperf mode=off else on.  override by using true to enable in highperf mode
+
+R0176:
+- ver number changed to 0.2.8.16
+- Added support to use dune nfs paths on both dune and pch players (removes : after host/ip if on pch and found)
+
+R0175:
+- added support for categories_small.xml added in yamj R3156 (to avoid slow load/crashing when used with iskin2)
+- only released in alphatest with iskin2
+
+R0174:
+- per hardware settings files were not loaded (my bad, left debug code in)
+
+R0173a:
+- evstreamed updated for magicdudes watched support
+
+R0173:
+- fixed some evstreamed artwork not appearing on dune hardware
+- added dune_folder.txt and first combined download support for both platforms in 1 jukebox
+
+R0172:
+- fixed dune playback support
+- added friendly playback not supported on dune error messages for features not available on dune (youtube)
+- reworked custom settings load to include dune serial number files
+
+R0171:
+- added support for dune playback
+- added support for dune remote control
+
+R0170:
+- first test version for detection of dune, not released in yamj download.
+
+Previous:
+- not sure I have the original changelog anymore, some hints in the github commits.

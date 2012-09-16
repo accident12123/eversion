@@ -22,7 +22,7 @@ import ExtCommand;
 
 class api.Popapi {
 	public static var apiurl:String="127.0.0.1:8008/";
-	//public static var apiurl:String="10.1.2.224:8008/";
+	//public static var apiurl:String="pch-c200:8008/";
 	//public static var apiurl:String="10.1.2.210/relay.php?";
 	public static var disabled:Boolean=null;
 
@@ -217,6 +217,18 @@ class api.Popapi {
 			trace("high res bg support availble");
 			Common.evRun.hardware.bghighres=true;
 			trace("bg playlist mode: "+Common.evRun.hardware.bghighresplaylist);
+
+			// check chipset (temporary a400 support until we have a firmware #)
+			var chipset=XPathAPI.selectSingleNode(xml.firstChild, "/theDavidBox/response/chipset").firstChild.nodeValue.toString();
+
+			if(StringUtil.beginsWith(chipset, "SMP891")) {
+				trace("891x chipset detected, high performance mode available");
+				Common.evRun.highperf=true;
+
+				Common.evRun.hardware.settingcode="highperf";
+				Common.evRun.hyperdraw=int(Common.evSettings["highperfhyperdraw"]);
+			}
+
 			callback(true);
 		} else {
 			trace("older firmware without system info, not erroring");

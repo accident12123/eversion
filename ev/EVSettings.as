@@ -298,6 +298,16 @@ class ev.EVSettings {
 
 		if(Common.evSettings.yamjdatapath==null || Common.evSettings.yamjdatapath==undefined) Common.evSettings.yamjdatapath="";
 
+		// high perf adjustments
+		if(Common.evRun.highperf) {
+			trace("adjusting for high perf settings");
+
+			if(Common.evSettings.hyperscroll=="auto") Common.evSettings.hyperscroll="false";
+		} else {
+			trace("adjusting for low perf settings");
+			if(Common.evSettings.hyperscroll=="auto") Common.evSettings.hyperscroll="true";
+		}
+
 		// convert some to ints
 		Common.evSettings.dataprefetch=int(Common.evSettings.dataprefetch);
 		Common.evSettings.datatotal=int(Common.evSettings.datatotal);

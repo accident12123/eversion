@@ -1145,12 +1145,12 @@ class api.Mediaplayer {
 	// called when done or user pressed stop
 	public static function playerFinished() {
 		trace("MP: all done");
+		Mediaplayer.isPlaying=false;
+		Mediaplayer.parentMC.playerMC.removeMovieClip();
+
 		Popapi.send("playback?arg0=stop_vod");
 		Popapi.send("system?arg0=suspend_screensaver&arg1=0");
 		Preloader.clear();
-
-		Mediaplayer.isPlaying=false;
-		Mediaplayer.parentMC.playerMC.removeMovieClip();
 
 		/*
 		if(Mediaplayer.errorstate>0) [
