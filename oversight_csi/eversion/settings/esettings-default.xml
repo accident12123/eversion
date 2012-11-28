@@ -27,7 +27,7 @@
 	<!-- where do we go when you exit the skin?? -->
 	<exitpage>eject</exitpage>
 	<!-- PCH path to jukebox folder if not using a default install (99% of users should not touch this) -->
-	<yamjdatapath>./</yamjdatapath>
+	<yamjdatapath>http://127.0.0.1:8883/oversight/oversight.cgi?yamj/</yamjdatapath>
 	<!-- PCH path to eskin folders (99% of users should not touch this) -->
 	<eskinrootpath>./</eskinrootpath>
 
