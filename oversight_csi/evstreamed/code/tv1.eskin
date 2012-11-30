@@ -144,7 +144,7 @@
             <text>
                 <name>mc.unwatched</name>
                 <display>[:title:]</display>  <!-- Eversion variable holding the title -->
-                <condition>[:watched:] == false</condition>  <!-- This block is done if the condition is true-->
+                <condition>[:watched:] != true</condition>  <!-- This block is done if the condition is true-->
                 <posx>0</posx>
                 <posy>5</posy>
                 <width>520</width>
