@@ -178,12 +178,10 @@
 		   2: smb:// paths with username and password require the encrypted password.  use the yamj app to find this password
 		   3: file:// network share paths with playercheckmounts enabled.  gaya firmware with smb passwords will never work.
     -->
-	<fullmounts>auto</fullmounts>
+	<fullmounts>false</fullmounts>
 
 	<!-- A firmware bug does not allow us to mount an nfs-tcp mount as nfs-tcp.   Setting this option to true will mount as nfs instead -->
 	<mountnfstcpasnfs>false</mountnfstcpasnfs>
-
-
 
 	<!-- Are native bookmarks enabled with native player on popbox V8 -->
 	<v8nativebm>true</v8nativebm>
